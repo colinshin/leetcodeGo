@@ -3,6 +3,8 @@
 ## 题目
 Given a string, find the length of the longest substring without repeating characters.
 
+求一个字符串中字符各不相同的子串中长度最长的子串，返回其长度
+
 Examples:
 
 Given "abcabcbb", the answer is "abc", which the length is 3.
@@ -66,3 +68,5 @@ func lengthOfLongestSubstring(s string) int {
 	return max
 }
 ```
+## 扩展
+返回最长长度的同时，返回相应的子串
