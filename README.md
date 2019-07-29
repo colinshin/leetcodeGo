@@ -2,8 +2,8 @@
 Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
 
 ## completed
-[1. two sum](1.two_sum)
-[2. add two numbers](2.add_two_numbers)
+* [1. two sum](1.two_sum)
+* [2. add two numbers](2.add_two_numbers)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
