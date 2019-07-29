@@ -45,7 +45,9 @@ func allUnique(s string) bool {
 	return true
 }
 ```
-2. 
+2. 我们记寻找的子串开始的索引为left，结束的索引为right，right不断增加，用一个全局变量max记录已经发现的没有重复字符的子串长度；<br>
+用一个map，键为字符中的字符，值为其索引；如果发现m中能找到right所在的元素，说明字符出现了重复；<br>
+因为求的是没有重复字符的最长子串，此时left只需要移动到第一次出现该字符的下一位，right不变，继续增加即可。
 ```
 import "code.huawei.com/interest/LetsGo/leetcode/util/integer"
 
@@ -55,10 +57,10 @@ func lengthOfLongestSubstring(s string) int {
 	for left, right := 0, 0; right < len(s); right ++ {
 		char := s[right]
 		if index, found := m[char]; found {
-			left = integer.Max(left, index)
+			left = integer.Max(left, index+1)
 		}
 		max = integer.Max(max, right-left+1)
-		m[char] = right + 1
+		m[char] = right
 	}
 	return max
 }
