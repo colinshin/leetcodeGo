@@ -21,11 +21,11 @@ import (
 
 func lengthOfLongestSubstring(s string) int {
 	max := 0
-	for i:=0; i<len(s); i++ {
-		for j:=i+1; j<=len(s); j++ {
-			subStr := s[i:j]
-			if allUnique(subStr) {
-				max = integer.Max(j-i, max)
+	for i := 0; i < len(s); i++ {
+		for j := i; j < len(s); j++ {
+			subStr := s[i:j+1]
+			if allUnique(&subStr) {
+				max = integer.Max(j-i+1, max)
 			} else {
 				break
 			}
@@ -34,9 +34,9 @@ func lengthOfLongestSubstring(s string) int {
 	return max
 }
 
-func allUnique(s string) bool {
+func allUnique(s *string) bool {
 	uniqChars := set.New()
-	for _, c := range s {
+	for _, c := range *s {
 		if uniqChars.Has(c) {
 			return false
 		}
