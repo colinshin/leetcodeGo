@@ -64,3 +64,22 @@ func twoSum(nums []int, target int) []int {
 }
 
 ```
+## 拓展
+如果数组是已经排好序的呢？<br>
+可以从两边往中间凑~
+```
+func twoSum(nums []int, target int) []int {
+	for i, j := 0, len(nums)-1; i < j; {
+		sum := nums[i] + nums[j]
+		if sum == target {
+			return []int{i, j}
+		}
+		if sum < target {
+			i ++
+		} else {
+			j --
+		}
+	}
+	return nil
+}
+```
