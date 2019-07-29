@@ -6,6 +6,10 @@ Given an array of integers, return indices of the two numbers such that they add
 
 You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
+给定一个整型数组，返回和为定值（target）的两个元素的索引。
+
+假定每个输入有且仅有一组解， 且同一个元素不会出现两次。
+
 Example:
 
 ```text
