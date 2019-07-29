@@ -1,2 +1,2 @@
 # leetcodeGo
-leetcode problems impletioned with Go
+[leetcode problems](https://leetcode.com/problemset/all/) impletioned with Go
