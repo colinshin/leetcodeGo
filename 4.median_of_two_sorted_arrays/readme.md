@@ -5,6 +5,8 @@ There are two sorted arrays nums1 and nums2 of size m and n respectively.
 
 Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
 
+长度分别为m和n的两个已排序数组，求其中位数，时间复杂度控制在O(log (m+n))内
+
 Example 1:
 ```
 nums1 = [1, 3]
