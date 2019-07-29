@@ -1,5 +1,5 @@
 # leetcodeGo
-Go solution for [LeetCode problems] (https://leetcode.com/problemset/all/) 
+Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
