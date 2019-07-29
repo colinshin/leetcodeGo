@@ -8,10 +8,10 @@ func lengthOfLongestSubstring(s string) int {
 	for left, right := 0, 0; right < len(s); right ++ {
 		char := s[right]
 		if index, found := m[char]; found {
-			left = integer.Max(left, index)
+			left = integer.Max(left, index+1)
 		}
 		max = integer.Max(max, right-left+1)
-		m[char] = right + 1 // add or update m[char]
+		m[char] = right
 	}
 	return max
 }
