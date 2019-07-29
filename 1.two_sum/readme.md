@@ -66,7 +66,7 @@ func twoSum(nums []int, target int) []int {
 ```
 ## 拓展
 如果数组是已经排好序的呢？<br>
-可以从两边往中间凑~
+可以从两边往中间凑， 时间O(n), 不用额外空间~
 ```
 func twoSum(nums []int, target int) []int {
 	for i, j := 0, len(nums)-1; i < j; {
