@@ -6,12 +6,12 @@ func lengthOfLongestSubstring(s string) int {
 	m := map[interface{}]int{}
 	max := 0
 	for left, right := 0, 0; right < len(s); right ++ {
-		char := s[right]
-		if index, found := m[char]; found {
+		c := s[right]
+		if index, found := m[c]; found {
 			left = integer.Max(left, index+1)
 		}
 		max = integer.Max(max, right-left+1)
-		m[char] = right
+		m[c] = right
 	}
 	return max
 }
