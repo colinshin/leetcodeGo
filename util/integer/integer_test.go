@@ -18,10 +18,10 @@ func TestMaxMin(t *testing.T) {
 	for _, c := range cases {
 		min, max := Min(c.a, c.b), Max(c.a, c.b)
 		if min != c.min {
-			t.Errorf("a: %d, b: %d, expected min: %d, but got:%d", c.a, c.b, c.min, min)
+			t.Errorf("a: %d, b: %d, expected min: %d, but got:%d\n", c.a, c.b, c.min, min)
 		}
 		if max != c.max {
-			t.Errorf("a: %d, b: %d, expected max: %d, but got:%d", c.a, c.b, c.max, max)
+			t.Errorf("a: %d, b: %d, expected max: %d, but got:%d\n", c.a, c.b, c.max, max)
 		}
 	}
 }
