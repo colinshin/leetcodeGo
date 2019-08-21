@@ -67,7 +67,8 @@ func medianOfArray(nums []int) float64 {
 	return float64(nums[length/2])
 }
 ```
-2. 时间O(log(min(m,n)))，空间O(1)
+2. 时间O(log(min(m,n)))，空间O(1)<br>
+原理参考： https://blog.csdn.net/bjweimengshu/article/details/97717144
 ```
 
 import "github.com/zrcoder/leetcodeGo/util/integer"
