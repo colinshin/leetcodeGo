@@ -74,7 +74,6 @@ func medianOfArray(nums []int) float64 {
 
 原理参考：<br>
 https://cloud.tencent.com/developer/article/1483811<br>
-代码略<br>
 
 ```
 ```
