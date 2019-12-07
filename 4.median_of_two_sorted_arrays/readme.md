@@ -30,7 +30,7 @@ The median is (2 + 3)/2 = 2.5
 ```
 所以，必须对两个数组合并，合并后依然有序<br>
 
-1. 朴素实现（时间与空间复杂度均为O(m+n)）
+1. 朴素实现（时间与空间复杂度均为O(m+n)）<br>
 
 ```
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
@@ -71,11 +71,13 @@ func medianOfArray(nums []int) float64 {
 ```
 
 2. 时间O(log(m+n))，空间O(1)<br>
+
 原理参考：<br>
 https://cloud.tencent.com/developer/article/1483811<br>
 代码略<br>
 
 3.时间O(log(min(m,n)))，空间O(1)<br>
+
 原理参考：<br>
 https://blog.csdn.net/bjweimengshu/article/details/97717144<br>
 
