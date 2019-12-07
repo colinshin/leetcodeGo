@@ -29,7 +29,9 @@ The median is (2 + 3)/2 = 2.5
 [1, 3, 5, 8, 10] // 中位数5, 并非3和9的平均数
 ```
 所以，必须对两个数组合并，合并后依然有序<br>
+
 1. 朴素实现（时间与空间复杂度均为O(m+n)）
+
 ```
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	mergedNums := mergeNums(nums1, nums2)
@@ -67,6 +69,7 @@ func medianOfArray(nums []int) float64 {
 	return float64(nums[length/2])
 }
 ```
+
 2. 时间O(log(m+n))，空间O(1)<br>
 原理参考：<br>
 https://cloud.tencent.com/developer/article/1483811<br>
@@ -75,6 +78,7 @@ https://cloud.tencent.com/developer/article/1483811<br>
 3.时间O(log(min(m,n)))，空间O(1)<br>
 原理参考：<br>
 https://blog.csdn.net/bjweimengshu/article/details/97717144<br>
+
 ```
 import "github.com/zrcoder/leetcodeGo/util/integer"
 
