@@ -67,12 +67,14 @@ func medianOfArray(nums []int) float64 {
 	return float64(nums[length/2])
 }
 ```
-2. 时间O(log(min(m,n)))，空间O(1)<br>
+2. 时间O(log(m+n))，空间O(1)<br>
 原理参考：<br>
 https://cloud.tencent.com/developer/article/1483811<br>
+代码略<br>
+3.时间O(log(min(m,n)))，空间O(1)<br>
+原理参考：<br>
 https://blog.csdn.net/bjweimengshu/article/details/97717144<br>
 ```
-
 import "github.com/zrcoder/leetcodeGo/util/integer"
 
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
