@@ -51,11 +51,14 @@ func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
 	for iMin <= iMax {
 		i := (iMin + iMax) / 2
 		j := halfLen - i
-		if i < iMax && nums2[j-1] > nums1[i] {
+		if i < m && nums2[j-1] > nums1[i] {
+			// i is too smal
 			iMin = i + 1
-		} else if i > iMin && nums1[i-1] > nums2[j] {
+		} else if i > 0 && nums1[i-1] > nums2[j] {
+			// i is too big
 			iMax = i - 1
 		} else {
+			// i is perfect
 			maxLeft := 0
 			if i == 0 {
 				maxLeft = nums2[j-1]

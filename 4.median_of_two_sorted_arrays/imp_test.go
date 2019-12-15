@@ -19,6 +19,7 @@ var cases = []struct {
 	{a: []int{1, 3}, b: []int{2, 4, 8}, expect: 3.0},
 	{a: []int{1, 3}, b: nil, expect: 2.0},
 	{a: []int{1, 3, 5}, b: []int{8, 10}, expect: 5.0},
+	{a: []int{1}, b: []int{2, 3, 4, 5, 6}, expect: 3.5},
 }
 
 func TestFindMedianSortedArrays(t *testing.T) {
