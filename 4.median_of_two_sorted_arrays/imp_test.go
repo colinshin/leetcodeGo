@@ -48,3 +48,12 @@ func TestFindMedianSortedArrays2(t *testing.T) {
 		}
 	}
 }
+
+func TestFindMedianSortedArrays32(t *testing.T) {
+	for _, c := range cases {
+		r := findMedianSortedArrays3(c.a, c.b)
+		if c.expect != r {
+			t.Error("expect:", c.expect, "got:", r)
+		}
+	}
+}
