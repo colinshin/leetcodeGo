@@ -11,7 +11,7 @@ import "sort"
 
 输出: 4
 解释: n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).
- */
+*/
 
 /*
 分析：
@@ -19,13 +19,13 @@ import "sort"
 最小的元素，必被计算在最后结果中；为使最终结果最大，和最小元素搭对的必为次小元素，则第一对即为最小元素和次小元素
 递归地看，剩余元素也是一样
 最终结果就是：计算升序排列后的数组索引为2n（0,2,4,..., 2n-2）的元素和
- */
+*/
 
 func arrayPairSum(nums []int) int {
 	length := len(nums)
 	sort.Ints(nums)
 	sum := 0
-	for i:=0; i<length; i += 2 {
+	for i := 0; i < length; i += 2 {
 		sum += nums[i]
 	}
 	return sum

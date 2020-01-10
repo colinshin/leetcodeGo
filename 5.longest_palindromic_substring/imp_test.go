@@ -2,9 +2,9 @@ package __longest_palindromic_substring
 
 import "testing"
 
-func TestLongestPalindrome(t *testing.T)  {
-	cases := []struct{
-		input string
+func TestLongestPalindrome(t *testing.T) {
+	cases := []struct {
+		input  string
 		expect string
 	}{
 		{input: "babab", expect: "babab"},

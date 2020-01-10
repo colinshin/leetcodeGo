@@ -14,6 +14,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [optimize-water-distribution-in-a-village](optimize-water-distribution-in-a-village/d.go)
 * [remove-duplicates](remove-duplicates/d.go)
 * [sort-list](sort-list/d.go)
+* [min-stack](min-stack/d.go)
+* [maximum-product-of-word-lengths](maximum-product-of-word-lengths/d.go)
+* [24-game](24-game/d.go)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>

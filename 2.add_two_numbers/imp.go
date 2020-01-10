@@ -6,7 +6,7 @@ import (
 )
 
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
 
@@ -15,7 +15,7 @@ func NewWithArray(array []int) *ListNode {
 	current := result
 	for i, v := range array {
 		current.Val = v
-		if i < len(array) -1 {
+		if i < len(array)-1 {
 			current.Next = &ListNode{}
 		}
 		current = current.Next
@@ -41,7 +41,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	result := &ListNode{}
 	current := result
 	carry := 0 // must be 0 or 1
-	for l1 !=nil || l2 != nil || carry != 0 {
+	for l1 != nil || l2 != nil || carry != 0 {
 		sum := carry
 		if l1 != nil {
 			sum += l1.Val
@@ -53,7 +53,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 		carry = sum / 10
 		current.Val = sum % 10
-		if l1 !=nil || l2 != nil || carry != 0 {
+		if l1 != nil || l2 != nil || carry != 0 {
 			current.Next = &ListNode{}
 			current = current.Next
 		}

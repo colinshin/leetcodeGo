@@ -13,8 +13,6 @@ package before_and_after_puzzle
 
 请你按字典序排列并返回「新短语」列表，列表中的字符串应该是 不重复的 。
 
-
-
 示例 1：
 
 输入：phrases = ["writing code","code rocks"]
@@ -51,12 +49,11 @@ import (
 
 func beforeAndAfterPuzzles(phrases []string) []string {
 	n := len(phrases)
-	result := make([]string, 0)
 	set := make(map[string]struct{})
 	for i := 0; i < n-1; i++ {
 		for j := i + 1; j < n; j++ {
-			p1 := makePuzzle(phrases[i], phrases[j])
-			p2 := makePuzzle(phrases[j], phrases[i])
+			p1 := merge(phrases[i], phrases[j])
+			p2 := merge(phrases[j], phrases[i])
 			if p1 != "" {
 				set[p1] = struct{}{}
 			}
@@ -65,15 +62,16 @@ func beforeAndAfterPuzzles(phrases []string) []string {
 			}
 		}
 	}
+
+	var result []string
 	for r := range set {
 		result = append(result, r)
 	}
-
 	sort.Strings(result)
 	return result
 }
 
-func makePuzzle(a, b string) string {
+func merge(a, b string) string {
 	aTail := getLastWord(a)
 	bHead, index := getFirstWord(b)
 	if aTail == bHead {
