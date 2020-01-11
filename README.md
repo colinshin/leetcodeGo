@@ -17,6 +17,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [min-stack](min-stack/d.go)
 * [maximum-product-of-word-lengths](maximum-product-of-word-lengths/d.go)
 * [24-game](24-game/d.go)
+* [middle-of-the-linked-list](middle-of-the-linked-list/d.go)
+* [occurrences-after-bigram](occurrences-after-bigram/d.go)
+* [cherry-pickup](cherry-pickup/d.go)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
