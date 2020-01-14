@@ -20,6 +20,8 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [middle-of-the-linked-list](middle-of-the-linked-list/d.go)
 * [occurrences-after-bigram](occurrences-after-bigram/d.go)
 * [cherry-pickup](cherry-pickup/d.go)
+* [unique-number-of-occurrences](unique-number-of-occurrences/d.go)
+* [matrix-cells-in-distance-order](matrix-cells-in-distance-order/d.go)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>

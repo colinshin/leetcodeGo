@@ -100,39 +100,31 @@ https://cloud.tencent.com/developer/article/1483811<br>
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	n := len(nums1)
 	m := len(nums2)
-	middle := (n + m + 1) / 2
-
-	middleVal := getKth(nums1, nums2, 0, n-1, 0, m-1, middle)
-	if n+m%2 == 1 {
-		return middleVal
+	if (n+m)%2 == 1 {
+		return getKth(nums1, nums2, (n+m+1)/2)
 	}
-
-	nextMiddle := (n + m + 2) / 2
-	nextMiddleVal := getKth(nums1, nums2, 0, n-1, 0, m-1, nextMiddle)
-	return (middleVal + nextMiddleVal) * 0.5
+	return (getKth(nums1, nums2, (n+m)/2) + getKth(nums1, nums2, (n+m)/2+1)) * 0.5
 }
 
-func getKth(nums1, nums2 []int, start1, end1, start2, end2, k int) float64 {
-	len1 := end1 - start1 + 1
-	len2 := end2 - start2 + 1
-	if len1 > len2 {
-		return getKth(nums2, nums1, start2, end2, start1, end1, k)
+func getKth(nums1, nums2 []int, k int) float64 {
+	m := len(nums1)
+	n := len(nums2)
+	if m > n {
+		return getKth(nums2, nums1, k)
 	}
-	if len1 == 0 {
-		return float64(nums2[start2+k-1])
+	if m == 0 {
+		return float64(nums2[k-1])
 	}
 	if k == 1 {
-		return float64(integer.Min(nums1[start1], nums2[start2]))
+		return float64(integer.Min(nums1[0], nums2[0]))
 	}
 
-	i := start1 + integer.Min(len1, k/2) - 1
-	j := start2 + integer.Min(len2, k/2) - 1
-
+	i := integer.Min(m, k/2) - 1
+	j := integer.Min(n, k/2) - 1
 	if nums1[i] > nums2[j] {
-		return getKth(nums1, nums2, start1, end1, j+1, end2, k-(j-start2+1))
+		return getKth(nums1, nums2[j+1:], k-(j+1))
 	}
-
-	return getKth(nums1, nums2, i+1, end1, start2, end2, k-(i-start1+1))
+	return getKth(nums1[i+1:], nums2, k-(i+1))
 }
 ```
 
