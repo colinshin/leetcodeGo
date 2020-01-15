@@ -25,6 +25,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [linked-list-components](linked-list-components/d.go)
 * [beautiful-array](beautiful-array/d.go)
 * [coin-path](coin-path/d.go)
+* [is-graph-bipartite](is-graph-bipartite/d.go)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
