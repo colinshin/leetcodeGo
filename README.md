@@ -22,6 +22,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [cherry-pickup](cherry-pickup/d.go)
 * [unique-number-of-occurrences](unique-number-of-occurrences/d.go)
 * [matrix-cells-in-distance-order](matrix-cells-in-distance-order/d.go)
+* [linked-list-components](linked-list-components/d.go)
+* [beautiful-array](beautiful-array/d.go)
+* [coin-path](coin-path/d.go)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
