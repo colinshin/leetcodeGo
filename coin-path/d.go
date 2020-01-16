@@ -39,45 +39,9 @@ B 的范围 [1, 100].
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
-func cheapestJump1(A []int, B int) []int {
-	n := len(A)
-	if n == 0 || -1 == A[n-1] {
-		return []int{}
-	}
-
-	dp, path := make([]int, n), make([]int, n)
-	for i := 0; i < n; i++ {
-		dp[i], path[i] = math.MaxInt32, -1
-	}
-	dp[n-1] = A[n-1]
-
-	for i := n - 2; i >= 0; i-- {
-		if A[i] == -1 {
-			continue
-		}
-		last := int(math.Min(float64(i+B), float64(n-1)))
-		for j := i + 1; j <= last; j++ {
-			if dp[j] == math.MaxInt32 {
-				continue
-			}
-			if A[i]+dp[j] < dp[i] {
-				dp[i], path[i] = A[i]+dp[j], j
-			}
-		}
-	}
-	if dp[0] == math.MaxInt32 {
-		return []int{}
-	}
-	out := []int{}
-	for i := 0; i != -1; i = path[i] {
-		out = append(out, i+1)
-	}
-	return out
-}
-
 /*
 一个更容易理解的实现如下，但是有用例失败
-以下用例失败：
+如下用例失败：
 输入:
 [0,0,0,0,0,0]
 3
@@ -85,6 +49,8 @@ func cheapestJump1(A []int, B int) []int {
 [1,3,6]
 预期结果
 [1,2,3,4,5,6]
+
+原来是没有满足字典序要求
 */
 func cheapestJump(A []int, B int) []int {
 	n := len(A)
@@ -121,4 +87,46 @@ func cheapestJump(A []int, B int) []int {
 		return []int{}
 	}
 	return append(path[n-1], n)
+}
+
+/*
+逆向思考：
+从1走到N，跟从N走到1，花费最小的计算是等价的
+从N走到1的同时记录路径，这个路径反过来就是方案之一，且是字典序最小的方案
+
+参考上一解法没通过的用例分析就能明白，为何逆向走能得到字典序最小的路径
+*/
+func cheapestJump1(A []int, B int) []int {
+	n := len(A)
+	if n == 0 || A[n-1] == -1 {
+		return []int{}
+	}
+	dp, path := make([]int, n), make([]int, n)
+	for i := 0; i < n; i++ {
+		dp[i], path[i] = math.MaxInt32, -1
+	}
+	dp[n-1] = A[n-1]
+
+	for i := n - 2; i >= 0; i-- {
+		if A[i] == -1 {
+			continue
+		}
+		last := int(math.Min(float64(i+B), float64(n-1)))
+		for j := i + 1; j <= last; j++ {
+			if dp[j] == math.MaxInt32 {
+				continue
+			}
+			if A[i]+dp[j] < dp[i] {
+				dp[i], path[i] = A[i]+dp[j], j
+			}
+		}
+	}
+	if dp[0] == math.MaxInt32 {
+		return []int{}
+	}
+	result := []int{}
+	for i := 0; i != -1; i = path[i] {
+		result = append(result, i+1)
+	}
+	return result
 }
