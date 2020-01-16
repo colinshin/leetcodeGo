@@ -26,6 +26,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [beautiful-array](beautiful-array/d.go)
 * [coin-path](coin-path/d.go)
 * [is-graph-bipartite](is-graph-bipartite/d.go)
+* [stack-with-queen](stack-with-queen/d.go)
+* [children-weight-order](children-weight-order/d.go)
+* [remove-duplicate-chars](remove-duplicate-chars/d.go)
 
 ## reference
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
