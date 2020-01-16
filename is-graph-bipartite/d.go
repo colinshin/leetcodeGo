@@ -71,11 +71,11 @@ func isBipartite(graph [][]int) bool {
 	return true
 }
 
-func mark(node, belong int, graph [][]int, judge []int) bool {
-	judge[node] = belong
+func mark(node, set int, graph [][]int, judge []int) bool {
+	judge[node] = set
 	for _, neighbor := range graph[node] {
 		if judge[neighbor] == 0 {
-			if ok := mark(neighbor, -belong, graph, judge); !ok {
+			if ok := mark(neighbor, -set, graph, judge); !ok {
 				return false
 			}
 		} else if judge[neighbor] == judge[node] {
@@ -85,10 +85,10 @@ func mark(node, belong int, graph [][]int, judge []int) bool {
 	return true
 }
 
-func mark1(node, belong int, graph [][]int, judge []int) bool {
+func mark1(node, set int, graph [][]int, judge []int) bool {
 	var stack []int
 	stack = append(stack, node)
-	judge[node] = belong
+	judge[node] = set
 	for len(stack) != 0 {
 		top := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
