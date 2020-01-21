@@ -29,8 +29,16 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [stack-with-queen](stack-with-queen/d.go)
 * [children-weight-order](children-weight-order/d.go)
 * [remove-duplicate-chars](remove-duplicate-chars/d.go)
+* [implement-trie-prefix-tree](implement-trie-prefix-tree/d.go)
+* [symmetric-tree](symmetric-tree/d.go)
+* [longest-univalue-path](longest-univalue-path/d.go)
+* [campus-bikes](campus-bikes/d.go)
+* [campus-bikes-ii](campus-bikes-ii/d.go)
+* [partition-equal-subset-sum](partition-equal-subset-sum/d.go)
 
 ## reference
+[zero-one-pack-problem](zero-one-pack-problem.md)
+
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
 [kylesliu/awesome-golang-leetcode](https://github.com/kylesliu/awesome-golang-leetcode)<br>
