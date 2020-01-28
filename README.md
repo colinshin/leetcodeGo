@@ -44,6 +44,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [valid-word-abbreviation](valid-word-abbreviation/d.go)
 * [reverse-integer](reverse-integer/d.go)
 * [verify-preorder-sequence-in-binary-search-tree](verify-preorder-sequence-in-binary-search-tree/d.go)
+* [next-closest-time](next-closest-time/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
