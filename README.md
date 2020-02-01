@@ -52,10 +52,14 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [divide-two-integers](divide-two-integers/d.go)
 * [fixed-point](fixed-point/d.go)
 * [check-if-a-number-is-majority-element-in-a-sorted-array](check-if-a-number-is-majority-element-in-a-sorted-array/d.go)
-
+* [closest-binary-search-tree-value](closest-binary-search-tree-value/d.go)
+* [find-smallest-common-element-in-all-rows](find-smallest-common-element-in-all-rows/d.go)
+* [koko-eating-bananas](koko-eating-bananas/d.go)
+* [search-in-rotated-sorted-array](search-in-rotated-sorted-array/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
+[binary-search-problem](binary-search-problem.md)
 
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>

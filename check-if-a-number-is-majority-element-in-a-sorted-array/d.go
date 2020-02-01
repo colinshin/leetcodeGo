@@ -23,6 +23,12 @@ package check_if_a_number_is_majority_element_in_a_sorted_array
 链接：https://leetcode-cn.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
+
+/*
+方法1：
+用两次二分法找到数组中最左边target的索引和最右边的索引，两个索引距离+1即target出现的个数
+时间复杂度O(lgn)，空间复杂度O(1)
+*/
 func isMajorityElement(nums []int, target int) bool {
 	left := searchLeft(nums, target)
 	if left == -1 {
@@ -75,3 +81,29 @@ func searchLeft(nums []int, target int) int {
 	return i
 }
 */
+
+// 以下方法都没有借助数组已经排序的特性
+
+/* 方法2：借助一个map，key为每个元素，值为对应元素出现的个数
+时间空间复杂度都是O(n)
+*/
+func isMajorityElement1(nums []int, target int) bool {
+	m := make(map[int]int, 0)
+	for _, v := range nums {
+		m[v]++
+	}
+	return m[target] > len(nums)/2
+}
+
+/* 方法3：直接遍历数组得到个数
+时间复杂度O(n)，空间复杂度O(1)
+*/
+func isMajorityElement2(nums []int, target int) bool {
+	count := 0
+	for _, v := range nums {
+		if v == target {
+			count++
+		}
+	}
+	return count > len(nums)/2
+}
