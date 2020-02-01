@@ -45,6 +45,14 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [reverse-integer](reverse-integer/d.go)
 * [verify-preorder-sequence-in-binary-search-tree](verify-preorder-sequence-in-binary-search-tree/d.go)
 * [next-closest-time](next-closest-time/d.go)
+* [missing-element-in-sorted-array](missing-element-in-sorted-array/d.go)
+* [implement-rand10-using-rand7](implement-rand10-using-rand7/d.go)
+* [random-pick-with-weight](random-pick-with-weight/d.go)
+* [shortest-distance-to-target-color](shortest-distance-to-target-color/d.go)
+* [divide-two-integers](divide-two-integers/d.go)
+* [fixed-point](fixed-point/d.go)
+* [check-if-a-number-is-majority-element-in-a-sorted-array](check-if-a-number-is-majority-element-in-a-sorted-array/d.go)
+
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
