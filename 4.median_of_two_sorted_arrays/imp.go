@@ -1,21 +1,50 @@
 package __median_of_two_sorted_arrays
 
-import "github.com/zrcoder/leetcodeGo/util/integer"
+import (
+	"math"
+)
+
+/*
+寻找两个已排序数组的中位数
+给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+
+请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+
+你可以假设 nums1 和 nums2 不会同时为空。
+
+示例 1:
+
+nums1 = [1, 3]
+nums2 = [2]
+
+则中位数是 2.0
+示例 2:
+
+nums1 = [1, 2]
+nums2 = [3, 4]
+
+则中位数是 (2 + 3)/2 = 2.5
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+*/
 
 // 划归，寻找第K个数。参考：
 // https://cloud.tencent.com/developer/article/1483811
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-	n := len(nums1)
-	m := len(nums2)
-	if (n+m)%2 == 1 {
-		return getKth(nums1, nums2, (n+m+1)/2)
+	size := len(nums1) + len(nums2)
+	if size == 0 {
+		return 0.0
 	}
-	return (getKth(nums1, nums2, (n+m)/2) + getKth(nums1, nums2, (n+m)/2+1)) * 0.5
+	if (size)%2 == 1 {
+		return getKth(nums1, nums2, size/2+1)
+	}
+	return (getKth(nums1, nums2, size/2) + getKth(nums1, nums2, size/2+1)) * 0.5
 }
 
 func getKth(nums1, nums2 []int, k int) float64 {
-	m := len(nums1)
-	n := len(nums2)
+	m, n := len(nums1), len(nums2)
 	if m > n {
 		return getKth(nums2, nums1, k)
 	}
@@ -23,15 +52,24 @@ func getKth(nums1, nums2 []int, k int) float64 {
 		return float64(nums2[k-1])
 	}
 	if k == 1 {
-		return float64(integer.Min(nums1[0], nums2[0]))
+		return float64(min(nums1[0], nums2[0]))
 	}
 
-	i := integer.Min(m, k/2) - 1
-	j := integer.Min(n, k/2) - 1
+	// 两个数组中间索引为k/2 - 1
+	i := min(m, k/2) - 1 // 本应为k/2-1，这里是防止越界
+	j := min(n, k/2) - 1 // 本应为k/2-1，这里是防止越界
 	if nums1[i] > nums2[j] {
 		return getKth(nums1, nums2[j+1:], k-(j+1))
 	}
 	return getKth(nums1[i+1:], nums2, k-(i+1))
+}
+
+func min(a, b int) int {
+	return int(math.Min(float64(a), float64(b)))
+}
+
+func max(a, b int) int {
+	return int(math.Max(float64(a), float64(b)))
 }
 
 // 参考
@@ -61,7 +99,7 @@ func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
 			} else if j == 0 {
 				maxLeft = nums1[i-1]
 			} else {
-				maxLeft = integer.Max(nums1[i-1], nums2[j-1])
+				maxLeft = max(nums1[i-1], nums2[j-1])
 			}
 
 			if (m+n)%2 == 1 {
@@ -74,7 +112,7 @@ func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
 			} else if j == n {
 				minRight = nums1[i]
 			} else {
-				minRight = integer.Min(nums1[i], nums2[j])
+				minRight = min(nums1[i], nums2[j])
 			}
 			return float64(maxLeft+minRight) / 2
 		}
@@ -126,10 +164,10 @@ func findMedianSortedArrays3(nums1 []int, nums2 []int) float64 {
 	start1, start2 := 0, 0
 	for i := 0; i <= (m+n)/2; i++ {
 		lastR = currentR
-		if start1 < m && (start2 >= n || nums1[start1] < nums2[start2]) {
+		if start1 < m && (start2 == n || nums1[start1] <= nums2[start2]) {
 			currentR = nums1[start1]
 			start1++
-		} else if start2 < n {
+		} else {
 			currentR = nums2[start2]
 			start2++
 		}

@@ -64,6 +64,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [powx-n](powx-n/d.go)
 * [intersection-of-two-arrays](intersection-of-two-arrays/d.go)
 * [intersection-of-two-arrays-ii](intersection-of-two-arrays-ii/d.go)
+* [find-the-duplicate-number](find-the-duplicate-number/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
