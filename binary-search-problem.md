@@ -44,7 +44,7 @@ func binarySearch(nums []int, target) int {
         }
     }
     // end condithon:  left == right
-    if left != len(nums) && nums[left] == target {
+    if left < len(nums) && nums[left] == target {
         return left
     }
     return -1
@@ -59,7 +59,7 @@ func binarySearch(nums []int, target) int {
 ### 模板三
 ```
 func binarySearch(nums []int, target) int {
-    left, right := 0, len(nums)
+    left, right := 0, len(nums)-1
     for left+1 < right {
         // prevent (right + left) overflow
         mid := left + (right - left) / 2
@@ -73,10 +73,10 @@ func binarySearch(nums []int, target) int {
         }        
     }
     // end condithon:  left + 1 == right
-    if nums[left] == target {
+    if left < len(nums) && nums[left] == target {
         return left
     }
-    if nums[right] == target {
+    if right < len(nums) && nums[right] == target {
         return right
     }
     return -1
@@ -88,7 +88,6 @@ func binarySearch(nums []int, target) int {
 * 使用元素的邻居来确定它是向右还是向左。
 * 保证查找空间在每个步骤中至少有 3 个元素。
 * 需要进行后处理。 当剩下 2 个元素时，循环 / 递归结束。 需要评估其余元素是否符合条件。
-
 ### 模板二变体
 ```
 func binarySearch(nums []int, target) int {
@@ -106,51 +105,7 @@ func binarySearch(nums []int, target) int {
         }
     }
     // end condithon:  left == right
-    if nums[left] == target {
-        return left
-    }
-    return -1
-}
-```
-### 变体1
-如果数组里有多个target，该变体返回最左边的那个target元素的索引
-```
-func binarySearch(nums []int, target) int {
-    left, right := 0, len(nums)-1
-    for left < right {
-        // prevent (right + left) overflow
-        mid := left + (right - left) / 2
-        swith {
-        case nums[mid] < target:
-            left = mid + 1
-        default:
-            right = mid
-        }
-    }
-    // end condithon:  left == right
-    if nums[left] == target {
-        return left
-    }
-    return -1
-}
-```
-### 变体2
-如果数组里有多个target，该变体返回最右边的那个target元素的索引
-```
-func binarySearch(nums []int, target) int {
-    left, right := 0, len(nums)-1
-    for left < right {
-        // prevent (right + left) overflow
-        mid := left + (right - left) / 2
-        swith {
-        case nums[mid] > target:
-            right = mid - 1
-        default:
-            left = mid
-        }
-    }
-    // end condithon:  left == right
-    if nums[left] == target {
+    if left < len(nums) && nums[left] == target {
         return left
     }
     return -1

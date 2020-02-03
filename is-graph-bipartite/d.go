@@ -78,7 +78,7 @@ func mark(node, set int, graph [][]int, judge []int) bool {
 			if ok := mark(neighbor, -set, graph, judge); !ok {
 				return false
 			}
-		} else if judge[neighbor] == judge[node] {
+		} else if judge[neighbor] == set {
 			return false
 		}
 	}
@@ -86,16 +86,16 @@ func mark(node, set int, graph [][]int, judge []int) bool {
 }
 
 func mark1(node, set int, graph [][]int, judge []int) bool {
+	judge[node] = set
 	var stack []int
 	stack = append(stack, node)
-	judge[node] = set
 	for len(stack) != 0 {
 		top := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
 		for _, neighbor := range graph[top] {
 			if judge[neighbor] == 0 {
-				stack = append(stack, neighbor)
 				judge[neighbor] = -judge[top]
+				stack = append(stack, neighbor)
 			} else if judge[neighbor] == judge[top] {
 				return false
 			}

@@ -25,85 +25,52 @@ package check_if_a_number_is_majority_element_in_a_sorted_array
 */
 
 /*
-方法1：
 用两次二分法找到数组中最左边target的索引和最右边的索引，两个索引距离+1即target出现的个数
 时间复杂度O(lgn)，空间复杂度O(1)
 */
 func isMajorityElement(nums []int, target int) bool {
-	left := searchLeft(nums, target)
-	if left == -1 {
+	left := search(nums, target)
+	if left == len(nums) || nums[left] != target {
 		return false
 	}
-	right := searchRight(nums, target)
+	right := searchFromRight(nums, target) - 1
 	return right-left+1 > len(nums)/2
 }
 
-// 二分法找到nums里最左边的target元素的索引
-func searchLeft(nums []int, target int) int {
+/*
+在nums里搜索target，返回新target应该插入的位置；如果nums里已经有target，则在第一个已有target元素之前插入
+nums已经排序，但可能有重复元素
+
+功能同标准库里的sort.SearchInts(nums, target)
+*/
+func search(nums []int, target int) int {
 	left, right := 0, len(nums)-1
-	for left < right {
-		mid := (left + right) / 2
-		if nums[mid] < target {
+	for left <= right {
+		mid := left + (right-left)/2
+		switch {
+		case nums[mid] < target:
 			left = mid + 1
-		} else {
-			right = mid
-		}
-	}
-	if nums[left] != target {
-		return -1
-	}
-	return left
-}
-
-// 二分法找到nums里最右边的target的索引
-func searchRight(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left < right {
-		mid := (left + right + 1) / 2
-		if nums[mid] > target {
+		case nums[mid] > target, nums[mid] == target:
 			right = mid - 1
-		} else {
-			left = mid
 		}
-	}
-	if nums[left] != target {
-		return -1
 	}
 	return left
 }
 
-/* searchLeft 可直接用标准库：
-func searchLeft(nums []int, target int) int {
-	i := sort.SearchInts(nums, target)
-	if i == len(nums) {
-		return -1
-	}
-	return i
-}
+/*
+在nums里从右向左搜索target，返回新target应该插入但位置；如果nums里已经有target，则在最后一个target元素之后插入
+nums已经排序，但可能有重复元素
 */
-
-// 以下方法都没有借助数组已经排序的特性
-
-/* 方法2：借助一个map，key为每个元素，值为对应元素出现的个数
-时间空间复杂度都是O(n)
-*/
-func isMajorityElement1(nums []int, target int) bool {
-	m := make(map[int]int, 0)
-	for _, v := range nums {
-		m[v]++
-	}
-	return m[target] > len(nums)/2
-}
-
-/* 方法3：直接遍历数组得到个数
-时间复杂度O(n)，空间复杂度O(1)
-*/
-func isMajorityElement2(nums []int, target int) bool {
-	count := 0
-	for _, v := range nums {
-		if v == target {
-			count++
+func searchFromRight(nums []int, target int) int {
+	left, right := 0, len(nums)-1
+	for left <= right {
+		mid := left + (right-left)/2
+		switch {
+		case nums[mid] < target, nums[mid] == target:
+			left = mid + 1
+		case nums[mid] > target:
+			right = mid - 1
 		}
 	}
-	return count > len(nums)/2
+	return left
 }
