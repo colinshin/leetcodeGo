@@ -66,6 +66,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [intersection-of-two-arrays-ii](intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](find-k-th-smallest-pair-distance/d.go)
+* [valid-sudoku](valid-sudoku/d.go)
+* [rotate-image](rotate-image/d.go)
+* [reverse-string-ii](reverse-string-ii/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
