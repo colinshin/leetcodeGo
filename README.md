@@ -69,6 +69,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [valid-sudoku](valid-sudoku/d.go)
 * [rotate-image](rotate-image/d.go)
 * [reverse-string-ii](reverse-string-ii/d.go)
+* [string-to-integer-atoi](string-to-integer-atoi/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
