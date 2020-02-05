@@ -70,6 +70,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [rotate-image](rotate-image/d.go)
 * [reverse-string-ii](reverse-string-ii/d.go)
 * [string-to-integer-atoi](string-to-integer-atoi/d.go)
+* [implement-strstr](implement-strstr/d.go)
+* [count-and-say](count-and-say/d.go)
+* [longest-common-prefix](longest-common-prefix/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)

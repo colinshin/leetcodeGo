@@ -19,40 +19,36 @@ You may assume that all inputs are consist of lowercase letters a-z.
 All inputs are guaranteed to be non-empty strings.
 */
 
-type TrieNode struct {
-	links []*TrieNode
-	isEnd bool
+type Node struct {
+	links    []*Node
+	IsEnd    bool
+	linkNums int
 }
 
-func NewNode() *TrieNode {
-	// Maximum of r links to its children, where each link corresponds to one of r character values from dataset alphabet.
-	// In this article we assume that f is 26, the number of lowercase latin letters.
+func NewNode() *Node {
+	// Maximum of r --l--inks to its children, where each link corresponds to one of r character values from dataset alphabet.
+	// In this article we assume that r is 26, the number of lowercase latin letters.
 	const r = 26
-	return &TrieNode{links: make([]*TrieNode, r)}
+	return &Node{links: make([]*Node, r)}
 }
 
-func (n *TrieNode) ContainsKey(c rune) bool {
+func (n *Node) Has(c byte) bool {
 	return n.links[c-'a'] != nil
 }
 
-func (n *TrieNode) Get(c rune) *TrieNode {
+func (n *Node) Get(c byte) *Node {
 	return n.links[c-'a']
 }
 
-func (n *TrieNode) Put(c rune, node *TrieNode) {
+func (n *Node) Put(c byte, node *Node) {
+	if !n.Has(c) {
+		n.linkNums++
+	}
 	n.links[c-'a'] = node
 }
 
-func (n *TrieNode) SetEnd() {
-	n.isEnd = true
-}
-
-func (n *TrieNode) IsEnd() bool {
-	return n.isEnd
-}
-
 type Trie struct {
-	root *TrieNode
+	root *Node
 }
 
 func Constructor() Trie {
@@ -68,14 +64,14 @@ In the worst case newly inserted key doesn't share a prefix with the the keys al
 We have to add mm new nodes, which takes us O(m) space.
 */
 func (t *Trie) Insert(word string) {
-	node := t.root
-	for _, c := range word {
-		if !node.ContainsKey(c) {
-			node.Put(c, NewNode())
+	p := t.root
+	for i := 0; i < len(word); i++ {
+		if !p.Has(word[i]) {
+			p.Put(word[i], NewNode())
 		}
-		node = node.Get(c)
+		p = p.Get(word[i])
 	}
-	node.SetEnd()
+	p.IsEnd = true
 }
 
 /** Returns if the word is in the trie.
@@ -86,27 +82,47 @@ In the worst case the algorithm performs mm operations.
 Space complexity : O(1)
 */
 func (t *Trie) Search(word string) bool {
-	node := t.searchPrefix(word)
-	return node != nil && node.IsEnd()
+	node := t.search(word)
+	return node != nil && node.IsEnd
 }
 
 /** Returns if there is any word in the trie that starts with the given prefix.
 Time complexity : O(m)
 
-Space complexity : O(1)O(1)
+Space complexity : O(1)
 */
 func (t *Trie) StartsWith(prefix string) bool {
-	return t.searchPrefix(prefix) != nil
+	return t.search(prefix) != nil
 }
 
-func (t *Trie) searchPrefix(word string) *TrieNode {
+func (t *Trie) search(s string) *Node {
 	node := t.root
-	for _, c := range word {
-		if node.ContainsKey(c) {
-			node = node.Get(c)
+	for i := 0; i < len(s); i++ {
+		if node.Has(s[i]) {
+			node = node.Get(s[i])
 		} else {
 			return nil
 		}
 	}
 	return node
+}
+
+/*
+Time complexity : O(m) In each step of the algorithm we search for the next key character.
+In the worst case the algorithm performs m operations.
+
+Space complexity : O(1)
+*/
+func (t *Trie) SearchLongestPrefixOf(word string) string {
+	k := 0
+	node := t.root
+	for i := 0; i < len(word); i++ {
+		ch := word[i]
+		if !node.Has(ch) || node.linkNums == 1 || node.IsEnd {
+			return word[:k]
+		}
+		k++
+		node = node.Get(ch)
+	}
+	return word[:k]
 }
