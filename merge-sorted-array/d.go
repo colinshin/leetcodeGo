@@ -19,6 +19,34 @@ nums2 = [2,5,6],       n = 3
 链接：https://leetcode-cn.com/problems/merge-sorted-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
+
+/*
+如果从前往后遍历，nums1还未处理的元素可能被覆盖，为解决这个问题需要额外m的空间把nums1的元素保存起来
+
+如果从后往前遍历，则规避了覆盖的问题
+*/
 func merge(nums1 []int, m int, nums2 []int, n int) {
-	// todo
+	k := m + n - 1
+	i, j := m-1, n-1
+	for i >= 0 && j >= 0 {
+		if nums1[i] >= nums2[j] {
+			nums1[k] = nums1[i]
+			i--
+		} else {
+			nums1[k] = nums2[j]
+			j--
+		}
+		k--
+	}
+
+	for i >= 0 { // j == -1
+		nums1[k] = nums1[i]
+		i--
+		k--
+	}
+	for j >= 0 { // i == -1
+		nums1[k] = nums2[j]
+		j--
+		k--
+	}
 }

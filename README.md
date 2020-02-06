@@ -75,6 +75,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [longest-common-prefix](longest-common-prefix/d.go)
 * [merge-two-sorted-lists](merge-two-sorted-lists/d.go)
 * [merge-sorted-array](merge-sorted-array/d.go)
+* [alindrome-linked-list](alindrome-linked-list/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
