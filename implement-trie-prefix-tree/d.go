@@ -25,26 +25,26 @@ type Node struct {
 	linkNums int
 }
 
-func NewNode() *Node {
+func newNode() *Node {
 	// Maximum of r --l--inks to its children, where each link corresponds to one of r character values from dataset alphabet.
 	// In this article we assume that r is 26, the number of lowercase latin letters.
 	const r = 26
 	return &Node{links: make([]*Node, r)}
 }
 
-func (n *Node) Has(c byte) bool {
+func (n *Node) has(c byte) bool {
 	return n.links[c-'a'] != nil
 }
 
-func (n *Node) Get(c byte) *Node {
+func (n *Node) get(c byte) *Node {
 	return n.links[c-'a']
 }
 
-func (n *Node) Put(c byte, node *Node) {
-	if !n.Has(c) {
+func (n *Node) put(c byte) {
+	if !n.has(c) {
 		n.linkNums++
 	}
-	n.links[c-'a'] = node
+	n.links[c-'a'] = newNode()
 }
 
 type Trie struct {
@@ -52,7 +52,7 @@ type Trie struct {
 }
 
 func Constructor() Trie {
-	return Trie{root: NewNode()}
+	return Trie{root: newNode()}
 }
 
 /** Inserts a word into the trie.
@@ -66,10 +66,10 @@ We have to add mm new nodes, which takes us O(m) space.
 func (t *Trie) Insert(word string) {
 	p := t.root
 	for i := 0; i < len(word); i++ {
-		if !p.Has(word[i]) {
-			p.Put(word[i], NewNode())
+		if !p.has(word[i]) {
+			p.put(word[i])
 		}
-		p = p.Get(word[i])
+		p = p.get(word[i])
 	}
 	p.IsEnd = true
 }
@@ -98,8 +98,8 @@ func (t *Trie) StartsWith(prefix string) bool {
 func (t *Trie) search(s string) *Node {
 	node := t.root
 	for i := 0; i < len(s); i++ {
-		if node.Has(s[i]) {
-			node = node.Get(s[i])
+		if node.has(s[i]) {
+			node = node.get(s[i])
 		} else {
 			return nil
 		}
@@ -118,11 +118,11 @@ func (t *Trie) SearchLongestPrefixOf(word string) string {
 	node := t.root
 	for i := 0; i < len(word); i++ {
 		ch := word[i]
-		if !node.Has(ch) || node.linkNums == 1 || node.IsEnd {
+		if !node.has(ch) || node.linkNums > 1 || node.IsEnd {
 			return word[:k]
 		}
 		k++
-		node = node.Get(ch)
+		node = node.get(ch)
 	}
 	return word[:k]
 }

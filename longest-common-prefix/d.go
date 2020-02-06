@@ -50,7 +50,7 @@ func longestCommonPrefix(strs []string) string {
 }
 
 /*2.
-值得一提的是，有一个前缀树的解法：
+值得一提的是，有一个前缀树的解法(所有字符都在小写字母范围内)：
  时间复杂度和空间复杂度都是O(s), s为所有字符串长度和
 */
 func longestCommonPrefix1(strs []string) string {
@@ -62,8 +62,8 @@ func longestCommonPrefix1(strs []string) string {
 		return strs[0]
 	}
 	tree := trie.Constructor()
-	for _, s := range strs {
-		tree.Insert(s)
+	for i := 1; i < len(strs); i++ {
+		tree.Insert(strs[i])
 	}
 	return tree.SearchLongestPrefixOf(strs[0])
 }
