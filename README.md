@@ -73,6 +73,8 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [implement-strstr](implement-strstr/d.go)
 * [count-and-say](count-and-say/d.go)
 * [longest-common-prefix](longest-common-prefix/d.go)
+* [merge-two-sorted-lists](merge-two-sorted-lists/d.go)
+* [merge-sorted-array](merge-sorted-array/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
