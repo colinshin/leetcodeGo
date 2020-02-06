@@ -76,6 +76,8 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [merge-two-sorted-lists](merge-two-sorted-lists/d.go)
 * [merge-sorted-array](merge-sorted-array/d.go)
 * [alindrome-linked-list](alindrome-linked-list/d.go)
+* [linked-list-cycle](linked-list-cycle/d.go)
+* [maximum-depth-of-binary-tree](maximum-depth-of-binary-tree/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
