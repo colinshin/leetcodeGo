@@ -78,6 +78,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [alindrome-linked-list](alindrome-linked-list/d.go)
 * [linked-list-cycle](linked-list-cycle/d.go)
 * [maximum-depth-of-binary-tree](maximum-depth-of-binary-tree/d.go)
+* [validate-binary-search-tree](validate-binary-search-tree/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
