@@ -68,7 +68,8 @@ func isValidBST(root *TreeNode) bool {
 	return helper(root, math.MinInt64, math.MaxInt64)
 }
 
-/* if t is a BST, min.Val < all node values in t < max.Val
+/*
+如果一个二叉树式BST， 那么所有元素的值都在开区间(min, max)里
 时空复杂度均为O(n), n为节点总数
 */
 func helper(t *TreeNode, min, max int) bool {
@@ -86,7 +87,7 @@ func helper(t *TreeNode, min, max int) bool {
 	}
 }
 
-/* 递归中序遍历
+/* 递归式中序遍历
 可以按照中序遍历的顺序，将所有节点的值存入一个数组，再检查数组是否升序排序的即可（遍历数组，判断每个元素是否大于其前的一个元素）
 实际上空间可以优化，并不需要一个数组，只需要一个int变量记录前一个元素的值即可
 时空复杂度均为O(n), n为节点总数
@@ -113,7 +114,7 @@ func isValidBST0(root *TreeNode) bool {
 	return bst(root)
 }
 
-/* 借助栈，迭代中序遍历
+/* 借助栈，迭代式中序遍历
 时空复杂度均为O(n), n为节点总数
 */
 func isValidBST1(root *TreeNode) bool {
