@@ -94,24 +94,24 @@ func helper(t *TreeNode, min, max int) bool {
 */
 func isValidBST0(root *TreeNode) bool {
 	prev := math.MinInt64
-	var bst func(*TreeNode) bool
-	bst = func(t *TreeNode) bool {
+	var bfs func(*TreeNode) bool
+	bfs = func(t *TreeNode) bool {
 		if t == nil {
 			return true
 		}
-		if !bst(t.Left) {
+		if !bfs(t.Left) {
 			return false
 		}
 		if t.Val <= prev {
 			return false
 		}
 		prev = t.Val
-		if !bst(t.Right) {
+		if !bfs(t.Right) {
 			return false
 		}
 		return true
 	}
-	return bst(root)
+	return bfs(root)
 }
 
 /* 借助栈，迭代式中序遍历

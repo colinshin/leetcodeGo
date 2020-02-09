@@ -79,6 +79,11 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [linked-list-cycle](linked-list-cycle/d.go)
 * [maximum-depth-of-binary-tree](maximum-depth-of-binary-tree/d.go)
 * [validate-binary-search-tree](validate-binary-search-tree/d.go)
+* [binary-tree-preorder-traversal](binary-tree-preorder-traversal/d.go)
+* [binary-tree-inorder-traversal](binary-tree-inorder-traversal/d.go)
+* [binary-tree-postorder-traversal](binary-tree-postorder-traversal/d.go)
+* [binary-tree-level-order-traversal](binary-tree-level-order-traversal/d.go)
+* [convert-sorted-array-to-binary-search-tree](convert-sorted-array-to-binary-search-tree/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
