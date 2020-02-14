@@ -91,6 +91,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [integer-to-roman](integer-to-roman/d.go)
 * [construct-binary-tree-from-inorder-and-postorder-traversal](construct-binary-tree-from-inorder-and-postorder-traversal/d.go)
 * [construct-binary-tree-from-preorder-and-inorder-traversal](construct-binary-tree-from-preorder-and-inorder-traversal/d.go)
+* [lowest-common-ancestor-of-a-binary-tree](lowest-common-ancestor-of-a-binary-tree/d.go)
+* [lowest-common-ancestor-of-a-binary-search-tree](lowest-common-ancestor-of-a-binary-search-tree/d.go)
+
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)
 [binary-search-problem](binary-search-problem.md)
