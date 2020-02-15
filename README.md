@@ -2,11 +2,11 @@
 Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
 
 ## solutions
-* [1. two sum](1.two_sum)
-* [2. add two numbers](2.add_two_numbers)
-* [3 longest substring without repeating characters](3.longest_substring_without_repeating_characters)
-* [4. median of two sorted arrays](4.median_of_two_sorted_arrays)
-* [5. longest palindromic substring](5.longest_palindromic_substring)
+* [two sum](two_sum)
+* [add two numbers](add_two_numbers)
+* [longest substring without repeating characters](longest_substring_without_repeating_characters)
+* [median of two sorted arrays](median_of_two_sorted_arrays)
+* [longest palindromic substring](longest_palindromic_substring)
 * [array_pair_sum](array_pair_sum/d.go)
 * [before-and-after-puzzle](before-and-after-puzzle/d.go)
 * [min-absolute-in-bst](min-absolute-in-bst/d.go)
@@ -93,6 +93,10 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [construct-binary-tree-from-preorder-and-inorder-traversal](construct-binary-tree-from-preorder-and-inorder-traversal/d.go)
 * [lowest-common-ancestor-of-a-binary-tree](lowest-common-ancestor-of-a-binary-tree/d.go)
 * [lowest-common-ancestor-of-a-binary-search-tree](lowest-common-ancestor-of-a-binary-search-tree/d.go)
+* [serialize-and-deserialize-binary-tree](serialize-and-deserialize-binary-tree/d.go)
+* [course-schedule](course-schedule/d.go)
+* [course-schedule-ii](course-schedule-ii)
+* [course-schedule-iii](course-schedule-iii/d.go)
 
 ## reference
 [zero-one-pack-problem](zero-one-pack-problem.md)

@@ -1,4 +1,4 @@
-package __median_of_two_sorted_arrays
+package median_of_two_sorted_arrays
 
 import (
 	"testing"

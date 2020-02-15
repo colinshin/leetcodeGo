@@ -1,4 +1,4 @@
-package __add_two_numbers
+package add_two_numbers
 
 import (
 	"bytes"

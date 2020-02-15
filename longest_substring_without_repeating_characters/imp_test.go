@@ -1,4 +1,4 @@
-package __longest_substring_without_repeating_characters
+package longest_substring_without_repeating_characters
 
 import "testing"
 

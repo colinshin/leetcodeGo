@@ -1,4 +1,4 @@
-package __longest_palindromic_substring
+package longest_palindromic_substring
 
 func longestPalindrome(s string) string {
 	r := ""
