@@ -86,6 +86,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [diagonal-traverse](diagonal-traverse/d.go)
 * [spiral-matrix](spiral-matrix/d.go)
 * [pascals-triangle](pascals-triangle/d.go)
+* [add-binary](add-binary/d.go)
 ### linked list
 * [alindrome-linked-list](alindrome-linked-list/d.go)
 * [linked-list-cycle](linked-list-cycle/d.go)
