@@ -1,7 +1,10 @@
 # leetcodeGo
 Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
-
+## learn
+[zero-one-pack-problem](zero-one-pack-problem.md)<br>
+[binary-search-problem](binary-search-problem.md)<br>
 ## solutions
+###
 * [two sum](two_sum)
 * [add two numbers](add_two_numbers)
 * [longest substring without repeating characters](longest_substring_without_repeating_characters)
@@ -48,6 +51,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [missing-element-in-sorted-array](missing-element-in-sorted-array/d.go)
 * [implement-rand10-using-rand7](implement-rand10-using-rand7/d.go)
 * [random-pick-with-weight](random-pick-with-weight/d.go)
+### binary search
 * [shortest-distance-to-target-color](shortest-distance-to-target-color/d.go)
 * [divide-two-integers](divide-two-integers/d.go)
 * [fixed-point](fixed-point/d.go)
@@ -66,6 +70,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [intersection-of-two-arrays-ii](intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](find-k-th-smallest-pair-distance/d.go)
+### array and strings
 * [valid-sudoku](valid-sudoku/d.go)
 * [rotate-image](rotate-image/d.go)
 * [reverse-string-ii](reverse-string-ii/d.go)
@@ -75,6 +80,13 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [longest-common-prefix](longest-common-prefix/d.go)
 * [merge-two-sorted-lists](merge-two-sorted-lists/d.go)
 * [merge-sorted-array](merge-sorted-array/d.go)
+* [find-pivot-index](find-pivot-index/d.go)
+* [largest-number-at-least-twice-of-others](largest-number-at-least-twice-of-others/d.go)
+* [plus-one](plus-one/d.go)
+* [diagonal-traverse](diagonal-traverse/d.go)
+* [spiral-matrix](spiral-matrix/d.go)
+* [pascals-triangle](pascals-triangle/d.go)
+### linked list
 * [alindrome-linked-list](alindrome-linked-list/d.go)
 * [linked-list-cycle](linked-list-cycle/d.go)
 * [maximum-depth-of-binary-tree](maximum-depth-of-binary-tree/d.go)
@@ -84,7 +96,9 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [binary-tree-postorder-traversal](binary-tree-postorder-traversal/d.go)
 * [binary-tree-level-order-traversal](binary-tree-level-order-traversal/d.go)
 * [convert-sorted-array-to-binary-search-tree](convert-sorted-array-to-binary-search-tree/d.go)
+### 
 * [house-robber](house-robber/d.go)
+###
 * [shuffle-an-array](shuffle-an-array/d.go)
 * [count-primes](count-primes/d.go)
 * [roman-to-integer](roman-to-integer/d.go)
@@ -99,8 +113,6 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [course-schedule-iii](course-schedule-iii/d.go)
 
 ## reference
-[zero-one-pack-problem](zero-one-pack-problem.md)
-[binary-search-problem](binary-search-problem.md)
 
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
