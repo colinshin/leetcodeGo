@@ -61,6 +61,8 @@ func contains(window, t string) bool {
 
 具体落地实现需要调整代码，最终实现如下
 */
+
+// TODO: some UT not passed
 func minWindow(s string, t string) string {
 	start, end := 0, math.MaxInt32      // 记录结果的起始和结束为止
 	matched := 0                        // 记录窗口中有多少个字符符合要求：在t中存在且个数大于等于t中的个数
