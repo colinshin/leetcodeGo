@@ -55,50 +55,64 @@ graph[i] 不会包含 i 或者有重复的值。
 最外层的循环，节点i如果未标记归属，可以随意标记个分组（以下示例程序统一标成了A）
 这是因为前边的节点0,1,...,i-1及其邻居都标记过了，i还没有被标记，说明i和前边的节点不联通；
 既然不联通，就无所谓归属于哪个组了
-
-也可以用一个栈模拟实现递归，见mark1函数的实现
 */
 func isBipartite(graph [][]int) bool {
 	judge := make([]int, len(graph))
+	var mark func(node, set int) bool // 这个内 函数也可以写到和isBipartite并列的位置，不过要增加judge和graph参数
+	mark = func(node, set int) bool {
+		judge[node] = set
+		for _, neighbor := range graph[node] {
+			if judge[neighbor] == 0 {
+				if ok := mark(neighbor, -set); !ok {
+					return false
+				}
+			} else if judge[neighbor] == set {
+				return false
+			}
+		}
+		return true
+	}
 	for i := 0; i < len(graph); i++ {
 		if judge[i] != 0 {
 			continue
 		}
-		if ok := mark(i, 1, graph, judge); !ok {
+		if ok := mark(i, 1); !ok {
 			return false
 		}
 	}
 	return true
 }
 
-func mark(node, set int, graph [][]int, judge []int) bool {
-	judge[node] = set
-	for _, neighbor := range graph[node] {
-		if judge[neighbor] == 0 {
-			if ok := mark(neighbor, -set, graph, judge); !ok {
-				return false
+/*
+也可以用一个栈模拟实现递归
+*/
+func isBipartite1(graph [][]int) bool {
+	judge := make([]int, len(graph))
+	var mark func(node, set int) bool // 这个内 函数也可以写到和isBipartite并列的位置，不过要增加judge和graph参数
+	mark = func(node, set int) bool {
+		judge[node] = set
+		var stack []int
+		stack = append(stack, node)
+		for len(stack) != 0 {
+			top := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+			for _, neighbor := range graph[top] {
+				if judge[neighbor] == 0 {
+					judge[neighbor] = -judge[top]
+					stack = append(stack, neighbor)
+				} else if judge[neighbor] == judge[top] {
+					return false
+				}
 			}
-		} else if judge[neighbor] == set {
-			return false
 		}
+		return true
 	}
-	return true
-}
-
-func mark1(node, set int, graph [][]int, judge []int) bool {
-	judge[node] = set
-	var stack []int
-	stack = append(stack, node)
-	for len(stack) != 0 {
-		top := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
-		for _, neighbor := range graph[top] {
-			if judge[neighbor] == 0 {
-				judge[neighbor] = -judge[top]
-				stack = append(stack, neighbor)
-			} else if judge[neighbor] == judge[top] {
-				return false
-			}
+	for i := 0; i < len(graph); i++ {
+		if judge[i] != 0 {
+			continue
+		}
+		if ok := mark(i, 1); !ok {
+			return false
 		}
 	}
 	return true

@@ -111,3 +111,5 @@ func binarySearch(nums []int, target) int {
     return -1
 }
 ```
+### 如果有多个target，如何找到左右target元素的索引
+参考[check-if-a-number-is-majority-element-in-a-sorted-array](check-if-a-number-is-majority-element-in-a-sorted-array/d.go)里的search和searchFromRight两个函数

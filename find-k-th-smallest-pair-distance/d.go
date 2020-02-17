@@ -30,8 +30,8 @@ k = 1
 */
 
 /*
-
- */
+排序后的二分搜索
+*/
 func smallestDistancePair(nums []int, k int) int {
 	sort.Ints(nums)
 	left, right := 0, nums[len(nums)-1]-nums[0]

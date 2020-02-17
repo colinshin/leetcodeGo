@@ -78,7 +78,7 @@ func minEatingSpeed(piles []int, H int) int {
 
 	left, right := 1, max
 	for left < right {
-		mid := (left + right) / 2
+		mid := left + (right-left)/2
 		if caculateCost(piles, mid) > H {
 			left = mid + 1
 		} else {

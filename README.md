@@ -1,12 +1,15 @@
 # leetcodeGo
 Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
-
+## learn
+[zero-one-pack-problem](zero-one-pack-problem.md)<br>
+[binary-search-problem](binary-search-problem.md)<br>
 ## solutions
-* [1. two sum](1.two_sum)
-* [2. add two numbers](2.add_two_numbers)
-* [3 longest substring without repeating characters](3.longest_substring_without_repeating_characters)
-* [4. median of two sorted arrays](4.median_of_two_sorted_arrays)
-* [5. longest palindromic substring](5.longest_palindromic_substring)
+###
+* [two sum](two_sum)
+* [add two numbers](add_two_numbers)
+* [longest substring without repeating characters](longest_substring_without_repeating_characters)
+* [median of two sorted arrays](median_of_two_sorted_arrays)
+* [longest palindromic substring](longest_palindromic_substring)
 * [array_pair_sum](array_pair_sum/d.go)
 * [before-and-after-puzzle](before-and-after-puzzle/d.go)
 * [min-absolute-in-bst](min-absolute-in-bst/d.go)
@@ -48,6 +51,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [missing-element-in-sorted-array](missing-element-in-sorted-array/d.go)
 * [implement-rand10-using-rand7](implement-rand10-using-rand7/d.go)
 * [random-pick-with-weight](random-pick-with-weight/d.go)
+### binary search
 * [shortest-distance-to-target-color](shortest-distance-to-target-color/d.go)
 * [divide-two-integers](divide-two-integers/d.go)
 * [fixed-point](fixed-point/d.go)
@@ -66,6 +70,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [intersection-of-two-arrays-ii](intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](find-k-th-smallest-pair-distance/d.go)
+### array and strings
 * [valid-sudoku](valid-sudoku/d.go)
 * [rotate-image](rotate-image/d.go)
 * [reverse-string-ii](reverse-string-ii/d.go)
@@ -75,13 +80,40 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [longest-common-prefix](longest-common-prefix/d.go)
 * [merge-two-sorted-lists](merge-two-sorted-lists/d.go)
 * [merge-sorted-array](merge-sorted-array/d.go)
+* [find-pivot-index](find-pivot-index/d.go)
+* [largest-number-at-least-twice-of-others](largest-number-at-least-twice-of-others/d.go)
+* [plus-one](plus-one/d.go)
+* [diagonal-traverse](diagonal-traverse/d.go)
+* [spiral-matrix](spiral-matrix/d.go)
+* [pascals-triangle](pascals-triangle/d.go)
+* [add-binary](add-binary/d.go)
+### linked list
 * [alindrome-linked-list](alindrome-linked-list/d.go)
 * [linked-list-cycle](linked-list-cycle/d.go)
 * [maximum-depth-of-binary-tree](maximum-depth-of-binary-tree/d.go)
+* [validate-binary-search-tree](validate-binary-search-tree/d.go)
+* [binary-tree-preorder-traversal](binary-tree-preorder-traversal/d.go)
+* [binary-tree-inorder-traversal](binary-tree-inorder-traversal/d.go)
+* [binary-tree-postorder-traversal](binary-tree-postorder-traversal/d.go)
+* [binary-tree-level-order-traversal](binary-tree-level-order-traversal/d.go)
+* [convert-sorted-array-to-binary-search-tree](convert-sorted-array-to-binary-search-tree/d.go)
+### 
+* [house-robber](house-robber/d.go)
+###
+* [shuffle-an-array](shuffle-an-array/d.go)
+* [count-primes](count-primes/d.go)
+* [roman-to-integer](roman-to-integer/d.go)
+* [integer-to-roman](integer-to-roman/d.go)
+* [construct-binary-tree-from-inorder-and-postorder-traversal](construct-binary-tree-from-inorder-and-postorder-traversal/d.go)
+* [construct-binary-tree-from-preorder-and-inorder-traversal](construct-binary-tree-from-preorder-and-inorder-traversal/d.go)
+* [lowest-common-ancestor-of-a-binary-tree](lowest-common-ancestor-of-a-binary-tree/d.go)
+* [lowest-common-ancestor-of-a-binary-search-tree](lowest-common-ancestor-of-a-binary-search-tree/d.go)
+* [serialize-and-deserialize-binary-tree](serialize-and-deserialize-binary-tree/d.go)
+* [course-schedule](course-schedule/d.go)
+* [course-schedule-ii](course-schedule-ii)
+* [course-schedule-iii](course-schedule-iii/d.go)
 
 ## reference
-[zero-one-pack-problem](zero-one-pack-problem.md)
-[binary-search-problem](binary-search-problem.md)
 
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
