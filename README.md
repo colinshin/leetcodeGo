@@ -1,8 +1,8 @@
 # leetcodeGo
 Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
 ## learn
-[zero-one-pack-problem](zero-one-pack-problem.md)<br>
-[binary-search-problem](binary-search-problem.md)<br>
+[zero-one-pack-problem](learn/zero-one-pack-problem.md)<br>
+[binary-search-problem](learn/binary-search-problem.md)<br>
 ## solutions
 ### map, array, sort
 * [two sum](solutions/two_sum)
@@ -119,8 +119,8 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 ## reference
-[it-code-monkey](https://www.itcodemonkey.com/category/TheAlgorithm/)
-[CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)
+[it-code-monkey](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
+[CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
 [kylesliu/awesome-golang-leetcode](https://github.com/kylesliu/awesome-golang-leetcode)<br>

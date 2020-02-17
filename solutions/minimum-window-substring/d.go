@@ -26,7 +26,7 @@ import "math"
 func minWindow(s string, t string) string {
 	for i:=0; i<len(s)-len(t); i++ {
 		for j:= i+len(t); i <len(s); j ++ {
-			if s[i:j] 包含t中所有字符 {
+			if s[i:j] 包含t中所有字符 { //  用map实现
 				更新答案
 			}
 		}
@@ -38,41 +38,20 @@ func minWindow(s string, t string) string {
 2、先不断地增加 right 指针扩大窗口 [left, right]，直到窗口中的字符串符合要求（包含了 T 中的所有字符）。
 3、此时，停止增加 right，转而不断增加 left 指针缩小窗口 [left, right]，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。
 4、重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。
-
-func minWindow(s string, t string) string {
-	res := s
-	for left, right := 0, 0; right < len(s); right++ { // 先移动 right 寻找可行解
-		window := s[left:right]
-		for contains(window, t) { // 找到可行解后，开始移动 left 缩小窗口
-			if len(window) < len(res) {
-				res = window
-			}
-			left++
-			window = window[left:]
-		}
-	}
-	return res
-}
-
-func contains(window, t string) bool {
-	return xxx
-}
 怎么判断window里是否有t中所有的字符？分别用两个map计数器即可，key为字符，value为字符在串里的个数；
-
-具体落地实现需要调整代码，最终实现如下
+时空复杂度都是(m+n)，m，n分别是s和t的长度
 */
-
-// TODO: some UT not passed
 func minWindow(s string, t string) string {
-	start, end := 0, math.MaxInt32      // 记录结果的起始和结束为止
-	matched := 0                        // 记录窗口中有多少个字符符合要求：在t中存在且个数大于等于t中的个数
-	found := make(map[byte]int, 0)      // 记录滑动窗口中在t中存在的字符及其个数
-	needs := make(map[byte]int, len(t)) // 记录t中字符的个数； len(needs) == matched即说明窗口里包含了t中所有字符
+	needs := make(map[byte]int, 0) // 记录t中字符的个数；
 	for i := 0; i < len(t); i++ {
 		needs[t[i]]++
 	}
+	found := make(map[byte]int, len(needs)) // 记录滑动窗口中在t中存在的字符及其个数
+
+	matched := 0                   // 记录窗口中有多少个字符符合要求：在t中存在且个数大于等于t中的个数;len(needs) == matched即说明窗口里包含了t中所有字符
+	start, end := 0, math.MaxInt32 // 记录结果的起始和结束位置
 	// left、right为窗口的左右边界, window = s[left:right+1]
-	for left, right := 0, 0; right < len(s); { // 先移动 right 寻找可行解
+	for left, right := 0, 0; right < len(s); right++ { // 先移动 right 寻找可行解
 		c := s[right]
 		if needs[c] > 0 {
 			found[c]++
@@ -80,10 +59,9 @@ func minWindow(s string, t string) string {
 				matched++
 			}
 		}
-		right++
 		for ; matched == len(needs); left++ { // 找到可行解后，开始移动 left 缩小窗口
-			if right < end {
-				start, end = left, right+1
+			if right-left < end-start {
+				start, end = left, right
 			}
 			c := s[left]
 			if needs[c] > 0 {
@@ -97,5 +75,5 @@ func minWindow(s string, t string) string {
 	if end == math.MaxInt32 {
 		return ""
 	}
-	return s[start:end]
+	return s[start : end+1]
 }
