@@ -88,6 +88,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [add-binary](solutions/add-binary/d.go)
 * [longest substring without repeating characters](solutions/longest_substring_without_repeating_characters)
 * [longest palindromic substring](solutions/longest_palindromic_substring)
+* [minimum-window-substring](solutions/minimum-window-substring/d.go)
 ### linked list
 * [add two numbers](solutions/add_two_numbers)
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)
