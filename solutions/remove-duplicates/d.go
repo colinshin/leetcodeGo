@@ -18,7 +18,7 @@ It doesn't matter what values are set beyond the returned length.
 */
 func removeDuplicates(nums []int) int {
 	n := len(nums)
-	if n == 0 || n == 1 {
+	if n < 2 {
 		return n
 	}
 	i := 0

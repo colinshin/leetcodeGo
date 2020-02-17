@@ -1,6 +1,6 @@
 package longest_substring_without_repeating_characters
 
-import "github.com/zrcoder/leetcodeGo/util/integer"
+import "github.com/zrcoder/leetcodeGo/solutions/util/integer"
 
 func lengthOfLongestSubstring(s string) int {
 	m := map[interface{}]int{}
