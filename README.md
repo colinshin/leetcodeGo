@@ -119,6 +119,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 ## reference
 [it-code-monkey](https://www.itcodemonkey.com/category/TheAlgorithm/)
+[CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
 [kylesliu/awesome-golang-leetcode](https://github.com/kylesliu/awesome-golang-leetcode)<br>
