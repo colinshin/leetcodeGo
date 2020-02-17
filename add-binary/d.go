@@ -22,6 +22,7 @@ import "math/big"
 */
 
 /*
+方法一：
 各个进制的通用解法，只需修改base常量，这个问题中base为2
 时空复杂度都是O(max(m, n))， 其中m，n为两个字符串的长度
 */
@@ -104,4 +105,16 @@ func add(a, b int) int {
 		a, b = a^b, (a&b)<<1
 	}
 	return a
+}
+
+/*
+方法三：
+转化成数字再运算;防止越界，用大数；不要用strconv.Atoi和strconv.ParseInt
+*/
+func addBinary11(a string, b string) string {
+	const base = 2
+	x, y := big.NewInt(0), big.NewInt(0)
+	x.SetString(a, base)
+	y.SetString(b, base)
+	return x.Add(x, y).Text(base)
 }
