@@ -1,6 +1,6 @@
 package longest_common_prefix
 
-import trie "github.com/zrcoder/leetcodeGo/implement-trie-prefix-tree"
+import trie "github.com/zrcoder/leetcodeGo/solutions/implement-trie-prefix-tree"
 
 /*
 编写一个函数来查找字符串数组中的最长公共前缀。
