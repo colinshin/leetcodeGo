@@ -26,7 +26,7 @@ type Node struct {
 }
 
 func newNode() *Node {
-	// Maximum of r --l--inks to its children, where each link corresponds to one of r character values from dataset alphabet.
+	// Maximum of r links to its children, where each link corresponds to one of r character values from dataset alphabet.
 	// In this article we assume that r is 26, the number of lowercase latin letters.
 	const r = 26
 	return &Node{links: make([]*Node, r)}
