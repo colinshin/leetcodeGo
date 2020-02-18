@@ -113,7 +113,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 ### dp
 * [house-robber](solutions/house-robber/d.go)
 ### design
-* [design-twitter](solutions/design-twitter/d.go)
+* [design-twitter](solutions/design-twitter/)
 ### others
 * [shuffle-an-array](solutions/shuffle-an-array/d.go)
 * [count-primes](solutions/count-primes/d.go)
