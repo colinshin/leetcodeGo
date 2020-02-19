@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package number_of_corner_rectangles
 
 /*
@@ -93,7 +97,7 @@ func countCornerRectangles11(grid [][]int) int {
 				}
 			}
 			/*
-				假设f(bothOneCount)表示有bothOneCount对上下对应的1能构成的矩形数量
+				假设f(n)表示r1和r2两行里有n对满足条件的1能构成的矩形数量
 				有一个比较明显的递推公式： f(n) = f(n-1) + n - 1, 又f(1) = 0, 可以推出通项公式
 				f(n) = n*(n-1)/2
 			*/
