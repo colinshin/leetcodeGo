@@ -46,6 +46,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [missing-element-in-sorted-array](solutions/missing-element-in-sorted-array/d.go)
 * [implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
 * [random-pick-with-weight](solutions/random-pick-with-weight/d.go)
+* [increasing-subsequences](solutions/increasing-subsequences/d.go)
 ### binary search
 * [shortest-distance-to-target-color](solutions/shortest-distance-to-target-color/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
@@ -112,6 +113,8 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 ### dp
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
+* [longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
+
 ### design
 * [design-twitter](solutions/design-twitter/)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
