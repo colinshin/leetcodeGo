@@ -78,12 +78,8 @@ func maxProfit11(prices []int) int {
 时间复杂度O(n), 空间复杂度O(1)
 */
 func maxProfit12(prices []int) int {
-	n := len(prices)
-	if n < 2 {
-		return 0
-	}
 	noStockProfit, hasStockProfit := 0, -prices[0]
-	for i := 1; i < n; i++ {
+	for i := 1; i < len(prices); i++ {
 		noStockProfit, hasStockProfit =
 			max(noStockProfit, hasStockProfit+prices[i]), max(-prices[i], hasStockProfit)
 	}
@@ -92,10 +88,6 @@ func maxProfit12(prices []int) int {
 
 //或者根据readme的说明写初始条件
 func maxProfitK1(prices []int) int {
-	n := len(prices)
-	if n < 2 {
-		return 0
-	}
 	noStockProfit, hasStockProfit := 0, math.MinInt32
 	for _, v := range prices {
 		noStockProfit, hasStockProfit =

@@ -44,10 +44,6 @@ dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i])
 dp[i][1][1] = max(dp[i-1][1][1], -prices[i])
 */
 func maxProfitK2(prices []int) int {
-	n := len(prices)
-	if n < 2 {
-		return 0
-	}
 	dpi20, dpi21 := 0, math.MinInt32
 	dpi10, dpi11 := 0, math.MinInt32
 	for _, v := range prices {

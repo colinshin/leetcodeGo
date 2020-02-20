@@ -44,10 +44,6 @@ dp[i][1] = max(dp[i-1][0] - prices[i], dp[i-1][1])
 时间复杂度O(n), 空间复杂度O(1)
 */
 func maxProfitKInfinity(prices []int) int {
-	n := len(prices)
-	if n < 2 {
-		return 0
-	}
 	noStockProfit, hasStockProfit := 0, math.MinInt32
 	for _, v := range prices {
 		noStockProfit, hasStockProfit =
@@ -62,9 +58,6 @@ func maxProfitKInfinity(prices []int) int {
 */
 func maxProfit21(prices []int) int {
 	n := len(prices)
-	if n < 2 {
-		return 0
-	}
 	maxProfit := 0
 	for i := 1; i < n; i++ {
 		if prices[i] > prices[i-1] {
