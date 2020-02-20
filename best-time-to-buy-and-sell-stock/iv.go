@@ -50,6 +50,7 @@ func maxProfit4(k int, prices []int) int {
 	if k == 2 {
 		return maxProfitK2(prices)
 	}
+	git
 
 	dp := make([][][]int, n)
 	for i := 0; i < n; i++ {
