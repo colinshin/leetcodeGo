@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package house_robber
 
 import "math"

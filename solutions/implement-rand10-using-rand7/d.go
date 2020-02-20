@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package implement_rand10_using_rand7
 
 import "math/rand"

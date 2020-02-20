@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package find_first_and_last_position_of_element_in_sorted_array
 
 /*	在排序数组中查找元素的第一个和最后一个位置

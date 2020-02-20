@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package lowest_common_ancestor_of_a_binary_search_tree
 
 /*

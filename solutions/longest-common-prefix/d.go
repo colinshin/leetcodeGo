@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package longest_common_prefix
 
 import trie "github.com/zrcoder/leetcodeGo/solutions/implement-trie-prefix-tree"

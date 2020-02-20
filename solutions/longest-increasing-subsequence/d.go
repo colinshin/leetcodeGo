@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package longest_increasing_subsequence
 
 import "math"
@@ -13,7 +17,7 @@ import "math"
 说明:
 
 可能会有多种最长上升子序列的组合，你只需要输出对应的长度即可。
-你算法的时间复杂度应该为 O(n2) 。
+你算法的时间复杂度应该为 O(n^2) 。
 进阶: 你能将算法的时间复杂度降低到 O(n log n) 吗?
 
 通过次数49,165提交次数111,640

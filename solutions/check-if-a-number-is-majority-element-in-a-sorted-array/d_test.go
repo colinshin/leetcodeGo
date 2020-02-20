@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package check_if_a_number_is_majority_element_in_a_sorted_array
 
 import "testing"

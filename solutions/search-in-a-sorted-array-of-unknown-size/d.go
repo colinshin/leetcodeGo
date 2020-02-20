@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package search_in_a_sorted_array_of_unknown_size
 
 /*

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package verify_preorder_sequence_in_binary_search_tree
 
 import "math"

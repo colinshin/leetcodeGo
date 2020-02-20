@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package find_smallest_common_element_in_all_rows
 
 import "sort"

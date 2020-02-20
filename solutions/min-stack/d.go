@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package min_stack
 
 /*
@@ -22,7 +26,53 @@ minStack.getMin();   --> 返回 -2.
 链接：https://leetcode-cn.com/problems/min-stack
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
+/* 两个栈的实现
+type MinStack struct {
+	stack []int
+	mins  []int
+}
 
+func Constructor() MinStack {
+	return MinStack{}
+}
+
+func (s *MinStack) Push(x int) {
+	s.stack = append(s.stack, x)
+	if len(s.mins) == 0 || s.mins[len(s.mins)-1] >= x {
+		s.mins = append(s.mins, x)
+	}
+}
+
+func (s *MinStack) Pop() {
+	n := len(s.stack)
+	if n == 0 {
+		return
+	}
+	last := s.stack[n-1]
+	if last == s.mins[len(s.mins)-1] {
+		s.mins = s.mins[:len(s.mins)-1]
+	}
+	s.stack = s.stack[:n-1]
+}
+
+func (s *MinStack) Top() int {
+	n := len(s.stack)
+	if n == 0 {
+		return 0
+	}
+	return s.stack[n-1]
+}
+
+func (s *MinStack) GetMin() int {
+	if len(s.mins) == 0 {
+		return 0
+	}
+	return s.mins[len(s.mins)-1]
+}
+*/
+/*
+一个栈+一个整形变量min的实现，每次入栈的是数字与min的差值
+*/
 type MinStack struct {
 	stack []int
 	min   int

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package longest_substring_without_repeating_characters
 
 import "github.com/zrcoder/leetcodeGo/solutions/util/integer"
