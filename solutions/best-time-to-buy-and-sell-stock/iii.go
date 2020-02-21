@@ -36,19 +36,55 @@ import "math"
 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
+
 /*
 动态规划，详见readme.md
+
+如果定义买入算一笔交易而卖出不算
+dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + price[i])      // 第i天不持有股票的情况有两种：前一天没有股票，今天不买； 或前一天有股票，今天卖了；选择收益最大的做法即可
+dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])   // 第i天持有股票的情况，与上边类似: 前一天有股票， 今天不卖，或前一天没有股票，今天买入； 买入则收益减少prices[i]
+在这里k只有1或2两种情况
 dp[i][2][0] = max(dp[i-1][2][0], dp[i-1][2][1] + prices[i])
 dp[i][2][1] = max(dp[i-1][2][1], dp[i-1][1][0] - prices[i])
 dp[i][1][0] = max(dp[i-1][1][0], dp[i-1][1][1] + prices[i])
-dp[i][1][1] = max(dp[i-1][1][1], -prices[i])
+dp[i][1][1] = max(dp[i-1][1][1], dp[i][0][0] - prices[i])
+			= max(dp[i-1][1][1], -prices[i])
 */
 func maxProfitK2(prices []int) int {
-	dpi20, dpi21 := 0, math.MinInt32
-	dpi10, dpi11 := 0, math.MinInt32
-	for _, v := range prices {
-		dpi20, dpi21 = max(dpi20, dpi21+v), max(dpi21, dpi10-v)
-		dpi10, dpi11 = max(dpi10, dpi11+v), max(dpi11, -v)
+	// 定义买入算一笔交易而卖出不算
+	noStockDone2Profit, hasStockDone2Profit := 0, math.MinInt32
+	noStockDone1Profit, hasStockDone1Profit := 0, math.MinInt32
+	for _, price := range prices {
+		// 当天不持有股票： 要么前一天也不持有，要么前一天持有，当天卖了
+		// 当天持有股票： 要么前一天持有，要么前一天不持有，当天买了
+		noStockDone2Profit = max(noStockDone2Profit, hasStockDone2Profit+price)
+		hasStockDone2Profit = max(hasStockDone2Profit, noStockDone1Profit-price)
+		noStockDone1Profit = max(noStockDone1Profit, hasStockDone1Profit+price)
+		hasStockDone1Profit = max(hasStockDone1Profit, -price)
 	}
-	return dpi20
+	return noStockDone2Profit
+}
+
+/*
+或者这样理解:
+
+只要知道前一个时间点买卖第一第二笔股票的最大收益信息，就可以算出当前最大的收益了，这样可以省去额外空间。
+遍历prices数组的时候，按照持有股票或不持有股票，维护四个变量:
+hold1是在该价格点买入第一笔股票后手里剩的钱
+release1是在该价格点卖出第一笔股票后手里剩的钱
+hold2是在该价格点买入第二笔股票后手里剩的钱
+release2是在该价格点卖出第二笔股票后手里剩的钱
+因为卖是要后于买的，而第二次交易也是后于第一次交易的，为了用这些变量自身来记录上次的值，计算顺序为release2 -> hold2 -> release1 -> hold1
+或者用go的多值交换技巧来计算，就不用太考虑顺序
+*/
+func maxProfitK20(prices []int) int {
+	hold1, hold2 := math.MinInt32, math.MinInt32
+	release1, release2 := 0, 0
+	for _, price := range prices {
+		release2 = max(release2, hold2+price)
+		hold2 = max(hold2, release1-price)
+		release1 = max(release1, hold1+price)
+		hold1 = max(hold1, -price)
+	}
+	return release2
 }

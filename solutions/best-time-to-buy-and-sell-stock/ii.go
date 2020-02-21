@@ -43,11 +43,11 @@ dp[i][1] = max(dp[i-1][0] - prices[i], dp[i-1][1])
 
 时间复杂度O(n), 空间复杂度O(1)
 */
-func maxProfitKInfinity(prices []int) int {
+func kNotLimitedMaxProfit(prices []int) int {
 	noStockProfit, hasStockProfit := 0, math.MinInt32
 	for _, v := range prices {
-		noStockProfit, hasStockProfit =
-			max(noStockProfit, hasStockProfit+v), max(noStockProfit-v, hasStockProfit)
+		noStockProfit = max(noStockProfit, hasStockProfit+v)
+		hasStockProfit = max(noStockProfit-v, hasStockProfit)
 	}
 	return noStockProfit
 }

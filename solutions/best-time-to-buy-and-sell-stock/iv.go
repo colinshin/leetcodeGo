@@ -32,127 +32,113 @@ import "math"
 
 /*
 动态规划：详见readme.md
-dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
-dp[i][k][1] = max(dp[i-1][k-1][0] - prices[i], dp[i-1][k][1])
+如果定义买入算一笔交易而卖出不算
+dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + price[i])      // 第i天不持有股票的情况有两种：前一天没有股票，今天不买； 或前一天有股票，今天卖了；选择收益最大的做法即可
+dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])   // 第i天持有股票的情况，与上边类似: 前一天有股票， 今天不卖，或前一天没有股票，今天买入； 买入则收益减少prices[i]
 
+初始情况：
+dp[-1][k][0] = 0
+dp[i][0][0] = 0
+dp[-1][k][1] = -infinity
+dp[i][0][1] = -infinity
 但注意k比较大的情况，实际k应该最大为数组长度的一半， 如果比数组长度的一半大, 用k无限大的解法，不然会使得dp数组太大
-*/
-func maxProfitKk(k int, prices []int) int {
-	n := len(prices)
-	if n < 2 || k < 1 {
-		return 0
-	}
-	if k > n/2 {
-		return maxProfitKInfinity(prices)
-	}
-	dp := make([][][]int, n)
-	for i := 0; i < n; i++ {
-		dp[i] = make([][]int, k+1)
-		for j := 0; j <= k; j++ {
-			dp[i][j] = make([]int, 2)
-			if i == 0 {
-				dp[i][j][0] = 0
-				dp[i][j][1] = -prices[i]
-			} else if j == 0 {
-				dp[i][j][0] = 0
-				dp[i][j][1] = math.MinInt32
-			}
-		}
-	}
-	for i := 1; i < n; i++ {
-		for ki := k; ki >= 1; ki-- {
-			dp[i][ki][0] = max(dp[i-1][ki][0], dp[i-1][ki][1]+prices[i])
-			dp[i][ki][1] = max(dp[i-1][ki-1][0]-prices[i], dp[i-1][ki][1])
-		}
-	}
-	return dp[n-1][k][0]
-}
 
-/*
-参考 iii.go maxProfitK2的实现，可以用二维数组
+时空复杂度都是O(n*k)，其中n为数组长度
 */
-/*
-假设买入、卖出各算一次交易；则总的交易次数是2k
-dp[t][i] 代表交易t次，第i天的最大收益
-可分买入和卖出或不买卖的情况列出状态转移方程
-*/
-func maxProfitKk1(k int, prices []int) int {
-	n := len(prices)
-	if n < 2 || k < 1 {
-		return 0
-	}
-	if k > n/2 {
-		return maxProfitKInfinity(prices)
-	}
-	dp := make([][]int, 2*k+1)
-	dp[0] = make([]int, n+1)
-	for t := 1; t <= 2*k; t++ {
-		dp[t] = make([]int, n+1)
-		if t%2 == 1 { // 买入
-			dp[t][0] = -prices[0]
-		}
-		for i := 1; i <= n; i++ {
-			if t%2 == 1 { // 买入
-				dp[t][i] = max(dp[t-1][i-1]-prices[i-1], dp[t][i-1])
-			} else { // 卖出
-				dp[t][i] = max(dp[t-1][i-1]+prices[i-1], dp[t][i-1])
-			}
-		}
-	}
-	return dp[2*k][n]
-}
-
-/*
-还有一种思路：
-dp[t][i] i天,最多t次交易完成后，最大利润
-*/
-func maxProfitKk2(k int, prices []int) int {
-	n := len(prices)
-	if n < 2 || k < 1 {
-		return 0
-	}
-	if k > n/2 {
-		return maxProfitKInfinity(prices)
-	}
-	dp := make([][]int, k+1)
-	for t := 0; t <= k; t++ {
-		dp[t] = make([]int, n+1)
-	}
-	v := make([]int, k+1)
-	for t := 0; t <= k; t++ {
-		v[t] = prices[0]
-	}
-	for i := 1; i < n; i++ {
-		for t := 1; t <= k; t++ {
-			v[t] = min(v[t], prices[i]-dp[t-1][i-1])
-			dp[t][i] = max(dp[t][i-1], prices[i]-v[t])
-		}
-	}
-	return dp[k][n-1]
-}
-
 func maxProfitKk3(k int, prices []int) int {
 	n := len(prices)
 	if n < 2 || k < 1 {
 		return 0
 	}
 	if k > n/2 {
-		return maxProfitKInfinity(prices)
+		return kNotLimitedMaxProfit(prices)
 	}
-	dp := make([]int, k+1)
-	v := make([]int, k+1)
-	for t := 0; t <= k; t++ {
-		v[t] = prices[0]
-	}
-	for i := 1; i < n; i++ {
-		for t := 1; t <= k; t++ {
-			v[t] = min(v[t], prices[i]-dp[t-1])
-			dp[t] = max(dp[t], prices[i]-v[t])
+	dp := make([][][]int, n+1)
+	for i := range dp {
+		dp[i] = make([][]int, k+1)
+		for t := range dp[i] {
+			dp[i][t] = make([]int, 2)
+			if i == 0 || t == 0 {
+				dp[i][t][1] = math.MinInt32
+			}
 		}
 	}
-	return dp[k]
+	for i := 1; i <= n; i++ {
+		for t := 1; t <= k; t++ {
+			dp[i][t][0] = max(dp[i-1][t][0], dp[i-1][t][1]+prices[i-1])
+			dp[i][t][1] = max(dp[i-1][t][1], dp[i-1][t-1][0]-prices[i-1])
+		}
+	}
+	return dp[n][k][0]
 }
 
-func min(a, b int) int {
-	return int(math.Min(float64(a), float64(b)))
+/*
+如果定义买入后卖出算一笔交易：
+dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k-1][1] + price[i])	// 第i天不持有股票的情况有两种：前一天没有股票，今天不买； 或前一天有股票，今天卖了；选择收益最大的做法即可
+dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k][0] - prices[i])		// 第i天持有股票的情况，与上边类似: 前一天有股票， 今天不卖，或前一天没有股票，今天买入； 买入则收益减少prices[i]
+初始情况：
+dp[-1][k][0] = 0
+dp[i][0][0] = 0
+dp[-1][k][1] = -infinity
+对于k为0的情况：
+dp[i][0][1] = max(dp[i-1][0][1], -prices[i-1]) (特别地，dp[-1][0][1] = -prices[0])
+*/
+func maxProfitKk0(k int, prices []int) int {
+	n := len(prices)
+	if n < 2 || k < 1 {
+		return 0
+	}
+	if k > n/2 {
+		return kNotLimitedMaxProfit(prices)
+	}
+	dp := make([][][]int, n+1)
+	for i := range dp {
+		dp[i] = make([][]int, k+1)
+		for t := range dp[i] {
+			dp[i][t] = make([]int, 2)
+			if i == 0 {
+				dp[i][t][1] = math.MinInt32
+			}
+			if t == 0 {
+				if i == 0 {
+					dp[i][t][1] = -prices[0]
+				} else {
+					dp[i][t][1] = max(dp[i-1][t][1], -prices[i-1])
+				}
+			}
+		}
+	}
+	for i := 1; i <= n; i++ {
+		for t := 1; t <= k; t++ {
+			dp[i][t][0] = max(dp[i-1][t][0], dp[i-1][t-1][1]+prices[i-1])
+			dp[i][t][1] = max(dp[i-1][t][1], dp[i-1][t][0]-prices[i-1])
+		}
+	}
+	return dp[n][k][0]
+}
+
+/*
+空间优化：用两个数组记录当天每次交易后持有股票或不持有股票的利润，即手里的钱
+时间复杂度为O(n*k)，空间复杂度O(k)
+*/
+func maxProfit(k int, prices []int) int {
+	n := len(prices)
+	if n < 2 || k < 1 {
+		return 0
+	}
+	if k >= n/2 {
+		return kNotLimitedMaxProfit(prices)
+	}
+	hold := make([]int, k+1)
+	release := make([]int, k+1)
+	for i := range hold {
+		hold[i] = math.MinInt32
+	}
+	for _, price := range prices {
+		for j := 1; j <= k; j++ { // j=0没有意义
+			hold[j] = max(hold[j], release[j-1]-price)
+			release[j] = max(release[j], hold[j]+price) // 要卖出必须先持有才行
+		}
+	}
+	return release[k]
 }

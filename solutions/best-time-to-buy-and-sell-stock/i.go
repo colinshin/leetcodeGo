@@ -30,7 +30,7 @@ import "math"
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 /*
-实际就是最高的波峰减去最低的波谷的值，但需注意符合题意的波峰必须在波谷右边出现
+实际就是最高的波峰减去最低的波谷的值，当然波峰必须在波谷右边出现
 时间复杂度O(n), 空间复杂度O(1)
 */
 func maxProfit10(prices []int) int {
@@ -75,13 +75,17 @@ func maxProfit11(prices []int) int {
 
 /*
 实际上每次确定结果只和上一次的结果有关，用两个变量来替代dp数组来优化空间复杂度
+noStockProfit, hasStockProfit 分别表示不持有股票、持有股票所获取的收益
 时间复杂度O(n), 空间复杂度O(1)
 */
 func maxProfit12(prices []int) int {
+	if len(prices) == 0 {
+		return 0
+	}
 	noStockProfit, hasStockProfit := 0, -prices[0]
 	for i := 1; i < len(prices); i++ {
-		noStockProfit, hasStockProfit =
-			max(noStockProfit, hasStockProfit+prices[i]), max(-prices[i], hasStockProfit)
+		noStockProfit = max(noStockProfit, hasStockProfit+prices[i])
+		hasStockProfit = max(-prices[i], hasStockProfit)
 	}
 	return noStockProfit
 }
@@ -89,9 +93,9 @@ func maxProfit12(prices []int) int {
 //或者根据readme的说明写初始条件
 func maxProfitK1(prices []int) int {
 	noStockProfit, hasStockProfit := 0, math.MinInt32
-	for _, v := range prices {
-		noStockProfit, hasStockProfit =
-			max(noStockProfit, hasStockProfit+v), max(-v, hasStockProfit)
+	for _, price := range prices {
+		noStockProfit = max(noStockProfit, hasStockProfit+price)
+		hasStockProfit = max(-price, hasStockProfit)
 	}
 	return noStockProfit
 }

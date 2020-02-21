@@ -69,6 +69,7 @@ Go solution for [LeetCode problems](https://leetcode.com/problemset/all/)
 * [find-k-th-smallest-pair-distance](solutions/find-k-th-smallest-pair-distance/d.go)
 * [median of two sorted arrays](solutions/median_of_two_sorted_arrays)
 ### array and strings
+* [trapping-rain-water](solutions/trapping-rain-water/d.go)
 * [construct-product-array](solutions/construct-product-array/d.go)
 * [find-repeat-number](solutions/find-repeat-number/d.go)
 * [valid-sudoku](solutions/valid-sudoku/d.go)
