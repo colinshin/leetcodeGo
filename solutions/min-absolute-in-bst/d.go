@@ -44,24 +44,21 @@ type TreeNode struct {
 BST中序遍历即得到一个排序好的列表；问题划归为求一个已经排序数组中相邻元素的最小差值
 当然不用真用一个数组存储，在遍历过程中即可求每个差值
 */
-
 func getMinimumDifference(root *TreeNode) int {
-	min := math.MaxInt32
-	prev := -1
-
-	var dfs func(*TreeNode)
-	dfs = func(root *TreeNode) {
-		if root == nil {
+	result := math.MaxInt32
+	lastVal := -1
+	var inorder func(t *TreeNode)
+	inorder = func(t *TreeNode) {
+		if t == nil {
 			return
 		}
-		dfs(root.Left)
-		if prev != -1 {
-			min = int(math.Min(float64(min), float64(root.Val-prev)))
+		inorder(t.Left)
+		if lastVal != -1 && t.Val-lastVal < result {
+			result = t.Val - lastVal
 		}
-		prev = root.Val
-		dfs(root.Right)
+		lastVal = t.Val
+		inorder(t.Right)
 	}
-
-	dfs(root)
-	return min
+	inorder(root)
+	return result
 }

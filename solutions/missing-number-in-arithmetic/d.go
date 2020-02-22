@@ -5,6 +5,15 @@
 package missing_number_in_arithmetic
 
 /*
+有一个数组，其中的值符合等差数列的数值规律，也就是说：
+
+在 0 <= i < arr.length - 1 的前提下，arr[i+1] - arr[i] 的值都相等。
+我们会从该数组中删除一个 既不是第一个 也 不是最后一个的值，得到一个新的数组  arr。
+
+给你这个缺值的数组 arr，请你帮忙找出被删除的那个数。
+
+
+
 示例 1：
 
 输入：arr = [5,7,11,13]
@@ -26,8 +35,10 @@ package missing_number_in_arithmetic
 链接：https://leetcode-cn.com/problems/missing-number-in-arithmetic-progression
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
 func missingNumber(arr []int) int {
+	if len(arr) < 2 {
+		return 0
+	}
 	n := len(arr)
 	d := (arr[n-1] - arr[0]) / n
 	for i := 0; i < n-1; i++ {
@@ -36,13 +47,4 @@ func missingNumber(arr []int) int {
 		}
 	}
 	return 0
-}
-
-func missingNumber1(arr []int) int {
-	n := len(arr)
-	sum := (arr[0] + arr[n-1]) * (n + 1) / 2
-	for _, v := range arr {
-		sum -= v
-	}
-	return sum
 }

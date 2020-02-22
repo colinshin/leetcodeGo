@@ -61,3 +61,32 @@ func dist(x1, y1, x2, y2 int) int {
 func abs(a int) int {
 	return int(math.Abs(float64(a)))
 }
+
+func assignBikes1(workers [][]int, bikes [][]int) int {
+	n, m := uint8(len(workers)), uint8(len(bikes))
+	dp := make([]int, (1<<m)-1)
+	var cal func(uint8, uint16) int
+	cal = func(workerId uint8, bikeTaken uint16) int {
+		if workerId == n {
+			return 0
+		}
+		if dp[bikeTaken] != 0 {
+			return dp[bikeTaken]
+		}
+
+		t1 := math.MaxInt32
+		for i := uint8(0); i < m; i++ {
+			if (bikeTaken & (1 << i)) != 0 {
+				continue
+			}
+			w, b := workers[workerId], bikes[i]
+			t2 := cal(workerId+1, bikeTaken|(1<<i)) + dist(w[0], w[1], b[0], b[1])
+			if t2 < t1 {
+				t1 = t2
+			}
+		}
+		dp[bikeTaken] = t1
+		return t1
+	}
+	return cal(0, 0)
+}

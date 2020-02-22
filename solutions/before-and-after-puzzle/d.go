@@ -9,7 +9,8 @@ package before_and_after_puzzle
 
 「短语」（phrase）是仅由小写英文字母和空格组成的字符串。「短语」的开头和结尾都不会出现空格，「短语」中的空格不会连续出现。
 
-「前后拼接」（Before and After puzzles）是合并两个「短语」形成「新短语」的方法。我们规定拼接时，第一个短语的最后一个单词 和 第二个短语的第一个单词 必须相同。
+「前后拼接」（Before and After puzzles）是合并两个「短语」形成「新短语」的方法。
+我们规定拼接时，第一个短语的最后一个单词 和 第二个短语的第一个单词 必须相同。
 
 返回每两个「短语」 phrases[i] 和 phrases[j]（i != j）进行「前后拼接」得到的「新短语」。
 
@@ -66,10 +67,11 @@ func beforeAndAfterPuzzles(phrases []string) []string {
 			}
 		}
 	}
-
-	var result []string
+	result := make([]string, len(set))
+	k := 0
 	for r := range set {
-		result = append(result, r)
+		result[k] = r
+		k++
 	}
 	sort.Strings(result)
 	return result
