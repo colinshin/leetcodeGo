@@ -1,12 +1,8 @@
-/*
- * Copyright (c) zrcoder 2019-2020. All rights reserved.
- */
-
 package longest_substring_without_repeating_characters
 
 import "testing"
 
-func TestLengthOfLongestSubstring(t *testing.T) {
+func Test_lengthOfLongestSubstring(t *testing.T) {
 	cases := []struct {
 		input  string
 		expect int
@@ -19,7 +15,6 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 		{input: "", expect: 0},
 		{input: "x", expect: 1},
 	}
-
 	for _, c := range cases {
 		r := lengthOfLongestSubstring(c.input)
 		if c.expect != r {

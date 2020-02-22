@@ -4,6 +4,8 @@
 
 package longest_substring_without_repeating_characters
 
+import "math"
+
 /*
 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
 
@@ -28,13 +30,12 @@ package longest_substring_without_repeating_characters
 链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
 /*
 滑动窗口
 时间复杂度：O(2n)=O(n)，在最糟糕的情况下，每个字符将被i 和j 访问两次。
 空间复杂度：O(k)，Set 的大小。取决于字符串的大小n 以及字符集 / 字母的大小m 。
 */
-func lengthOfLongestSubstring(s string) int {
+func lengthOfLongestSubstring1(s string) int {
 	result := 0
 	set := make(map[byte]struct{}, 0)
 	for l, r := 0, 0; r < len(s); {
@@ -58,20 +59,22 @@ func lengthOfLongestSubstring(s string) int {
 上述的方法最多需要执行 2n 个步骤。事实上，它可以被进一步优化为仅需要 n 个步骤。
 可以定义字符到索引的映射，而不是使用集合来判断一个字符是否存在。 当找到重复的字符时，可以立即跳过该窗口。
 */
-func lengthOfLongestSubstring1(s string) int {
+func lengthOfLongestSubstring(s string) int {
 	m := make(map[byte]int, 0)
 	result := 0
-	for l, r := 0, 0; r < len(s); r++ {
-		c := s[r]
-		if pos, found := m[c]; found && pos > l {
-			l = pos
+	for left, right := 0, 0; right < len(s); right++ {
+		c := s[right]
+		if index, found := m[c]; found {
+			left = max(left, index+1)
 		}
-		if r-l+1 > result {
-			result = r - l + 1
-		}
-		m[c] = r + 1 // 下一个位置的索引，第一个元素和最后一个元素的索引不用加入map
+		result = max(result, right-left+1)
+		m[c] = right
 	}
 	return result
+}
+
+func max(a, b int) int {
+	return int(math.Max(float64(a), float64(b)))
 }
 
 /*
