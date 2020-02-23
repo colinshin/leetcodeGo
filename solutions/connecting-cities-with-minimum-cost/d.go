@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package connecting_cities_with_minimum_cost
 
 import "sort"

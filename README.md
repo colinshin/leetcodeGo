@@ -1,5 +1,5 @@
 # leetcodeGo
-Go solution for [LeetCode problems](https://leetcode.com/problemset/all/) 
+Go solution for LeetCode problems
 ## learn
 [zero-one-pack-problem](learn/zero-one-pack-problem.md)<br>
 [binary-search-problem](learn/binary-search-problem.md)<br>

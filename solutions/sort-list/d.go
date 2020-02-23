@@ -5,16 +5,20 @@
 package sort_list
 
 /*
-Sort a linked list in O(n log n) time using constant space complexity.
+在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。
 
-Example 1:
+示例 1:
 
-Input: 4->2->1->3
-Output: 1->2->3->4
-Example 2:
+输入: 4->2->1->3
+输出: 1->2->3->4
+示例 2:
 
-Input: -1->5->3->4->0
-Output: -1->0->3->4->5
+输入: -1->5->3->4->0
+输出: -1->0->3->4->5
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/sort-list
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 type ListNode struct {
@@ -29,29 +33,33 @@ func sortList(head *ListNode) *ListNode {
 
 	dumyHead := new(ListNode)
 	dumyHead.Next = head
-	tmp := dumyHead
+	p := dumyHead
 
 	interval := 1
 	for {
 		head = dumyHead.Next
-		tmp = dumyHead
+		p = dumyHead
 		for head != nil {
 			first := head
-			head = cut(head, interval)
+			head = divide(head, interval)
 			if head == nil {
 				return dumyHead.Next
 			}
 			second := head
-			head = cut(head, interval)
-			tmp.Next = mergeSortedLists(first, second)
-			for ; tmp.Next != nil; tmp = tmp.Next {
+			head = divide(head, interval)
+			p.Next = mergeSortedLists(first, second)
+			for ; p.Next != nil; p = p.Next {
 			}
 		}
 		interval *= 2
 	}
 }
 
-func cut(head *ListNode, n int) *ListNode {
+/*
+divide list to 2 parts, and returns the head of the second part
+if n is too big and list is tool short, returns nil
+*/
+func divide(head *ListNode, n int) *ListNode {
 	p := head
 	for p != nil && n > 0 {
 		p = p.Next
