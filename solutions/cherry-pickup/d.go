@@ -45,59 +45,37 @@ grid 是一个 N * N 的二维数组，N的取值范围是1 <= N <= 50。
 问题简化：如果只是从起点到终点摘一遍呢？这将是一个典型的动态规划
 
 定义dp(r,c)表示从起点走到(r,c)摘到的最大樱桃数； 则dp[r][c] = max(dp[r-1][c], dp[r][c-1]) + grid[r][c]
-注意(r,c)处本身为荆棘或其上边和左边一格均无法到达的情况
+注意边界情况即(r,c)处本身为荆棘或其上边和左边一格均无法到达的情况
+或者dp多申请一行一列，0行0列都是0，不参与结果计算，只是方便少判断边界
 */
 func cherryPickupOnce(grid [][]int) int {
 	n := len(grid)
 	if n == 0 {
 		return -1
 	}
-
-	dp := make([][]int, n)
-	for i := 0; i < n; i++ {
-		dp[i] = make([]int, n)
+	dp := make([][]int, n+1)
+	for i := 0; i <= n; i++ {
+		dp[i] = make([]int, n+1)
 	}
-	for r := 0; r < n; r++ {
-		for c := 0; c < n; c++ {
-			switch {
-			case r == 0 && c == 0:
-				dp[r][c] = grid[r][c]
-			case r == 0:
-				if grid[r][c] == -1 || dp[r][c-1] == -1 {
-					dp[r][c] = -1
-				} else {
-					dp[r][c] = dp[r][c-1] + grid[r][c]
-				}
-			case c == 0:
-				if grid[r][c] == -1 || dp[r-1][c] == -1 {
-					dp[r][c] = -1
-				} else {
-					dp[r][c] = dp[r-1][c] + grid[r][c]
-				}
-			default:
-				if grid[r][c] == -1 || (dp[r-1][c] == -1 && dp[r][c-1] == -1) {
-					dp[r][c] = -1
-				} else {
-					if dp[r-1][c] == -1 {
-						dp[r][c] = dp[r][c-1] + grid[r][c]
-					} else if dp[r][c-1] == -1 {
-						dp[r][c] = dp[r-1][c] + grid[r][c]
-					} else {
-						if dp[r-1][c] > dp[r][c-1] {
-							dp[r][c] = dp[r-1][c] + grid[r][c]
-						} else {
-							dp[r][c] = dp[r][c-1] + grid[r][c]
-						}
-					}
-				}
+	for r := 1; r <= n; r++ {
+		for c := 1; c <= n; c++ {
+			cherryNum := grid[r-1][c-1]
+			if cherryNum == -1 {
+				dp[r][c] = -1
+				continue
+			}
+			dp[r][c] = cherryNum
+			topLeftMax := max(dp[r][c-1], dp[r-1][c])
+			if topLeftMax > 0 {
+				dp[r][c] += topLeftMax
 			}
 		}
 	}
-	return dp[n-1][n-1]
+	return dp[n][n]
 }
 
 /*
-可以考虑执行cherryPickup0两次，且第一次把摘掉的樱桃格子里的值置为0
+可以考虑执行cherryPickup两次，且第一次把摘掉的樱桃格子里的值置为0
 但这样会导致过多的格子被置为0；
 可以考虑记录第一次摘过樱桃的路径，但显然又会漏掉最优解，如下边的情况：
 				{1,1,1,1,0,0,0},
@@ -124,10 +102,10 @@ func cherryPickupOnce(grid [][]int) int {
 如果(r1, c1), (r2, c2)处不是荆棘；那么dp[r1][c1][c2]的值这样计算：
 先得到(r1, c1), (r2, c2)两处的樱桃总数（如果位置重复则只算一次）； 再加上
 max(
-dp(r1+1, c1, c2, dp, grid),	//a, b都向下
-dp(r1, c1+1, c2, dp, grid),	//a右b下
-dp(r1+1, c1, c2+1, dp, grid),	//a下b右
-dp(r1, c1+1, c2+1, dp, grid))	//a，b都向右
+dp(r1+1, c1, c2, dp, grid),	// a, b都向下
+dp(r1, c1+1, c2, dp, grid),	// a右b下
+dp(r1+1, c1, c2+1, dp, grid),	// a下b右
+dp(r1, c1+1, c2+1, dp, grid))	// a，b都向右
 */
 func cherryPickup(grid [][]int) int {
 	n := len(grid)
@@ -137,7 +115,7 @@ func cherryPickup(grid [][]int) int {
 		for j := 0; j < n; j++ {
 			dp[i][j] = make([]int, n)
 			for k := 0; k < n; k++ {
-				dp[i][j][k] = math.MinInt64
+				dp[i][j][k] = math.MinInt32
 			}
 		}
 	}
@@ -149,17 +127,14 @@ func pickup(r1, c1, c2 int, dp [][][]int, grid [][]int) int {
 	n := len(grid)
 	if n == r1 || n == c1 || n == r2 || n == c2 ||
 		grid[r1][c1] == -1 || grid[r2][c2] == -1 {
-		return math.MinInt64
+		return math.MinInt32
 	}
-
 	if r1 == n-1 && c1 == n-1 {
 		return grid[r1][c1]
 	}
-
-	if dp[r1][c1][c2] != math.MinInt64 {
+	if dp[r1][c1][c2] != math.MinInt32 {
 		return dp[r1][c1][c2]
 	}
-
 	val := grid[r1][c1]
 	if c1 != c2 {
 		val += grid[r2][c2]
@@ -183,14 +158,14 @@ func pickup1(r1, c1, c2 int, dp [][][]int, grid [][]int) int {
 	r2 := r1 + c1 - c2
 	if r1 < 0 || c1 < 0 || r2 < 0 || c2 < 0 ||
 		grid[r1][c1] == -1 || grid[r2][c2] == -1 {
-		return math.MinInt64
+		return math.MinInt32
 	}
 
 	if r1 == 0 && c1 == 0 && c2 == 0 {
 		return grid[r1][c1]
 	}
 
-	if dp[r1][c1][c2] != math.MinInt64 {
+	if dp[r1][c1][c2] != math.MinInt32 {
 		return dp[r1][c1][c2]
 	}
 
@@ -211,12 +186,12 @@ func pickup1(r1, c1, c2 int, dp [][][]int, grid [][]int) int {
 [解法3：动态规划，自底向上]
 
 定义dp[c1][c2]为第t步，从起点走到(r1,c1)和从起点走到(r2,c2)能摘到的最多樱桃数；其中r1=t-c1，r2=t-c2
+一个人从左上角走到右下角共需n-1 + n-1 即2n-2步
 */
 func cherryPickup1(grid [][]int) int {
 	n := len(grid)
 	dp := genDp(n)
 	dp[0][0] = grid[0][0]
-
 	for t := 1; t <= 2*n-2; t++ {
 		dp2 := genDp(n)
 		from, end := max(0, t-(n-1)), min(n-1, t)
@@ -251,14 +226,14 @@ func genDp(n int) [][]int {
 	for i := 0; i < n; i++ {
 		dp[i] = make([]int, n)
 		for j := 0; j < n; j++ {
-			dp[i][j] = math.MinInt64
+			dp[i][j] = math.MinInt32
 		}
 	}
 	return dp
 }
 
 func max(nums ...int) int {
-	r := math.MinInt64
+	r := math.MinInt32
 	for _, v := range nums {
 		if v > r {
 			r = v

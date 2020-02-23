@@ -4,6 +4,8 @@
 
 package sort_list
 
+import "sort"
+
 /*
 在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。
 
@@ -20,86 +22,32 @@ package sort_list
 链接：https://leetcode-cn.com/problems/sort-list
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
-func sortList(head *ListNode) *ListNode {
-	if head == nil {
-		return nil
-	}
-
-	dumyHead := new(ListNode)
-	dumyHead.Next = head
-	p := dumyHead
-
-	interval := 1
-	for {
-		head = dumyHead.Next
-		p = dumyHead
-		for head != nil {
-			first := head
-			head = divide(head, interval)
-			if head == nil {
-				return dumyHead.Next
-			}
-			second := head
-			head = divide(head, interval)
-			p.Next = mergeSortedLists(first, second)
-			for ; p.Next != nil; p = p.Next {
-			}
-		}
-		interval *= 2
-	}
-}
-
 /*
-divide list to 2 parts, and returns the head of the second part
-if n is too big and list is tool short, returns nil
+ 归并排序：自顶向下，使用递归
 */
-func divide(head *ListNode, n int) *ListNode {
-	p := head
-	for p != nil && n > 0 {
-		p = p.Next
-		n--
-	}
-	if p == nil {
-		return nil
-	}
-	r := p.Next
-	p.Next = nil
-	return r
-}
-
-//
-func sortList1(head *ListNode) *ListNode {
-	if head == nil {
-		return nil
-	}
-	return divideAndSort(head)
-}
-
-func divideAndSort(head *ListNode) *ListNode {
-	if head.Next == nil {
+func sortList(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
 		return head
 	}
-
-	p := head.Next
-	q := head
-	for p != nil && p.Next != nil {
-		p = p.Next.Next
-		q = q.Next
-	}
-	p = q.Next
-	q.Next = nil
-	head = divideAndSort(head)
-	p = divideAndSort(p)
-	return mergeSortedLists(head, p)
+	right := divide(head)
+	return merge(sortList(head), sortList(right))
 }
-
-func mergeSortedLists(first, second *ListNode) *ListNode {
+func divide(head *ListNode) *ListNode {
+	fast := head.Next // 最终返回的是中间节点的下一个节点；写成 fast := head.Next.Next也行，最终返回的是中间节点
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		head = head.Next
+	}
+	fast = head.Next
+	head.Next = nil
+	return fast
+}
+func merge(first, second *ListNode) *ListNode {
 	dumyHead := new(ListNode)
 	p := dumyHead
 	for first != nil && second != nil {
@@ -112,11 +60,78 @@ func mergeSortedLists(first, second *ListNode) *ListNode {
 		}
 		p = p.Next
 	}
-
 	if first != nil {
 		p.Next = first
 	} else if second != nil {
 		p.Next = second
 	}
-	return dumyHead.Next
+	p = dumyHead.Next
+	dumyHead.Next, dumyHead = nil, nil
+	return p
+}
+
+/*
+快排，自顶向下，使用递归
+选择一个标准值，将比它大的放在一个链表中，比它小的放在一个链表中，和它一样大的，放在另一个链表中。
+然后针对小的和大的链表，继续排序。最终将三个链表按照小、相等、大进行连接。
+*/
+func sortList2(head *ListNode) *ListNode {
+	return quickSort(head)
+}
+func quickSort(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	lowDumy, midDumy, highDumy := new(ListNode), new(ListNode), new(ListNode)
+	low, mid, high := lowDumy, midDumy, highDumy
+	val := head.Val
+	for p := head; p != nil; p = p.Next {
+		if p.Val < val {
+			low.Next = p
+			low = low.Next
+		} else if p.Val > val {
+			high.Next = p
+			high = high.Next
+		} else {
+			mid.Next = p
+			mid = mid.Next
+		}
+	}
+	low.Next, mid.Next, high.Next = nil, nil, nil
+	lowDumy.Next = quickSort(lowDumy.Next)
+	highDumy.Next = quickSort(highDumy.Next)
+	low = lowDumy
+	for low.Next != nil {
+		low = low.Next
+	}
+	low.Next = midDumy.Next
+	mid.Next = highDumy.Next
+	low = lowDumy.Next
+	lowDumy, midDumy, highDumy = nil, nil, nil
+	return low
+}
+
+/*
+可以用一个数组，装入链表所有节点，然后用标准库对数组排序即可
+时间复杂度是O(nlogn), 空间复杂度O(n)
+*/
+func sortList9(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	var arr []*ListNode
+	for ; head != nil; head = head.Next {
+		arr = append(arr, head)
+	}
+	sort.Slice(arr, func(i, j int) bool {
+		return arr[i].Val < arr[j].Val
+	})
+	for i, v := range arr {
+		if i == len(arr)-1 {
+			v.Next = nil
+		} else {
+			v.Next = arr[i+1]
+		}
+	}
+	return arr[0]
 }

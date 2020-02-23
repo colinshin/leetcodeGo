@@ -12,14 +12,8 @@ Go solution for LeetCode problems
 * [min-absolute-in-bst](solutions/min-absolute-in-bst/d.go)
 * [missing-number-in-arithmetic](solutions/missing-number-in-arithmetic/d.go)
 * [remove-duplicates](solutions/remove-duplicates/d.go)
-* [sort-list](solutions/sort-list/d.go)
-* [min-stack](solutions/min-stack/d.go)
-* [max-queue](solutions/max-queue/d.go)
 * [maximum-product-of-word-lengths](solutions/maximum-product-of-word-lengths/d.go)
-* [24-game](solutions/24-game/d.go)
-* [middle-of-the-linked-list](solutions/middle-of-the-linked-list/d.go)
 * [occurrences-after-bigram](solutions/occurrences-after-bigram/d.go)
-* [cherry-pickup](solutions/cherry-pickup/d.go)
 * [unique-number-of-occurrences](solutions/unique-number-of-occurrences/d.go)
 * [matrix-cells-in-distance-order](solutions/matrix-cells-in-distance-order/d.go)
 * [linked-list-components](solutions/linked-list-components/d.go)
@@ -95,6 +89,8 @@ Go solution for LeetCode problems
 * [add two numbers](solutions/add_two_numbers)
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)
 * [linked-list-cycle](solutions/linked-list-cycle/d.go)
+* [sort-list](solutions/sort-list/d.go)
+* [middle-of-the-linked-list](solutions/middle-of-the-linked-list/d.go)
 ### tree
 * [maximum-depth-of-binary-tree](solutions/maximum-depth-of-binary-tree/d.go)
 * [validate-binary-search-tree](solutions/validate-binary-search-tree/d.go)
@@ -120,9 +116,12 @@ Go solution for LeetCode problems
 * [number-of-longest-increasing-subsequence](solutions/number-of-longest-increasing-subsequence/d.go)
 * [best-time-to-buy-and-sell-stock](solutions/best-time-to-buy-and-sell-stock)
 * [campus-bikes-ii](solutions/campus-bikes-ii/d.go)
+* [cherry-pickup](solutions/cherry-pickup/d.go)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 ### design
+* [min-stack](solutions/min-stack/d.go)
+* [max-queue](solutions/max-queue/d.go)
 * [design-twitter](solutions/design-twitter/)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
@@ -134,6 +133,7 @@ Go solution for LeetCode problems
 * [course-schedule-ii](solutions/course-schedule-ii)
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
+* [24-game](solutions/24-game/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>

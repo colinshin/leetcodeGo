@@ -39,7 +39,7 @@ package max_queue
 */
 type MaxQueue struct {
 	queue []int
-	max   []int
+	maxes []int
 }
 
 func Constructor() MaxQueue {
@@ -47,16 +47,16 @@ func Constructor() MaxQueue {
 }
 
 func (q *MaxQueue) Max_value() int {
-	if len(q.max) == 0 {
+	if len(q.maxes) == 0 {
 		return -1
 	}
-	return q.max[0]
+	return q.maxes[0]
 }
 
 func (q *MaxQueue) Push_back(value int) {
 	q.queue = append(q.queue, value)
-	i := search(q.max, value)
-	q.max = append(q.max[:i], value)
+	i := search(q.maxes, value)
+	q.maxes = append(q.maxes[:i], value)
 }
 
 func search(nums []int, value int) int {
@@ -78,8 +78,8 @@ func (q *MaxQueue) Pop_front() int {
 	}
 	v := q.queue[0]
 	q.queue = q.queue[1:]
-	if v == q.max[0] {
-		q.max = q.max[1:]
+	if v == q.maxes[0] {
+		q.maxes = q.maxes[1:]
 	}
 	return v
 }

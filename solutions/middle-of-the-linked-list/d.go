@@ -34,11 +34,10 @@ type ListNode struct {
 }
 
 func middleNode(head *ListNode) *ListNode {
-	slow := head
 	fast := head
 	for fast != nil && fast.Next != nil {
 		fast = fast.Next.Next
-		slow = slow.Next
+		head = head.Next
 	}
-	return slow
+	return head
 }
