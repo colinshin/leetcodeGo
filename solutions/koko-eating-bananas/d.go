@@ -39,6 +39,7 @@ piles.length <= H <= 10^9
 */
 /*朴素实现
 O(n*max),超时
+n为piles长度，max为piles最大元素
 */
 func minEatingSpeed1(piles []int, H int) int {
 	if H < len(piles) {
@@ -55,7 +56,7 @@ func minEatingSpeed1(piles []int, H int) int {
 	}
 
 	for k := 1; k <= max; k++ {
-		if caculateCost(piles, k) <= H {
+		if calCost(piles, k) <= H {
 			return k
 		}
 	}
@@ -64,10 +65,11 @@ func minEatingSpeed1(piles []int, H int) int {
 
 /*
 二分法实现
-O(lgn*max)
+O(n*lg(max)), n为piles长度，max为piles最大元素
 */
 func minEatingSpeed(piles []int, H int) int {
-	if H < len(piles) {
+	n := len(piles)
+	if H < n {
 		return -1
 	}
 	max := -1
@@ -76,23 +78,22 @@ func minEatingSpeed(piles []int, H int) int {
 			max = v
 		}
 	}
-	if H == len(piles) {
+	if H == n {
 		return max
 	}
-
-	left, right := 1, max
+	left, right := 1, max+1
 	for left < right {
 		mid := left + (right-left)/2
-		if caculateCost(piles, mid) > H {
-			left = mid + 1
-		} else {
+		if calCost(piles, mid) <= H { // 可能有多个值使得calCost(piles, mid) == H， 需要最左侧的那个值
 			right = mid
+		} else {
+			left = mid + 1
 		}
 	}
 	return left
 }
 
-func caculateCost(piles []int, k int) int {
+func calCost(piles []int, k int) int {
 	sum := 0
 	for _, v := range piles {
 		sum += (v-1)/k + 1

@@ -41,12 +41,11 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	if size == 0 {
 		return 0.0
 	}
-	if (size)%2 == 1 {
+	if size%2 == 1 {
 		return getKth(nums1, nums2, size/2+1)
 	}
 	return (getKth(nums1, nums2, size/2) + getKth(nums1, nums2, size/2+1)) * 0.5
 }
-
 func getKth(nums1, nums2 []int, k int) float64 {
 	m, n := len(nums1), len(nums2)
 	if m > n {
@@ -58,22 +57,14 @@ func getKth(nums1, nums2 []int, k int) float64 {
 	if k == 1 {
 		return float64(min(nums1[0], nums2[0]))
 	}
-
-	// 两个数组中间索引为k/2 - 1
-	i := min(m, k/2) - 1 // 本应为k/2-1，这里是防止越界
-	j := min(n, k/2) - 1 // 本应为k/2-1，这里是防止越界
+	i, j := min(m-1, k/2-1), min(n-1, k/2-1)
 	if nums1[i] > nums2[j] {
 		return getKth(nums1, nums2[j+1:], k-(j+1))
 	}
 	return getKth(nums1[i+1:], nums2, k-(i+1))
 }
-
 func min(a, b int) int {
 	return int(math.Min(float64(a), float64(b)))
-}
-
-func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
 }
 
 // 参考
@@ -122,6 +113,10 @@ func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
 		}
 	}
 	return 0.0
+}
+
+func max(a, b int) int {
+	return int(math.Max(float64(a), float64(b)))
 }
 
 // 朴素实现，先merge再找中间的

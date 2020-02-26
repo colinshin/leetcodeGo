@@ -4,6 +4,8 @@
 
 package unique_number_of_occurrences
 
+import "sort"
+
 /*
 给你一个整数数组 arr，请你帮忙统计数组中每个数的出现次数。
 
@@ -26,18 +28,59 @@ package unique_number_of_occurrences
 链接：https://leetcode-cn.com/problems/unique-number-of-occurrences
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
+/*
+借助一个map统计元素个数
+再借助一个set去重，判读是否有重复个数
+时空复杂度都是O(n)
+*/
 func uniqueOccurrences(arr []int) bool {
-	m := map[int]int{}
+	counts := make(map[int]int, 0)
 	for _, v := range arr {
-		if count, found := m[v]; found {
-			m[v] = 1 + count
-		} else {
-			m[v] = 1
-		}
+		counts[v]++
 	}
-	set := map[int]struct{}{}
-	for _, count := range m {
+	set := make(map[int]struct{}, 0)
+	for _, count := range counts {
+		if _, found := set[count]; found {
+			return false
+		}
 		set[count] = struct{}{}
 	}
-	return len(set) == len(m)
+	return true
+}
+
+/* 先排序，再用二分法计算每个元素的数量（对于一个特定元素，遍历时左边界确定，右边界用二分法计算，最后计算长度）
+另用一个set，不断存入计算出来的元素个数，当发现有重复的时候返回false，遍历完毕还没有重复即true
+时间复杂度O(nlgn)，空间复杂度O(n)，但是要比前一个方法少申请一个map
+*/
+func uniqueOccurrences1(arr []int) bool {
+	if len(arr) == 0 {
+		return true
+	}
+	sort.Ints(arr)
+	left, right := 0, 0
+	set := make(map[int]struct{}, 0)
+	for left < len(arr) && right < len(arr) {
+		right = left + searchFromRight(arr[left:], arr[left]) - 1
+		count := right - left + 1
+		if _, fount := set[count]; fount {
+			return false
+		}
+		set[count] = struct{}{}
+		left = right + 1
+	}
+	return true
+}
+
+// 从右向左查询，找到v要插入arr的位置，即arr中最后一个v的下一个位置
+func searchFromRight(arr []int, v int) int {
+	left, right := 0, len(arr)-1
+	for left <= right {
+		mid := left + (right-left)/2
+		if arr[mid] <= v {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+	return left
 }

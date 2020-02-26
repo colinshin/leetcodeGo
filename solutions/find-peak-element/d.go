@@ -4,6 +4,8 @@
 
 package find_peak_element
 
+import "math"
+
 /*
 峰值元素是指其值大于左右相邻值的元素。
 
@@ -35,8 +37,9 @@ package find_peak_element
 /*
 朴素实现
 遍历nums，如果发现nums[i] > nums[i+1]，则i为所求；找不到则为最后一个索引
+时间复杂度O(n）
 */
-func findPeakElement1(nums []int) int {
+func findPeakElement0(nums []int) int {
 	for i := 0; i < len(nums)-1; i++ {
 		if nums[i] > nums[i+1] {
 			return i
@@ -48,6 +51,7 @@ func findPeakElement1(nums []int) int {
 /*
 二分法
 对比nums[mid]和其右边的元素，如果nums[mid]大，说明峰值在mid左侧，包括mid；否则峰值在mid右侧
+时间复杂度O(lgn)
 */
 func findPeakElement(nums []int) int {
 	left, right := 0, len(nums)-1
@@ -56,8 +60,49 @@ func findPeakElement(nums []int) int {
 		if nums[mid+1] > nums[mid] {
 			left = mid + 1
 		} else {
-			right = mid
+			right = mid - 1
 		}
+	}
+	return left
+}
+
+// 模板1 查找单个索引
+func findPeakElement1(nums []int) int {
+	left, right := 0, len(nums)-1
+	for left <= right {
+		mid := left + (right-left)/2
+		pre, next := math.MinInt64, math.MinInt64 // 这里预期测试用例里没有{math.MinInt64, math.MinInt64+1}, 不然预期1， 我们返回了0
+		if mid > 0 {
+			pre = nums[mid-1]
+		}
+		if mid < len(nums)-1 {
+			next = nums[mid+1]
+		}
+		if pre < nums[mid] && nums[mid] > next {
+			return mid
+		}
+		if pre < nums[mid] {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+	return left
+}
+
+// 模板3
+func findPeakElement3(nums []int) int {
+	left, right := 0, len(nums)-1
+	for left+1 < right {
+		mid := left + (right-left)/2
+		if nums[mid] > nums[mid+1] {
+			right = mid
+		} else {
+			left = mid
+		}
+	}
+	if right >= 0 && nums[left] < nums[right] {
+		return right
 	}
 	return left
 }

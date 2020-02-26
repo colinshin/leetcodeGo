@@ -35,15 +35,13 @@ func search(nums []int, target int) int {
 		case nums[mid] == target:
 			return mid
 		case nums[0] <= target: // target is in the left part
-			// only nums[mid] in the left part, move left, else move right
-			if nums[mid] >= nums[0] && nums[mid] < target {
+			if nums[mid] >= nums[0] && nums[mid] < target { // only nums[mid] in the left part, move left, else move right
 				left = mid + 1
 			} else {
 				right = mid - 1
 			}
 		default: // target is in the right part
-			// only nums[mid] in the right part, move right, else move left
-			if nums[mid] < nums[0] && nums[mid] > target {
+			if nums[mid] < nums[0] && nums[mid] > target { // only nums[mid] in the right part, move right, else move left
 				right = mid - 1
 			} else {
 				left = mid + 1
@@ -55,21 +53,19 @@ func search(nums []int, target int) int {
 
 // 高级二分法（模板二）
 func search1(nums []int, target int) int {
-	left, right := 0, len(nums)-1
+	left, right := 0, len(nums)
 	for left < right {
 		mid := left + (right-left)/2
 		switch {
 		case nums[mid] == target:
 			return mid
-		case nums[0] <= target: // target is in the left part
-			// only nums[mid] in the left part, move left, else move right
+		case nums[0] <= target:
 			if nums[mid] >= nums[0] && nums[mid] < target {
 				left = mid + 1
 			} else {
 				right = mid
 			}
-		default: // target is in the right part
-			// only nums[mid] in the right part, move right, else move left
+		default:
 			if nums[mid] < nums[0] && nums[mid] > target {
 				right = mid
 			} else {
@@ -85,21 +81,22 @@ func search1(nums []int, target int) int {
 
 // 二分法（模板三）
 func search2(nums []int, target int) int {
-	left, right := 0, len(nums)
+	if len(nums) == 0 {
+		return -1
+	}
+	left, right := 0, len(nums)-1
 	for left+1 < right {
 		mid := left + (right-left)/2
 		switch {
 		case nums[mid] == target:
 			return mid
-		case nums[0] <= target: // target is in the left part
-			// only nums[mid] in the left part, move left, else move right
+		case nums[0] <= target:
 			if nums[mid] >= nums[0] && nums[mid] < target {
 				left = mid
 			} else {
 				right = mid
 			}
-		default: // target is in the right part
-			// only nums[mid] in the right part, move right, else move left
+		default:
 			if nums[mid] < nums[0] && nums[mid] > target {
 				right = mid
 			} else {
@@ -107,10 +104,10 @@ func search2(nums []int, target int) int {
 			}
 		}
 	}
-	if left < len(nums) && nums[left] == target {
+	if nums[left] == target {
 		return left
 	}
-	if right < len(nums) && nums[right] == target {
+	if nums[right] == target {
 		return right
 	}
 	return -1

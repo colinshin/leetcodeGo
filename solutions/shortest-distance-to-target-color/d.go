@@ -90,46 +90,47 @@ func shortestDistanceColor(colors []int, queries [][]int) []int {
 	return r
 }
 
-func minDist2(query []int, m map[int][]int) int {
-	srcIndex, dstColor := query[0], query[1]
-	indexes := m[dstColor]
-	if len(indexes) == 0 {
-		return -1
-	}
-	left, right := 0, len(indexes)-1 //二分法寻找与srcIndex最接近的索引
-	for left != right {
-		mid := (left + right) / 2
-		if indexes[mid] == srcIndex {
-			return 0
-		}
-		if indexes[mid] < srcIndex {
-			left = mid + 1
-		} else {
-			right = mid
-		}
-	}
-	if left == 0 {
-		return abs(indexes[left] - srcIndex)
-	}
-	return min(abs(indexes[left]-srcIndex), abs(indexes[left-1]-srcIndex))
-}
-
 func minDist(query []int, m map[int][]int) int {
-	srcIndex, dstColor := query[0], query[1]
+	dstIndex, dstColor := query[0], query[1]
 	indexes := m[dstColor]
 	if len(indexes) == 0 {
 		return -1
 	}
-	i := sort.SearchInts(indexes, srcIndex) // 标准库寻找与srcIndex接近的索引
+	i := sort.SearchInts(indexes, dstIndex)
 	if i == len(indexes) {
-		return srcIndex - indexes[i-1]
+		return dstIndex - indexes[i-1]
 	}
 	if i == 0 {
-		return abs(indexes[0] - srcIndex)
+		return indexes[0] - dstIndex
 	}
-	return min(abs(indexes[i]-srcIndex), abs(indexes[i-1]-srcIndex))
+	return min(abs(indexes[i]-dstIndex), abs(indexes[i-1]-dstIndex))
 }
-
+func minDist2(query []int, m map[int][]int) int {
+	dstIndex, dstColor := query[0], query[1]
+	indexes := m[dstColor]
+	if len(indexes) == 0 {
+		return -1
+	}
+	left, right := 0, len(indexes)-1
+	for left <= right {
+		mid := left + (right-left)/2
+		if indexes[mid] == dstIndex {
+			return 0
+		}
+		if indexes[mid] < dstIndex {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+	if left == len(indexes) {
+		return dstIndex - indexes[left-1]
+	}
+	if left == 0 {
+		return indexes[0] - dstIndex
+	}
+	return min(abs(indexes[left]-dstIndex), abs(indexes[left-1]-dstIndex))
+}
 func min(a, b int) int {
 	return int(math.Min(float64(a), float64(b)))
 }

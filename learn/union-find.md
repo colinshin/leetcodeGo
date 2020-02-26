@@ -5,6 +5,8 @@
 https://blog.csdn.net/niushuai666/article/details/6662911
 ## 实现
 ```
+type UnionFind []int
+
 func NewUnionFind(n int) UnionFind {
 	unionFind := make([]int, n)
 	for i, _ := range unionFind {
@@ -12,19 +14,19 @@ func NewUnionFind(n int) UnionFind {
 	}
 	return unionFind
 }
-func (uf UnionFind) find(x int) int {
-	if uf[x] != x {
-		uf[x] = uf.find(uf[x])
+func (uf UnionFind) Find(x int) int {
+	for x != uf[x] {
+		uf[x] = uf.Find(uf[x])
 	}
 	return uf[x]
 }
-func (uf UnionFind) join(x, y int) {
+func (uf UnionFind) Union(x, y int) {
 	uf[x] = y
 }
 ```
 find函数还可以循环实现：
 ```
-func (uf UnionFind) find(x int) int {
+func (uf UnionFind) Find(x int) int {
 	root := x
 	for root != uf[root] {
 		root = uf[root]

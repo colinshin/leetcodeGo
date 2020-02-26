@@ -49,9 +49,9 @@ func fixedPoint1(A []int) int {
 
 // 一个隐藏的二分搜索问题
 func fixedPoint(A []int) int {
-	left, right := 0, len(A)-1
+	left, right := 0, len(A)
 	for left < right {
-		mid := (left + right) / 2
+		mid := left + (right-left)/2
 		switch {
 		case A[mid] >= mid: // 可能左边还有符合题意的
 			right = mid

@@ -25,7 +25,7 @@ package find_first_and_last_position_of_element_in_sorted_array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func searchRange(nums []int, target int) []int {
-	leftIndex := search(nums, target)
+	leftIndex := search(nums, target) // 或用标准库api： leftIndex := sort.SearchInts(nums, target)
 	if leftIndex == len(nums) || nums[leftIndex] != target {
 		return []int{-1, -1}
 	}
@@ -39,14 +39,14 @@ nums已经排序，但可能有重复元素
 功能同标准库里的sort.SearchInts(nums, target)
 */
 func search(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left <= right {
+	left, right := 0, len(nums)
+	for left < right {
 		mid := left + (right-left)/2
 		switch {
 		case nums[mid] < target:
 			left = mid + 1
 		case nums[mid] >= target:
-			right = mid - 1
+			right = mid
 		}
 	}
 	return left
@@ -57,14 +57,14 @@ func search(nums []int, target int) int {
 nums已经排序，但可能有重复元素
 */
 func searchFromRight(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left <= right {
+	left, right := 0, len(nums)
+	for left < right {
 		mid := left + (right-left)/2
 		switch {
 		case nums[mid] <= target:
 			left = mid + 1
 		case nums[mid] > target:
-			right = mid - 1
+			right = mid
 		}
 	}
 	return left

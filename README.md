@@ -125,6 +125,8 @@ Go solution for LeetCode problems
 * [design-twitter](solutions/design-twitter/)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
+### math
+* [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 ### others
 * [shuffle-an-array](solutions/shuffle-an-array/d.go)
 * [count-primes](solutions/count-primes/d.go)

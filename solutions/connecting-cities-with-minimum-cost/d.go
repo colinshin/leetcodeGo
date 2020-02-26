@@ -19,9 +19,9 @@ func minimumCost(n int, connections [][]int) int {
 		connection := connections[i]
 		i++
 		city1, city2 := connection[0]-1, connection[1]-1
-		city1, city2 = unionFind.find(city1), unionFind.find(city2)
+		city1, city2 = unionFind.Find(city1), unionFind.Find(city2)
 		if city1 != city2 {
-			unionFind.join(city1, city2)
+			unionFind.Union(city1, city2)
 			connected++
 			result += connection[2]
 		}
@@ -38,7 +38,7 @@ func NewUnionFind(n int) UnionFind {
 	}
 	return unionFind
 }
-func (uf UnionFind) find(x int) int {
+func (uf UnionFind) Find(x int) int {
 	root := x
 	for root != uf[root] {
 		root = uf[root]
@@ -48,6 +48,6 @@ func (uf UnionFind) find(x int) int {
 	}
 	return root
 }
-func (uf UnionFind) join(x, y int) {
+func (uf UnionFind) Union(x, y int) {
 	uf[x] = y
 }

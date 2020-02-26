@@ -27,7 +27,6 @@ package check_if_a_number_is_majority_element_in_a_sorted_array
 链接：https://leetcode-cn.com/problems/check-if-a-number-is-majority-element-in-a-sorted-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
 /*
 用两次二分法找到数组中最左边target的索引和最右边的索引，两个索引距离+1即target出现的个数
 时间复杂度O(lgn)，空间复杂度O(1)
@@ -48,14 +47,14 @@ nums已经排序，但可能有重复元素
 功能同标准库里的sort.SearchInts(nums, target)
 */
 func search(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left <= right {
+	left, right := 0, len(nums)
+	for left < right {
 		mid := left + (right-left)/2
 		switch {
 		case nums[mid] < target:
 			left = mid + 1
-		case nums[mid] > target, nums[mid] == target:
-			right = mid - 1
+		case nums[mid] >= target:
+			right = mid
 		}
 	}
 	return left
@@ -66,14 +65,14 @@ func search(nums []int, target int) int {
 nums已经排序，但可能有重复元素
 */
 func searchFromRight(nums []int, target int) int {
-	left, right := 0, len(nums)-1
-	for left <= right {
+	left, right := 0, len(nums)
+	for left < right {
 		mid := left + (right-left)/2
 		switch {
-		case nums[mid] < target, nums[mid] == target:
+		case nums[mid] <= target:
 			left = mid + 1
 		case nums[mid] > target:
-			right = mid - 1
+			right = mid
 		}
 	}
 	return left

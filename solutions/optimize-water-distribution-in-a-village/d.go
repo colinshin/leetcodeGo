@@ -22,7 +22,7 @@ func minCostToSupplyWater(n int, wells []int, pipes [][]int) int {
 		house1, house2, cost := pipe[0], pipe[1], pipe[2]
 		house1, house2 = uf.Find(house1), uf.Find(house2)
 		if house1 != house2 {
-			uf.Join(house1, house2)
+			uf.Union(house1, house2)
 			result += cost
 			connected++
 		}
@@ -49,6 +49,6 @@ func (uf UnionFind) Find(x int) int {
 	}
 	return root
 }
-func (uf UnionFind) Join(x, y int) {
+func (uf UnionFind) Union(x, y int) {
 	uf[x] = y
 }
