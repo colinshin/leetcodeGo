@@ -136,6 +136,9 @@ Go solution for LeetCode problems
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 * [24-game](solutions/24-game/d.go)
+* [find-all-path-for-target-sum](solutions/find-all-path-for-target-sum/d.go)
+* [del-one-tobe-sorted](solutions/del-one-tobe-sorted/d.go)
+* [shuttdown-lights](solutions/shuttdown-lights/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
