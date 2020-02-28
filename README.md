@@ -4,6 +4,7 @@ Go solution for LeetCode problems
 [zero-one-pack-problem](learn/zero-one-pack-problem.md)<br>
 [binary-search-problem](learn/binary-search-problem.md)<br>
 [union-find](learn/union-find.md)<br>
+[sort](learn/sort.md)<br>
 ## solutions
 ### map, array, sort
 * [two sum](solutions/two_sum)
