@@ -5,6 +5,7 @@ Go solution for LeetCode problems
 [binary-search-problem](learn/binary-search-problem.md)<br>
 [union-find](learn/union-find.md)<br>
 [sort](learn/sort.md)<br>
+[tree-traversal](learn/tree-traversal.md)
 ## solutions
 ### map, array, sort
 * [two sum](solutions/two_sum)
@@ -105,6 +106,7 @@ Go solution for LeetCode problems
 * [lowest-common-ancestor-of-a-binary-tree](solutions/lowest-common-ancestor-of-a-binary-tree/d.go)
 * [lowest-common-ancestor-of-a-binary-search-tree](solutions/lowest-common-ancestor-of-a-binary-search-tree/d.go)
 * [serialize-and-deserialize-binary-tree](solutions/serialize-and-deserialize-binary-tree/d.go)
+* [path-sum](solutions/path-sum/d.go)
 ### graph
 * [course-schedule](solutions/course-schedule/d.go)
 * [connecting-cities-with-minimum-cost](solutions/connecting-cities-with-minimum-cost/readme.md)
