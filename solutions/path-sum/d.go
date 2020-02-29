@@ -72,31 +72,31 @@ func hasPathSum(root *TreeNode, sum int) bool {
 用一个切片path记录遍历的路径，到达叶子节点发现path内元素和为sum则将当期path添加到结果里，
 注意切片底层是同一个数组，添加到结果时要深拷贝一份
 */
-func pathSum(root *TreeNode, sum int) [][]int {
-	var result [][]int
+func prefixSum(root *TreeNode, sum int) [][]int {
+	var count [][]int
 	var path []int
-	pathSum := 0
+	prefixSum := 0
 	var dfs func(*TreeNode)
 	dfs = func(node *TreeNode) {
 		if node == nil {
 			return
 		}
 		path = append(path, node.Val)
-		pathSum += node.Val
+		prefixSum += node.Val
 		if node.Left == nil && node.Right == nil {
-			if pathSum == sum {
+			if prefixSum == sum {
 				tmp := make([]int, len(path))
 				_ = copy(tmp, path)
-				result = append(result, tmp)
+				count = append(count, tmp)
 			}
 		}
 		dfs(node.Left)
 		dfs(node.Right)
 		path = path[:len(path)-1]
-		pathSum -= node.Val
+		prefixSum -= node.Val
 	}
 	dfs(root)
-	return result
+	return count
 }
 
 /*变体，类似前缀树Trie的实现，用数组表示树，且树是多叉树，应该怎么解？
@@ -107,31 +107,31 @@ caps数组表示每个节点的值
 路径处理成字符串，前最终结果按照字符串非递增排序
 */
 func getPath(caps []int, relations map[int][]int, sum int) []string {
-	var result []string
+	var count []string
 	var path []int
-	pathSum := 0
+	prefixSum := 0
 	var dfs func(nodeId int)
 
 	dfs = func(nodeId int) {
 		path = append(path, caps[nodeId])
-		pathSum += caps[nodeId]
+		prefixSum += caps[nodeId]
 		if len(relations[nodeId]) == 0 {
-			if pathSum == sum {
-				result = append(result, parsePath(path))
+			if prefixSum == sum {
+				count = append(count, parsePath(path))
 			}
 		}
 		for _, c := range relations[nodeId] {
 			dfs(c)
 		}
 		path = path[:len(path)-1]
-		pathSum -= caps[nodeId]
+		prefixSum -= caps[nodeId]
 	}
 	dfs(0)
 
-	sort.Slice(result, func(i, j int) bool {
-		return result[i] > result[j]
+	sort.Slice(count, func(i, j int) bool {
+		return count[i] > count[j]
 	})
-	return result
+	return count
 }
 func parsePath(path []int) string {
 	buf := bytes.NewBuffer(nil)
@@ -139,8 +139,8 @@ func parsePath(path []int) string {
 		buf.WriteString(strconv.Itoa(v))
 		buf.WriteString(" ")
 	}
-	result := buf.String()
-	return result[:len(result)-1]
+	count := buf.String()
+	return count[:len(count)-1]
 }
 
 /* 变体 假设不一定要从根节点开始，也不需要走到叶子节点，来查找和为定值的路径呢？
@@ -168,10 +168,7 @@ root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
 2.  5 -> 2 -> 1
 3.  -3 -> 11
 */
-func pathSumCountAny(root *TreeNode, sum int) int {
-	return pathSumCount(root, sum)
-}
-
+// 递归解法
 func pathSumCount(root *TreeNode, sum int) int {
 	if root == nil {
 		return 0
@@ -196,22 +193,29 @@ func countPrefix(root *TreeNode, sum int) int {
 	return count
 }
 
-func pathSumCountAny2(root *TreeNode, sum int) int {
-	prefixSumCount := make(map[int]int, 0) // key是前缀和, value是大小为key的前缀和出现的次数
-	prefixSumCount[0] = 1
-	var dfs func(node *TreeNode, currSum int) int
-	dfs = func(node *TreeNode, currSum int) int {
+/*
+如果某个节点x的前缀和等于其某个子孙节点y的前缀和减去sum，
+即prefixSum(x) = prefixSum(y)-sum ，说明x到y这条路径的和是sum
+*/
+func pathSumCount1(root *TreeNode, sum int) int {
+	prefixSumCount := make(map[int]int, 0) // 记录前缀和，key为前缀和，value为前缀和的个数
+	prefixSumCount[0] = 1                  // 前缀和为0的一条路径，方便边界处理，即根节点值就是sum这种情况
+	count := 0
+	var dfs func(*TreeNode, int)
+
+	dfs = func(node *TreeNode, prefixSum int) {
 		if node == nil {
-			return 0
+			return
 		}
-		count := 0
-		currSum += node.Val
-		count += prefixSumCount[currSum-sum]
-		prefixSumCount[currSum]++
-		count += dfs(node.Left, currSum)
-		count += dfs(node.Right, currSum)
-		prefixSumCount[currSum]--
-		return count
+		prefixSum += node.Val                  // 当前节点node的前缀和（即从root到当前节点这条路径的和）
+		count += prefixSumCount[prefixSum-sum] // 如果当前节点之前已经有前缀和为urrPrefixSum-sum的节点，说明那些节点到当前节点的和就是sum
+		prefixSumCount[prefixSum]++
+		dfs(node.Left, prefixSum)
+		dfs(node.Right, prefixSum)
+		// 回溯；实际prefixSum也应减去node.Val，才算完成回溯，但是这里prefixSum没有影响
+		prefixSumCount[prefixSum]--
 	}
-	return dfs(root, 0)
+	dfs(root, 0)
+
+	return count
 }
