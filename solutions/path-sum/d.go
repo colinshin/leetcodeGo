@@ -182,7 +182,7 @@ func pathSumCount(root *TreeNode, sum int) int {
 	return count
 }
 
-// 返回即前缀和为sum的路径个数
+// 返回前缀和为sum的路径个数
 func countPrefix(root *TreeNode, sum int) int {
 	if root == nil {
 		return 0
