@@ -4,10 +4,10 @@
               A
             / | \
            B  C  D
-          / |    |
-         E  F    G
-        /| \
-       H I  J
+          /|     |
+         E F     G
+        /|\
+       H I J
 ```
 ```go
 type TreeNode struct {
