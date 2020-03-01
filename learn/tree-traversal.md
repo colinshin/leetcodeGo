@@ -25,6 +25,6 @@ type TreeNode struct {
 * [中序遍历](../solutions/binary-tree-inorder-traversal/d.go)
 * [后序遍历](../solutions/binary-tree-postorder-traversal/d.go)
 ## 限定条件遍历
-在遍历时，可以有一些限定条件，比如统计从根节点到叶子节点到路径和为定值到路径；<br>
+在遍历时，可以有一些限定条件，比如统计从根节点到叶子节点路径和为定值的路径；<br>
 这里可以增加额外辅助数据结构如栈来记录路径，同时做好回溯。<br>
 参考[树的路径和问题探讨](../solutions/path-sum/d.go)
