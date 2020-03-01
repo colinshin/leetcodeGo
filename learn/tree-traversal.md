@@ -1,13 +1,13 @@
 # 树的遍历
 不妨假设每个节点的值是一个字符串<br>
 ```
-				A
-              / | \
-			B	C	D
-          / |       |
-		E	F		G
-      / | \
-	H	I	J
+              A
+            / | \
+           B  C  D
+          / |    |
+         E  F    G
+        /| \
+       H I  J
 ```
 ```go
 type TreeNode struct {
