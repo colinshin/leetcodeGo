@@ -213,7 +213,7 @@ func pathSumCount1(root *TreeNode, sum int) int {
 		dfs(node.Left, prefixSum)
 		dfs(node.Right, prefixSum)
 		// 回溯；实际prefixSum也应减去node.Val，才算完成回溯，但是这里prefixSum没有影响
-		prefixSumCount[prefixSum]--
+		prefixSumCount[prefixSum]--it 
 	}
 	dfs(root, 0)
 
@@ -240,7 +240,7 @@ func pathSumCount2(root *TreeNode, sum int) int {
 		prefixSumCount[prefixSum]--
 		prefixSum -= node.Val
 	}
-	dfs(root)
 
+	dfs(root)
 	return count
 }
