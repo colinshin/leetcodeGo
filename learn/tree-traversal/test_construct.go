@@ -9,13 +9,13 @@ var testTree = constructTestTree()
 func constructTestTree() *TreeNode {
 	/* this test tree likes:
 
-	       A
-	     / | \
-	    B  C  D
-	   / |    |
-	  E  F    G
-	/ | \
-	H I  J
+              A
+            / | \
+           B  C  D
+          / |    |
+         E  F    G
+        /| \
+       H I  J
 
 	*/
 
