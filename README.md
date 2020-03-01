@@ -43,6 +43,7 @@ Go solution for LeetCode problems
 * [implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
 * [random-pick-with-weight](solutions/random-pick-with-weight/d.go)
 * [increasing-subsequences](solutions/increasing-subsequences/d.go)
+* [top-k-frequent-elements](solutions/top-k-frequent-elements/d.go)
 ### binary search
 * [shortest-distance-to-target-color](solutions/shortest-distance-to-target-color/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
