@@ -197,30 +197,7 @@ func countPrefix(root *TreeNode, sum int) int {
 如果某个节点x的前缀和等于其某个子孙节点y的前缀和减去sum，
 即prefixSum(x) = prefixSum(y)-sum ，说明x到y这条路径的和是sum
 */
-func pathSumCount1(root *TreeNode, sum int) int {
-	prefixSumCount := make(map[int]int, 0) // 记录前缀和，key为前缀和，value为前缀和的个数
-	prefixSumCount[0] = 1                  // 前缀和为0的一条路径，方便边界处理，即根节点值就是sum这种情况
-	count := 0
-	var dfs func(*TreeNode, int)
-
-	dfs = func(node *TreeNode, prefixSum int) {
-		if node == nil {
-			return
-		}
-		prefixSum += node.Val                  // 当前节点node的前缀和（即从root到当前节点这条路径的和）
-		count += prefixSumCount[prefixSum-sum] // 如果当前节点之前已经有前缀和为urrPrefixSum-sum的节点，说明那些节点到当前节点的和就是sum
-		prefixSumCount[prefixSum]++
-		dfs(node.Left, prefixSum)
-		dfs(node.Right, prefixSum)
-		// 回溯；实际prefixSum也应减去node.Val，才算完成回溯，但是这里prefixSum没有影响
-		prefixSumCount[prefixSum]--it 
-	}
-	dfs(root, 0)
-
-	return count
-}
-
-func pathSumCount2(root *TreeNode, sum int) int {
+func pathSumCount0(root *TreeNode, sum int) int {
 	prefixSumCount := make(map[int]int, 0) // 记录前缀和，key为前缀和，value为前缀和的个数
 	prefixSumCount[0] = 1                  // 前缀和为0的一条路径，方便边界处理，即节点值就是sum这种情况
 	count := 0
