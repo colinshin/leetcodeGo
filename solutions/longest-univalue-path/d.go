@@ -17,7 +17,6 @@ type TreeNode struct {
 注意：两个节点之间的路径长度由它们之间的边数表示。
 
 示例 1:
-
 输入:
 
               5
@@ -26,10 +25,9 @@ type TreeNode struct {
            / \   \
           1   1   5
 输出:
-
 2
-示例 2:
 
+示例 2:
 输入:
 
               1
@@ -38,7 +36,6 @@ type TreeNode struct {
            / \   \
           4   4   5
 输出:
-
 2
 
 来源：力扣（LeetCode）
@@ -60,13 +57,13 @@ type TreeNode struct {
 func longestUnivaluePath(root *TreeNode) int {
 	result := 0
 
-	var caculate func(root *TreeNode) int
-	caculate = func(root *TreeNode) int { // 返回与root值相同的左子树最大路径和与root值相同的右子树最大路径里边较大的路径，方便递归
+	var calculate func(root *TreeNode) int
+	calculate = func(root *TreeNode) int { // 返回与root值相同的左子树最大路径和与root值相同的右子树最大路径里边较大的路径，方便递归
 		if root == nil {
 			return 0
 		}
-		left := caculate(root.Left)
-		right := caculate(root.Right)
+		left := calculate(root.Left)
+		right := calculate(root.Right)
 		if root.Left != nil && root.Left.Val == root.Val {
 			left++
 		} else {
@@ -83,7 +80,7 @@ func longestUnivaluePath(root *TreeNode) int {
 		return max(left, right)
 	}
 
-	_ = caculate(root)
+	_ = calculate(root)
 	return result
 }
 

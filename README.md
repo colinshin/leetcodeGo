@@ -20,15 +20,8 @@ Go solution for LeetCode problems
 * [matrix-cells-in-distance-order](solutions/matrix-cells-in-distance-order/d.go)
 * [linked-list-components](solutions/linked-list-components/d.go)
 * [beautiful-array](solutions/beautiful-array/d.go)
-* [coin-path](solutions/coin-path/d.go)
-* [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
-* [stack-with-queen](solutions/stack-with-queen/d.go)
 * [children-weight-order](solutions/children-weight-order/d.go)
-* [remove-duplicate-chars](solutions/remove-duplicate-chars/d.go)
-* [symmetric-tree](solutions/symmetric-tree/d.go)
-* [longest-univalue-path](solutions/longest-univalue-path/d.go)
 * [campus-bikes](solutions/campus-bikes/d.go)
-* [partition-equal-subset-sum](solutions/partition-equal-subset-sum/d.go)
 * [moving-stones-until-consecutive](solutions/moving-stones-until-consecutive/d.go)
 * [contains-duplicate-ii](solutions/contains-duplicate-ii/d.go)
 * [excel-sheet-column-title](solutions/excel-sheet-column-title/d.go)
@@ -88,6 +81,7 @@ Go solution for LeetCode problems
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
+* [remove-duplicate-chars](solutions/remove-duplicate-chars/d.go)
 ### linked list
 * [add two numbers](solutions/add_two_numbers)
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)
@@ -108,11 +102,13 @@ Go solution for LeetCode problems
 * [lowest-common-ancestor-of-a-binary-search-tree](solutions/lowest-common-ancestor-of-a-binary-search-tree/d.go)
 * [serialize-and-deserialize-binary-tree](solutions/serialize-and-deserialize-binary-tree/d.go)
 * [path-sum](solutions/path-sum/d.go)
+* [symmetric-tree](solutions/symmetric-tree/d.go)
+* [longest-univalue-path](solutions/longest-univalue-path/d.go)
 ### graph
 * [course-schedule](solutions/course-schedule/d.go)
 * [connecting-cities-with-minimum-cost](solutions/connecting-cities-with-minimum-cost/readme.md)
 * [optimize-water-distribution-in-a-village](solutions/optimize-water-distribution-in-a-village/readme.md)
-
+* [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
 ### dp
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
@@ -122,6 +118,9 @@ Go solution for LeetCode problems
 * [campus-bikes-ii](solutions/campus-bikes-ii/d.go)
 * [cherry-pickup](solutions/cherry-pickup/d.go)
 * [dungeon-game](solutions/dungeon-game/d.go)
+* [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
+* [coin-path](solutions/coin-path/d.go)
+* [partition-equal-subset-sum](solutions/partition-equal-subset-sum/d.go)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 ### design
@@ -129,8 +128,8 @@ Go solution for LeetCode problems
 * [max-queue](solutions/max-queue/d.go)
 * [design-twitter](solutions/design-twitter/)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
-* [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
 * [lru-cache](solutions/lru-cache/d.go)
+* [stack-with-queen](solutions/stack-with-queen/d.go)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 ### others

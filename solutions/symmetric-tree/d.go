@@ -66,6 +66,7 @@ func isMirror1(t1, t2 *TreeNode) bool {
 		/*
 			取出list里的最后两个，并缩短list
 			这里也可以取出前边两个，但是在缩短list的时候（list = list[2:])可能会导致底层数组更容易扩容
+			也可以用真正的list而不是切片
 		*/
 		l := len(list)
 		t1, t2 = list[l-2], list[l-1]

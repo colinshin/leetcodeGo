@@ -62,7 +62,8 @@ graph[i] 不会包含 i 或者有重复的值。
 */
 func isBipartite(graph [][]int) bool {
 	judge := make([]int, len(graph))
-	var mark func(node, set int) bool // 这个内 函数也可以写到和isBipartite并列的位置，不过要增加judge和graph参数
+
+	var mark func(node, set int) bool // 这个内部函数也可以写到和isBipartite并列的位置，不过要增加judge和graph参数
 	mark = func(node, set int) bool {
 		judge[node] = set
 		for _, neighbor := range graph[node] {
@@ -76,6 +77,7 @@ func isBipartite(graph [][]int) bool {
 		}
 		return true
 	}
+
 	for i := 0; i < len(graph); i++ {
 		if judge[i] != 0 {
 			continue
@@ -92,7 +94,8 @@ func isBipartite(graph [][]int) bool {
 */
 func isBipartite1(graph [][]int) bool {
 	judge := make([]int, len(graph))
-	var mark func(node, set int) bool // 这个内 函数也可以写到和isBipartite并列的位置，不过要增加judge和graph参数
+
+	var mark func(node, set int) bool
 	mark = func(node, set int) bool {
 		judge[node] = set
 		var stack []int
@@ -111,6 +114,7 @@ func isBipartite1(graph [][]int) bool {
 		}
 		return true
 	}
+
 	for i := 0; i < len(graph); i++ {
 		if judge[i] != 0 {
 			continue

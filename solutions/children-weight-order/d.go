@@ -5,7 +5,6 @@
 package children_weight_order
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -28,7 +27,6 @@ import (
 [[5,0], [8,0], [5,2], [6,1], [4,4], [8,1]]
 解释:[5,2]前面两个儿童的体重分别是 5 和 8，且只有两个儿童;[6,1]前面只有[8,0]儿童的体重 大于他/她，并且不能和[5,2]换位置，否则会导致[5,2]的 2 不对。
 */
-
 func reconstructQueue(people [][]int) [][]int {
 	// 先根据k从小到大排序
 	sort.SliceStable(people, func(i, j int) bool {
@@ -44,15 +42,14 @@ func reconstructQueue(people [][]int) [][]int {
 				countK++
 			}
 		}
-		fmt.Println("------", i, countK, actK)
 		if countK > actK { // i儿童需要往前调整; 如果相等，无需调整；不会出现小于的情况
-			swaped := 0
+			swapped := 0
 			for j := i - 1; j >= 0; j-- {
 				if people[j][0] >= actW {
-					swaped++
+					swapped++
 				}
 				people[j], people[j+1] = people[j+1], people[j]
-				if swaped == countK-actK {
+				if swapped == countK-actK {
 					break
 				}
 			}
