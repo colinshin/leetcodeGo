@@ -43,95 +43,47 @@ B 的范围 [1, 100].
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
-/* [未通过]
-一个更容易理解的实现如下，但是有用例失败
-如下用例失败：
-输入:
-[0,0,0,0,0,0]
-3
-输出
-[1,3,6]
-预期结果
-[1,2,3,4,5,6]
+/*
+动态规划
+从位置i跳到末尾的花费只与i后面的元素相关
+创建长度为n的dp和next数组，next记录下一跳的位置，dp记录从当前到终点的最小花费
 
-原来是没有满足字典序要求！
+正向考虑，比较难的是有多个路径时，取字典序最小的
+逆向思考：从后往前计算dp和next
+在位置i处，下一跳可能的位置是从i+1到i+B中任意一个。假设下一跳位置为j是，从j跳到终点的花费最小，此时更新next和dp
+next[i] = j, dp[i] = A[i] + dp[j]
+根据数组 next 找出最小花费的路径方案之一，且是字典序最小的方案！
 */
 func cheapestJump(A []int, B int) []int {
 	n := len(A)
-	if n == 0 || -1 == A[n-1] {
-		return []int{}
-	}
-	dp := make([]int, n)
-	dp[n-1] = A[n-1]
-	path := make([][]int, n)
-	for i := 1; i < n; i++ {
-		if A[i] == -1 {
-			dp[i] = math.MaxInt32
-			continue
-		}
-		minCost := math.MaxInt32
-		lastIndex := -1
-		for j := int(math.Max(float64(i-B), 0)); j < i; j++ {
-			if dp[j] == math.MaxInt32 {
-				continue
-			}
-			if dp[j] < minCost {
-				minCost = dp[j]
-				lastIndex = j
-			}
-		}
-		if lastIndex != -1 {
-			dp[i] = A[i] + minCost
-			path[i] = append(path[lastIndex], lastIndex+1)
-		} else {
-			dp[i] = math.MaxInt32
-		}
-	}
-	if dp[n-1] == math.MaxInt32 {
-		return []int{}
-	}
-	return append(path[n-1], n)
-}
-
-/*
-逆向思考：
-从1走到N，跟从N走到1，花费最小的计算是等价的
-从N走到1的同时记录路径，这个路径反过来就是方案之一，且是字典序最小的方案
-参考上一解法没通过的用例分析就能明白，为何逆向走能得到字典序最小的路径
-
-注意path定义为[]int，与上一解法不同；这样节省空间；只需最后将所有路径串起来即可
-*/
-func cheapestJump1(A []int, B int) []int {
-	n := len(A)
 	if n == 0 || A[n-1] == -1 {
-		return []int{}
+		return nil
 	}
-	dp, path := make([]int, n), make([]int, n)
-	for i := 0; i < n; i++ {
-		dp[i], path[i] = math.MaxInt32, -1
-	}
-	dp[n-1] = A[n-1]
-
+	dp, next := make([]int, n), make([]int, n) // 分别统计从当前位置跳到终点的最小花费，及使得最终花费最小的下一跳的位置
+	dp[n-1], next[n-1] = A[n-1], -1            // -1表示下一跳无路可走
 	for i := n - 2; i >= 0; i-- {
-		if A[i] == -1 {
+		dp[i], next[i] = math.MaxInt64, -1 // 先假定无路可走
+		if A[i] == -1 {                    // 真的无路可走
 			continue
 		}
-		last := int(math.Min(float64(i+B), float64(n-1)))
-		for j := i + 1; j <= last; j++ {
-			if dp[j] == math.MaxInt32 {
-				continue
-			}
-			if A[i]+dp[j] < dp[i] {
-				dp[i], path[i] = A[i]+dp[j], j
+		// 可能有路，在区间[i+1, i+B]中挑一个花费最小的下一跳的位置
+		end := min(i+B, n-1)            // i+B可能越界
+		for j := i + 1; j <= end; j++ { // 正向遍历；如果最终有多个方案，要求字典序最大的方案，这里可以逆向遍历
+			if dp[j] != math.MaxInt64 && A[i]+dp[j] < dp[i] {
+				dp[i], next[i] = A[i]+dp[j], j
 			}
 		}
 	}
-	if dp[0] == math.MaxInt32 {
-		return []int{}
+	if dp[0] == math.MaxInt64 {
+		return nil
 	}
-	result := []int{}
-	for i := 0; i != -1; i = path[i] {
+	var result []int
+	for i := 0; i != -1; i = next[i] {
 		result = append(result, i+1)
 	}
 	return result
+}
+
+func min(a, b int) int {
+	return int(math.Min(float64(a), float64(b)))
 }

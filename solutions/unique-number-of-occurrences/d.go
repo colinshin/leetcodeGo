@@ -73,13 +73,13 @@ func uniqueOccurrences1(arr []int) bool {
 
 // 从右向左查询，找到v要插入arr的位置，即arr中最后一个v的下一个位置
 func searchFromRight(arr []int, v int) int {
-	left, right := 0, len(arr)-1
-	for left <= right {
+	left, right := 0, len(arr)
+	for left < right {
 		mid := left + (right-left)/2
 		if arr[mid] <= v {
 			left = mid + 1
 		} else {
-			right = mid - 1
+			right = mid
 		}
 	}
 	return left

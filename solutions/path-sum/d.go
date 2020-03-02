@@ -168,7 +168,7 @@ root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
 2.  5 -> 2 -> 1
 3.  -3 -> 11
 */
-// 递归解法
+// 递归解法，时间复杂度较高，有比较多的重复计算
 func pathSumCount(root *TreeNode, sum int) int {
 	if root == nil {
 		return 0
@@ -179,7 +179,7 @@ func pathSumCount(root *TreeNode, sum int) int {
 	return count
 }
 
-// 返回前缀和为sum的路径个数
+// 返回前缀和为sum的路径个数， 递归版
 func countPrefix(root *TreeNode, sum int) int {
 	if root == nil {
 		return 0
@@ -194,8 +194,34 @@ func countPrefix(root *TreeNode, sum int) int {
 }
 
 /*
+countPrefix的另一个实现，用一个变量prefixSum记录当前路径前缀和，到达叶子节点后会回溯
+这个思路引出pathSumCount0的实现
+*/
+func countPrefix1(root *TreeNode, sum int) int {
+	prefixSum := 0
+	count := 0
+	var dfs func(node *TreeNode)
+	dfs = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		prefixSum += node.Val
+		if prefixSum == sum {
+			count++
+		}
+		dfs(node.Left)
+		dfs(node.Right)
+		// 回溯
+		prefixSum -= node.Val
+	}
+	dfs(root)
+	return count
+}
+
+/*
 如果某个节点x的前缀和等于其某个子孙节点y的前缀和减去sum，
 即prefixSum(x) = prefixSum(y)-sum ，说明x到y这条路径的和是sum
+借助一个哈希表记录每条路径上，每个前缀和出现的次数，减少重复计算
 */
 func pathSumCount0(root *TreeNode, sum int) int {
 	prefixSumCount := make(map[int]int, 0) // 记录前缀和，key为前缀和，value为前缀和的个数
