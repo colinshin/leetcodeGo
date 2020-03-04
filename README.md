@@ -88,6 +88,7 @@ Go solution for LeetCode problems
 * [linked-list-cycle](solutions/linked-list-cycle/d.go)
 * [sort-list](solutions/sort-list/d.go)
 * [middle-of-the-linked-list](solutions/middle-of-the-linked-list/d.go)
+* [sliding-window-maximum](solutions/sliding-window-maximum/d.go)
 ### tree
 * [maximum-depth-of-binary-tree](solutions/maximum-depth-of-binary-tree/d.go)
 * [validate-binary-search-tree](solutions/validate-binary-search-tree/d.go)

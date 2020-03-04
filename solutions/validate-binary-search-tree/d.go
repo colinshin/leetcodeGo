@@ -4,10 +4,6 @@
 
 package validate_binary_search_tree
 
-import (
-	"math"
-)
-
 /*
 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
 
@@ -68,23 +64,26 @@ func isValidBST(root *TreeNode) bool {
 实际应该对每个节点的值与上下界做判断
 时空复杂度均为O(n), n为节点总数
 */
+
 func isValidBST(root *TreeNode) bool {
-	return helper(root, math.MinInt64, math.MaxInt64)
+	return helper(root, nil, nil)
 }
 
 /*
-如果一个二叉树式BST， 那么所有元素的值都在开区间(min, max)里
+如果一个二叉树是BST， 那么所有元素的值都在开区间(min, max)里
 时空复杂度均为O(n), n为节点总数
 */
-func helper(t *TreeNode, min, max int) bool {
+func helper(t, min, max *TreeNode) bool {
 	switch {
 	case t == nil:
 		return true
-	case t.Val <= min, t.Val >= max:
+	case min != nil && min.Val >= t.Val:
 		return false
-	case !helper(t.Left, min, t.Val):
+	case max != nil && max.Val <= t.Val:
 		return false
-	case !helper(t.Right, t.Val, max):
+	case !helper(t.Left, min, t):
+		return false
+	case !helper(t.Right, t, max):
 		return false
 	default:
 		return true
@@ -97,32 +96,32 @@ func helper(t *TreeNode, min, max int) bool {
 时空复杂度均为O(n), n为节点总数
 */
 func isValidBST0(root *TreeNode) bool {
-	prev := math.MinInt64
-	var bfs func(*TreeNode) bool
-	bfs = func(t *TreeNode) bool {
+	var prev *TreeNode
+	var inorder func(t *TreeNode) bool
+	inorder = func(t *TreeNode) bool {
 		if t == nil {
 			return true
 		}
-		if !bfs(t.Left) {
+		if !inorder(t.Left) {
 			return false
 		}
-		if t.Val <= prev {
+		if prev != nil && prev.Val >= t.Val {
 			return false
 		}
-		prev = t.Val
-		if !bfs(t.Right) {
+		prev = t
+		if !inorder(t.Right) {
 			return false
 		}
 		return true
 	}
-	return bfs(root)
+	return inorder(root)
 }
 
 /* 借助栈，迭代式中序遍历
 时空复杂度均为O(n), n为节点总数
 */
 func isValidBST1(root *TreeNode) bool {
-	prev := math.MinInt64
+	var prev *TreeNode
 	var stack []*TreeNode
 	for root != nil || len(stack) > 0 {
 		for root != nil {
@@ -131,10 +130,10 @@ func isValidBST1(root *TreeNode) bool {
 		}
 		root = stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		if root.Val <= prev {
+		if prev != nil && root.Val <= prev.Val {
 			return false
 		}
-		prev = root.Val
+		prev = root
 		root = root.Right
 	}
 	return true
