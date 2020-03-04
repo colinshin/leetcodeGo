@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) zrcoder 2019-2020. All rights reserved.
+ */
+
 package cache
 
 import (
@@ -30,7 +34,7 @@ lis.get(4);       // 返回  4
 
 
 来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/lru-lis
+链接：https://leetcode-cn.com/problems/lru-cache
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 type Pair struct {
@@ -59,14 +63,15 @@ func (s *LRUCache) Get(key int) int {
 }
 
 func (s *LRUCache) Put(key int, value int) {
+	pair := &Pair{Key: key, Val: value}
 	if e, ok := s.m[key]; ok {
-		e.Value.(*Pair).Val = value
-		s.lis.MoveToFront(e)
-		return
+		_ = s.lis.Remove(e)
+		s.m[key] = s.lis.PushFront(pair)
+	} else {
+		if s.lis.Len() == s.Capacity {
+			backPair := s.lis.Remove(s.lis.Back()).(*Pair)
+			delete(s.m, backPair.Key)
+		}
+		s.m[key] = s.lis.PushFront(pair)
 	}
-	if s.lis.Len() == s.Capacity {
-		backPair := s.lis.Remove(s.lis.Back()).(*Pair)
-		delete(s.m, backPair.Key)
-	}
-	s.m[key] = s.lis.PushFront(&Pair{Key: key, Val: value})
 }
