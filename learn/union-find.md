@@ -14,26 +14,37 @@ func NewUnionFind(n int) UnionFind {
 	}
 	return unionFind
 }
-func (uf UnionFind) Find(x int) int {
+func (uf UnionFind) Find(x int) int { // 路径压缩
 	for x != uf[x] {
 		uf[x] = uf.Find(uf[x])
 	}
 	return uf[x]
 }
 func (uf UnionFind) Union(x, y int) {
-	uf[x] = y
+    rootX, rootY := uf.Find(x), uf.Find(y)
+	uf[rootX] = rootY   // 可以按秩合并，即高度较小的根插入高度较大的根下面，进一步减少整个Union、Find操作的复杂度
 }
 ```
 find函数还可以循环实现：
 ```
 func (uf UnionFind) Find(x int) int {
-	root := x
-	for root != uf[root] {
-		root = uf[root]
-	}
-	for root != x {
-		uf[x], x = root, uf[x]
-	}
-	return root
+    for uf[x] != x {
+        uf[x] = uf[uf[x]]
+        x = uf[x]
+    }
+    reutn x
+}
+```
+或者
+```
+func (uf UnionFind) Find(x int) int {
+    root := x
+    for root != uf[root] {
+        root = uf[root]
+    }
+    for root != x {
+        uf[x], x = root, uf[x]
+    }
+    return root
 }
 ```
