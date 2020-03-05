@@ -1,9 +1,11 @@
 ```
 在考场里，一排有 N 个座位，分别编号为 0, 1, 2, ..., N-1 。
 
-当学生进入考场后，他必须坐在能够使他与离他最近的人之间的距离达到最大化的座位上。如果有多个这样的座位，他会坐在编号最小的座位上。(另外，如果考场里没有人，那么学生就坐在 0 号座位上。)
+当学生进入考场后，他必须坐在能够使他与离他最近的人之间的距离达到最大化的座位上。
+如果有多个这样的座位，他会坐在编号最小的座位上。(另外，如果考场里没有人，那么学生就坐在 0 号座位上。)
 
-返回 ExamRoom(int N) 类，它有两个公开的函数：其中，函数 ExamRoom.seat() 会返回一个 int （整型数据），代表学生坐的位置；函数 ExamRoom.leave(int p) 代表坐在座位 p 上的学生现在离开了考场。每次调用 ExamRoom.leave(p) 时都保证有学生坐在座位 p 上。
+返回 ExamRoom(int N) 类，它有两个公开的函数：其中，函数 ExamRoom.seat() 会返回一个 int （整型数据），代表学生坐的位置；
+函数 ExamRoom.leave(int p) 代表坐在座位 p 上的学生现在离开了考场。每次调用 ExamRoom.leave(p) 时都保证有学生坐在座位 p 上。
 
 
 
@@ -32,12 +34,13 @@ seat() -> 5，学生最后坐在 5 号座位上。
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 ```
 最直观的解法是用一个bool数组模拟这一排座位；坐了人标为true，没坐人标为false<br>
-Seat方法遍历一遍数组找到目标即可，注意判断最大距离时，开头和结束位置如果没人，坐上人后距离最近点的距离不用折半<br>
-空间复杂度O(n)，Leave的时间复杂度O(1),Seat的时间复杂度O(n)<br>
+Seat方法遍历一遍数组找到目标即可，注意判断最大距离时，开头和结束位置如果没人，距离计算不用折半<br>
+空间复杂度O(n)；Leave的时间复杂度O(1),Seat的时间复杂度O(n)<br>
 在leetcode测试发现128个用例，只过了120个；接下来一个用例因为超过内存限制而失败<br>
-数组换用bitset， 将空间复杂度减少为原来的1/8, 不过在执行到第119个用例的时候又超过了时间限制——虽然bitmap的读写也是常熟级复杂度，但毕竟不如数组读写来得直接<br>
-换用list，list里只存已经坐了人的座位，这次通过里——不过这也只是因为用例设计问题，如果所以座位都坐满人，list将更占内存<br>
-bitmap的实现（基本同数组的实现）
+数组换用bitset， 将空间复杂度减少为原来的1/8, 不过在执行到第119个用例的时候又超过了时间限制——虽然bitset的读写也是常熟级复杂度，但毕竟不如数组读写来得直接<br>
+换用list，list里只存已经坐了人的座位，这样能节省空间和遍历的时间；测试通过——不过这也只是因为用例设计问题，如果所有座位都坐满人，或多数座位坐了人，list同样会超时<br>
+TODO: TreeSet的实现待研究<br>
+## bitset的实现（基本同数组的实现）
 ```
 type BitSet []byte
 
@@ -97,8 +100,8 @@ func (room *ExamRoom) Seat() int {
 			break
 		}
 	}
-	maxDist := prevSeated // 从位置0到第一个作了人到位置到距离
-	target := 0
+    target := 0
+	maxDist := prevSeated // 入座后距离最近的人的最大距离，当前是从位置0到第一个坐了人的位置的距离
 	for i := prevSeated + 1; i < room.n; i++ {
 		if !room.seated.Get(i) {
 			continue
@@ -110,7 +113,7 @@ func (room *ExamRoom) Seat() int {
 		}
 		prevSeated = i
 	}
-	if room.n-1-prevSeated > maxDist { // 最后一个坐了人的位置距离末尾的距离
+	if !room.seated.Get(room.n-1) && room.n-1-prevSeated > maxDist { // 处理最后座位没坐人的情况
 		target = room.n - 1
 	}
 	room.seated.Set(target)
@@ -126,10 +129,12 @@ func (room *ExamRoom) Leave(p int) {
 	room.count--
 }
 ```
-list的实现
+## list的实现
 ```
+import "container/list"
+
 type ExamRoom struct {
-	seated *list.List // 表示坐着同学的位置
+	seated *list.List // 装坐着同学的位置
 	last   int        // 最后一个座位， 就是总座位数减一
 }
 
@@ -141,32 +146,30 @@ func Constructor(N int) ExamRoom {
 }
 
 func (room *ExamRoom) Seat() int {
-	if room.seated.Len() == 0 { // 还没有人入座，直接将0插入
+	if room.seated.Len() == 0 { // 还没有人入座，选座位0
 		room.seated.PushFront(0)
 		return 0
 	}
-	e := room.seated.Front()
-	pre := e.Value.(int)
-	max := pre // 头部需要特殊判断
-	addVal := 0
-	addFront := e
-	e = e.Next()
-	for ; e != nil; e = e.Next() {
-		val := e.Value.(int)
-		distant := (val - pre) / 2 // 两点之间的最远距离
-		if distant > max {
-			max = distant
-			addFront = e           // 需要插入的点的后一个元素。方便找到后直接插入
-			addVal = pre + distant // 需要插入的位置
+	prevSeated := room.seated.Front().Value.(int)
+	targetVal := 0                           // 需要插入的座位
+	maxDist := prevSeated                    // 入座后距离最近的人的最大距离，当前是从位置0到第一个坐了人的位置的距离
+	targetNextElement := room.seated.Front() // 需要插入的点的后一个元素。方便找到后直接插入
+	for e := room.seated.Front().Next(); e != nil; e = e.Next() {
+		currSeated := e.Value.(int)
+		distant := (currSeated - prevSeated) / 2 // 两点之间的最远距离
+		if distant > maxDist {
+			maxDist = distant
+			targetNextElement = e
+			targetVal = prevSeated + distant
 		}
-		pre = val
+		prevSeated = currSeated
 	}
-	if room.last-pre > max { // 尾部特殊判断
-		room.seated.PushBack(room.last) // 直接插入到链表尾部
+	if room.last-prevSeated > maxDist { // 尾部特殊判断
+		room.seated.PushBack(room.last)
 		return room.last
 	}
-	room.seated.InsertBefore(addVal, addFront) // 插入
-	return addVal
+	room.seated.InsertBefore(targetVal, targetNextElement)
+	return targetVal
 }
 
 func (room *ExamRoom) Leave(p int) {
@@ -179,4 +182,3 @@ func (room *ExamRoom) Leave(p int) {
 	return
 }
 ```
-TODO: TreeSet待研究
