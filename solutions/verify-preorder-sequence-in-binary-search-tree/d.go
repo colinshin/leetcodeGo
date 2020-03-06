@@ -62,7 +62,7 @@ func verifyPreorder0(preorder []int) bool {
 }
 
 /*
-维护一个单调递减栈，遍历序列，
+维护一个单调递减栈，遍历序列，检查元素是否大于下界，如果不大于，说明不是bst的前序遍历序列
 如果一直递减，说明在左子树中，将这些元素一一入栈；
 
 如果突然不再递减，说明到达了某个右子树，则将其对应的左子树及其父节点全部出栈（即将比当前元素小的元素都出栈）
@@ -73,7 +73,7 @@ func verifyPreorder0(preorder []int) bool {
 如果题目要求判断是否是后序遍历序列， 可以从后向前遍历数组，相当于根->右->左的遍历方式
 */
 func verifyPreorder(preorder []int) bool {
-	var stack []int
+	var stack []int // 也可以用list实现栈
 	low := math.MinInt32
 	for _, v := range preorder {
 		if v < low {
