@@ -25,12 +25,10 @@ Go solution for LeetCode problems
 * [moving-stones-until-consecutive](solutions/moving-stones-until-consecutive/d.go)
 * [contains-duplicate-ii](solutions/contains-duplicate-ii/d.go)
 * [excel-sheet-column-title](solutions/excel-sheet-column-title/d.go)
-* [design-compressed-string-iterator](solutions/design-compressed-string-iterator/d.go)
 * [valid-mountain-array](solutions/valid-mountain-array/d.go)
 * [confusing-number](solutions/confusing-number/d.go)
 * [valid-word-abbreviation](solutions/valid-word-abbreviation/d.go)
 * [reverse-integer](solutions/reverse-integer/d.go)
-* [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
 * [next-closest-time](solutions/next-closest-time/d.go)
 * [missing-element-in-sorted-array](solutions/missing-element-in-sorted-array/d.go)
 * [implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
@@ -57,6 +55,8 @@ Go solution for LeetCode problems
 * [find-the-duplicate-number](solutions/find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](solutions/find-k-th-smallest-pair-distance/d.go)
 * [median of two sorted arrays](solutions/median_of_two_sorted_arrays)
+* [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
+* [verify-postorder-sequence-inbinary-search-tree](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
 ### array and strings
 * [trapping-rain-water](solutions/trapping-rain-water/d.go)
 * [construct-product-array](solutions/construct-product-array/d.go)
@@ -126,11 +126,13 @@ Go solution for LeetCode problems
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 ### design
 * [min-stack](solutions/min-stack/d.go)
+* [design-compressed-string-iterator](solutions/design-compressed-string-iterator/d.go)
 * [max-queue](solutions/max-queue/d.go)
 * [design-twitter](solutions/design-twitter/)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
 * [lru-cache](solutions/lru-cache/d.go)
 * [stack-with-queen](solutions/stack-with-queen/d.go)
+* [exam-room](solutions/exam-room/readme.md)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 ### others
@@ -142,7 +144,6 @@ Go solution for LeetCode problems
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 * [24-game](solutions/24-game/d.go)
-* [exam-room](solutions/exam-room/readme.md)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>

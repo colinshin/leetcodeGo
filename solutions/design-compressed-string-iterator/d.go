@@ -39,7 +39,7 @@ iterator.next(); // 返回 ' '
 
 /*
 1 最朴素对实现是在初始化时还原字符串，不过这样可能内存占用太大
-2 可用chars和nums两个数组记录原字符串里对字符及每个 字符对出现次数
+2 可用chars和nums两个数组记录原字符串里的字符及每个字符的出现次数
 ```
 type StringIterator struct {
   chars []byte
@@ -80,9 +80,10 @@ func (si *StringIterator) HasNext() bool {
   return len(si.chars) > si.index
 }
 ```
+*/
+/*
 3 不对原字符串做处理；在实际对操作里处理
 */
-
 type StringIterator struct {
 	s     string
 	num   int
