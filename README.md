@@ -55,8 +55,6 @@ Go solution for LeetCode problems
 * [find-the-duplicate-number](solutions/find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](solutions/find-k-th-smallest-pair-distance/d.go)
 * [median of two sorted arrays](solutions/median_of_two_sorted_arrays)
-* [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
-* [verify-postorder-sequence-inbinary-search-tree](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
 ### array and strings
 * [trapping-rain-water](solutions/trapping-rain-water/d.go)
 * [construct-product-array](solutions/construct-product-array/d.go)
@@ -105,6 +103,8 @@ Go solution for LeetCode problems
 * [path-sum](solutions/path-sum/d.go)
 * [symmetric-tree](solutions/symmetric-tree/d.go)
 * [longest-univalue-path](solutions/longest-univalue-path/d.go)
+* [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
+* [verify-postorder-sequence-inbinary-search-tree](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
 ### graph
 * [course-schedule](solutions/course-schedule/d.go)
 * [connecting-cities-with-minimum-cost](solutions/connecting-cities-with-minimum-cost/readme.md)
