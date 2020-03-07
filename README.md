@@ -35,6 +35,7 @@ Go solution for LeetCode problems
 * [random-pick-with-weight](solutions/random-pick-with-weight/d.go)
 * [increasing-subsequences](solutions/increasing-subsequences/d.go)
 * [top-k-frequent-elements](solutions/top-k-frequent-elements/d.go)
+* [search-a-2d-matrix](solutions/search-a-2d-matrix/readme.md)
 ### binary search
 * [shortest-distance-to-target-color](solutions/shortest-distance-to-target-color/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
@@ -133,6 +134,7 @@ Go solution for LeetCode problems
 * [lru-cache](solutions/lru-cache/d.go)
 * [stack-with-queen](solutions/stack-with-queen/d.go)
 * [exam-room](solutions/exam-room/readme.md)
+* [range-sum-query-2d-matrix](solutions/range-sum-query-2d-matrix/readme.md)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 ### others

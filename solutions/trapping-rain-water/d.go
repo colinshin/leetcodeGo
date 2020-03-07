@@ -9,12 +9,9 @@ import "math"
 /*
 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
 
-
-
 上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。 感谢 Marcos 贡献此图。
 
 示例:
-
 输入: [0,1,0,2,1,0,1,3,2,1,2,1]
 输出: 6
 
@@ -39,14 +36,14 @@ func trap(height []int) int {
 	sum := 0
 	for left < right {
 		leftVal, rightVal := height[left], height[right]
-		if leftVal < rightVal {
+		if leftVal < rightVal { // 处理左侧
 			if leftVal >= leftPeek {
 				leftPeek = leftVal
 			} else {
 				sum += leftPeek - leftVal
 			}
 			left++
-		} else {
+		} else { // 处理右侧
 			if rightVal >= rightPeek {
 				rightPeek = rightVal
 			} else {
@@ -64,15 +61,9 @@ func trap(height []int) int {
 如果当前条形块小于或等于栈顶索引对应的条形块，将条形块的索引入栈，意思是当前的条形块被栈中的前一个条形块界定。
 如果当前条形块大于栈顶索引对应的条形块，可以确定栈顶的条形块被当前条形块和栈的前一个条形块界定，因此可以弹出栈顶元素并且累加答案
 
-作者：LeetCode
-链接：https://leetcode-cn.com/problems/trapping-rain-water/solution/jie-yu-shui-by-leetcode/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-
 时间复杂度：O(n)。
 单次遍历O(n) ，每个条形块最多访问两次（由于栈的弹入和弹出），并且弹入和弹出栈都是 O(1)的。
 空间复杂度：O(n)。 栈最多在阶梯型或平坦型条形块结构中占用 O(n)的空间。
-
 
 作者：LeetCode
 链接：https://leetcode-cn.com/problems/trapping-rain-water/solution/jie-yu-shui-by-leetcode/
