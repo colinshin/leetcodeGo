@@ -75,7 +75,7 @@ func spiralOrder(matrix [][]int) []int {
 	return result
 }
 
-// 2。 另一个实现,答题思路同上一个实现，时空复杂度都是O(m*n)
+// 2。 另一个实现,思路同上一个实现，时空复杂度都是O(m*n)
 func spiralOrder1(matrix [][]int) []int {
 	if len(matrix) == 0 || len(matrix[0]) == 0 {
 		return nil

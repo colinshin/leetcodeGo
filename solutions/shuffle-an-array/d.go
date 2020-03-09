@@ -24,7 +24,6 @@ solution.reset();
 // 随机返回数组[1,2,3]打乱后的结果。
 solution.shuffle();
 
-
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/shuffle-an-array
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
@@ -38,25 +37,20 @@ func Constructor(nums []int) Solution {
 	r := Solution{}
 	r.original = nums
 	r.helper = make([]int, len(nums))
-	for i, v := range nums {
-		r.helper[i] = v
-	}
+	_ = copy(r.helper, nums)
 	return r
 }
 
 /** Resets the array to its original configuration and return it. */
 func (s *Solution) Reset() []int {
-	for i, v := range s.original {
-		s.helper[i] = v
-	}
+	_ = copy(s.helper, s.original)
 	return s.original
 }
 
 /** Returns a random shuffling of the array. */
 func (s *Solution) Shuffle() []int {
-	n := len(s.helper)
-	for i := 0; i < n-1; i++ {
-		j := i + rand.Intn(n-i)
+	for i := len(s.helper) - 1; i >= 0; i-- {
+		j := rand.Intn(i + 1)
 		s.helper[i], s.helper[j] = s.helper[j], s.helper[i]
 	}
 	return s.helper
