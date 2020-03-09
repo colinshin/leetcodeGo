@@ -37,7 +37,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// 借助一个set解决；空间、时间复杂度都是O(1)
+// 借助一个set解决；空间、时间复杂度都是O(n)
 func hasCycle1(head *ListNode) bool {
 	set := make(map[*ListNode]struct{}, 0)
 	for p := head; p != nil; p = p.Next {

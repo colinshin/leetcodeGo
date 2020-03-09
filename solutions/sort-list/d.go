@@ -48,8 +48,8 @@ func divide(head *ListNode) *ListNode {
 	return fast
 }
 func merge(first, second *ListNode) *ListNode {
-	dumyHead := new(ListNode)
-	p := dumyHead
+	dummyHead := new(ListNode)
+	p := dummyHead
 	for first != nil && second != nil {
 		if first.Val <= second.Val {
 			p.Next = first
@@ -65,8 +65,8 @@ func merge(first, second *ListNode) *ListNode {
 	} else if second != nil {
 		p.Next = second
 	}
-	p = dumyHead.Next
-	dumyHead.Next, dumyHead = nil, nil
+	p = dummyHead.Next
+	dummyHead.Next, dummyHead = nil, nil
 	return p
 }
 
@@ -82,8 +82,8 @@ func quickSort(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
-	lowDumy, midDumy, highDumy := new(ListNode), new(ListNode), new(ListNode)
-	low, mid, high := lowDumy, midDumy, highDumy
+	lowDummy, midDummy, highDummy := new(ListNode), new(ListNode), new(ListNode)
+	low, mid, high := lowDummy, midDummy, highDummy
 	val := head.Val
 	for p := head; p != nil; p = p.Next {
 		if p.Val < val {
@@ -98,16 +98,16 @@ func quickSort(head *ListNode) *ListNode {
 		}
 	}
 	low.Next, mid.Next, high.Next = nil, nil, nil
-	lowDumy.Next = quickSort(lowDumy.Next)
-	highDumy.Next = quickSort(highDumy.Next)
-	low = lowDumy
+	lowDummy.Next = quickSort(lowDummy.Next)
+	highDummy.Next = quickSort(highDummy.Next)
+	low = lowDummy
 	for low.Next != nil {
 		low = low.Next
 	}
-	low.Next = midDumy.Next
-	mid.Next = highDumy.Next
-	low = lowDumy.Next
-	lowDumy, midDumy, highDumy = nil, nil, nil
+	low.Next = midDummy.Next
+	mid.Next = highDummy.Next
+	low = lowDummy.Next
+	lowDummy, midDummy, highDummy = nil, nil, nil
 	return low
 }
 

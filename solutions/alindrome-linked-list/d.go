@@ -31,81 +31,39 @@ type ListNode struct {
 	Next *ListNode
 }
 
-/*如果是数组，则很容易判断是否回文，从两端逐渐往中间遍历，每次比较两端是否相等即可，不再赘述
+/*如果是数组，则很容易判断是否回文，从两端逐渐往中间遍历，每次比较两端是否相等即可
+可以将链表元素一一存入数组再判断，不再赘述
 
-用 O(n) 时间复杂度和 O(1) 空间复杂度解决
-思路是将后半段反转后和前半段对比
+链表的话，将后半段反转后和前半段一一对比；最后应该恢复原链表，即将后半段再次反转回来
+O(n) 时间复杂度和 O(1) 空间复杂度
 */
-func isPalindrome1(head *ListNode) bool {
-	n := 0 //计算链表长度
-	for p := head; p != nil; p = p.Next {
-		n++
-	}
-	// 找到链表中点的下一个位置
-	p := head
-	for i := 0; i < n/2; i++ {
-		p = p.Next
-	}
-	if n%2 == 1 {
-		p = p.Next
-	}
-	// 翻转后半段链表
-	p = reverse(p)
-	for p != nil {
-		if head.Val != p.Val {
-			return false
-		}
-		p = p.Next
-		head = head.Next
-	}
-	return true
-}
-
-// 也可以用快慢指针找到中间点
-func isPalindrome2(head *ListNode) bool {
-	// 找到链表中点的下一个位置
-	p, q := head, head
-	for q != nil && q.Next != nil {
-		p = p.Next
-		q = q.Next.Next
-	}
-	// 反转后半段链表
-	p = reverse(p)
-	// 前半段与反转后的后半段对比
-	q = head
-	for p != nil {
-		if p.Val != q.Val {
-			return false
-		}
-		p = p.Next
-		q = q.Next
-	}
-	return true
-}
-
-// 实际上不应该破坏原链表，在判断完毕后，应该恢复原数组
 func isPalindrome(head *ListNode) bool {
-	// 找到链表中点的下一个位置
-	p, q := head, head
-	for q != nil && q.Next != nil {
-		p = p.Next
-		q = q.Next.Next
+	if head == nil || head.Next == nil {
+		return true
 	}
-	m := p // 记录中点，最后恢复
-	// 反转后半段链表
-	p = reverse(p)
+	firstHalfEnd := endOfFirstHalf(head)
+	secondHalfStart := reverse(firstHalfEnd.Next)
+	firstHalfEnd.Next = nil
 	// 前半段与反转后的后半段对比
-	q = head
-	for p != nil {
+	q := secondHalfStart
+	for p := head; q != nil; p, q = p.Next, q.Next {
 		if p.Val != q.Val {
 			break
 		}
-		p = p.Next
-		q = q.Next
 	}
 	// 后半段再次反转，恢复到原来
-	_ = reverse(m)
-	return p == nil
+	firstHalfEnd.Next = reverse(secondHalfStart)
+	return q == nil
+}
+
+// 将链表分为两半，返回前一半末尾的节点；这里用了双指针技巧，也可以遍历统计链表长度来做
+func endOfFirstHalf(head *ListNode) *ListNode {
+	slow, fast := head, head.Next
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return slow
 }
 
 // 反转一个链表，并返回反转后的头节点
@@ -117,22 +75,25 @@ func reverse(head *ListNode) *ListNode {
 	return prev
 }
 
-/* 值得一提的是以下递归解法，虽然空间复杂度是O(n)：
- */
-func isPalindrome3(head *ListNode) bool {
+/*
+值得一提的是以下递归解法，即链表的后序遍历
+空间复杂度是O(n)：
+*/
+func isPalindrome0(head *ListNode) bool {
 	front := head
-
-	var recusivelyCheck func(*ListNode) bool
-
-	recusivelyCheck = func(current *ListNode) bool {
-		if current == nil {
+	var check func(curr *ListNode) bool
+	check = func(curr *ListNode) bool {
+		if curr == nil {
 			return true
 		}
-		if !recusivelyCheck(current.Next) || current.Val != front.Val {
+		if !check(curr.Next) {
+			return false
+		}
+		if curr.Val != front.Val {
 			return false
 		}
 		front = front.Next
 		return true
 	}
-	return recusivelyCheck(head)
+	return check(head)
 }
