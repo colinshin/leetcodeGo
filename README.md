@@ -147,6 +147,7 @@ Go solution for LeetCode problems
 * [24-game](solutions/24-game/d.go)
 * [flood-fill](solutions/flood-fill/d.go)
 * [matchsticks-to-square](solutions/matchsticks-to-square/d.go)
+* [partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
