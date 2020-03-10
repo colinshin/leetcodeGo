@@ -36,14 +36,13 @@ func isMajorityElement(nums []int, target int) bool {
 	if left == len(nums) || nums[left] != target {
 		return false
 	}
-	right := searchFromRight(nums, target) - 1
-	return right-left+1 > len(nums)/2
+	right := searchFromRight(nums, target)
+	return right-left > len(nums)/2
 }
 
 /*
 在nums里搜索target，返回新target应该插入的位置；如果nums里已经有target，则在第一个已有target元素之前插入
 nums已经排序，但可能有重复元素
-
 功能同标准库里的sort.SearchInts(nums, target)
 */
 func search(nums []int, target int) int {
@@ -61,7 +60,7 @@ func search(nums []int, target int) int {
 }
 
 /*
-在nums里从右向左搜索target，返回新target应该插入但位置；如果nums里已经有target，则在最后一个target元素之后插入
+在nums里从右向左搜索target，返回新target应该插入的位置；如果nums里已经有target，则在最后一个target元素之后插入
 nums已经排序，但可能有重复元素
 */
 func searchFromRight(nums []int, target int) int {

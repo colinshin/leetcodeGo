@@ -1,7 +1,6 @@
 # leetcodeGo
 Go solution for LeetCode problems
 ## learn
-[zero-one-pack-problem](learn/zero-one-pack-problem.md)<br>
 [binary-search-problem](learn/binary-search-problem.md)<br>
 [union-find](learn/union-find.md)<br>
 [sort](learn/sort.md)<br>
@@ -38,7 +37,6 @@ Go solution for LeetCode problems
 * [search-a-2d-matrix](solutions/search-a-2d-matrix/readme.md)
 ### binary search
 * [shortest-distance-to-target-color](solutions/shortest-distance-to-target-color/d.go)
-* [divide-two-integers](solutions/divide-two-integers/d.go)
 * [fixed-point](solutions/fixed-point/d.go)
 * [check-if-a-number-is-majority-element-in-a-sorted-array](solutions/check-if-a-number-is-majority-element-in-a-sorted-array/d.go)
 * [closest-binary-search-tree-value](solutions/closest-binary-search-tree-value/d.go)
@@ -137,6 +135,7 @@ Go solution for LeetCode problems
 * [range-sum-query-2d-matrix](solutions/range-sum-query-2d-matrix/readme.md)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
+* [divide-two-integers](solutions/divide-two-integers/d.go)
 ### others
 * [shuffle-an-array](solutions/shuffle-an-array/d.go)
 * [count-primes](solutions/count-primes/d.go)
@@ -146,6 +145,8 @@ Go solution for LeetCode problems
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 * [24-game](solutions/24-game/d.go)
+* [flood-fill](solutions/flood-fill/d.go)
+* [matchsticks-to-square](solutions/matchsticks-to-square/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>

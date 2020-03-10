@@ -37,7 +37,7 @@ type TreeNode struct {
 
 // 递归
 // 时间复杂度O(n): 每个节点遍历一次 —— n为节点数量
-// 空间复杂度，当树完全不平衡，退化为链表，最坏为O(n)；当属平衡，为O(lgn)
+// 空间复杂度，当树完全不平衡，退化为链表，最坏为O(n)；当树平衡时，为O(lgn)
 func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
@@ -47,4 +47,39 @@ func maxDepth(root *TreeNode) int {
 
 func max(a, b int) int {
 	return int(math.Max(float64(a), float64(b)))
+}
+
+/*
+变体： 如果求二叉树的最大直径呢？
+
+https://leetcode-cn.com/problems/diameter-of-binary-tree
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+
+总节点数 = 左子树最大深度 + 右子树最大深度 + 1（node本身）
+直径需要-1，故直径 = leftDepth + rightDepth
+*/
+func diameterOfBinaryTree(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	sum := maxDepth(root.Left) + maxDepth(root.Right)
+	sum = max(diameterOfBinaryTree(root.Left), sum)
+	sum = max(diameterOfBinaryTree(root.Right), sum)
+	return sum
+}
+
+// 可以进一步优化，在求最大深度的过程中更新结果
+func diameterOfBinaryTree1(root *TreeNode) int {
+	result := 0
+	var depth func(node *TreeNode) int
+	depth = func(node *TreeNode) int { // 计算node的最大深度
+		if node == nil {
+			return 0
+		}
+		leftDepth, rightDepth := depth(node.Left), depth(node.Right)
+		result = max(result, leftDepth+rightDepth)
+		return 1 + max(leftDepth, rightDepth)
+	}
+	_ = depth(root)
+	return result
 }
