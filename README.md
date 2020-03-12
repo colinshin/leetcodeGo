@@ -120,7 +120,8 @@ Go solution for LeetCode problems
 * [dungeon-game](solutions/dungeon-game/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
 * [coin-path](solutions/coin-path/d.go)
-* [partition-equal-subset-sum](solutions/partition-equal-subset-sum/d.go)
+### backtracking
+* [<698/473/416> partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 ### design
@@ -133,6 +134,7 @@ Go solution for LeetCode problems
 * [stack-with-queen](solutions/stack-with-queen/d.go)
 * [exam-room](solutions/exam-room/readme.md)
 * [range-sum-query-2d-matrix](solutions/range-sum-query-2d-matrix/readme.md)
+* [<432>all-oone-data-structure](solutions/all-oone-data-structure/d.go)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
@@ -144,10 +146,8 @@ Go solution for LeetCode problems
 * [course-schedule-ii](solutions/course-schedule-ii)
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
 * [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
-* [24-game](solutions/24-game/d.go)
-* [flood-fill](solutions/flood-fill/d.go)
-* [matchsticks-to-square](solutions/matchsticks-to-square/d.go)
-* [partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/d.go)
+* [<679>24-game](solutions/24-game/d.go)
+* [<733>flood-fill](solutions/flood-fill/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
