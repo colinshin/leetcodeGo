@@ -4,6 +4,8 @@
 
 package fixed_point
 
+import "sort"
+
 /*
 给定已经按升序排列、由不同整数组成的数组 A，返回满足 A[i] == i 的最小索引 i。如果不存在这样的 i，返回 -1。
 
@@ -45,7 +47,7 @@ func fixedPoint1(A []int) int {
 
 // 一个隐藏的二分搜索问题：如果位置i处元素大于i，那么目标在i左侧；如果i处元素小于i，目标在i右侧；
 // 如果等于i，不要立即返回，有可能左侧还有，题目求的是最左侧的
-func fixedPoint(A []int) int {
+func fixedPoint2(A []int) int {
 	left, right := 0, len(A)
 	for left < right {
 		mid := left + (right-left)/2
@@ -60,4 +62,15 @@ func fixedPoint(A []int) int {
 		return -1
 	}
 	return left
+}
+
+// 使用标准库，减少代码量
+func fixedPoint(A []int) int {
+	i := sort.Search(len(A), func(i int) bool {
+		return A[i] >= i
+	})
+	if i == len(A) || A[i] != i {
+		return -1
+	}
+	return i
 }

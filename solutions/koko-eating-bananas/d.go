@@ -4,6 +4,12 @@
 
 package koko_eating_bananas
 
+import (
+	"sort"
+
+	s "github.com/zrcoder/leetcodeGo/util/sort"
+)
+
 /*
 珂珂喜欢吃香蕉。这里有 N 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 H 小时后回来。
 
@@ -67,7 +73,7 @@ func minEatingSpeed1(piles []int, H int) int {
 二分法实现
 O(n*lg(max)), n为piles长度，max为piles最大元素
 */
-func minEatingSpeed(piles []int, H int) int {
+func minEatingSpeed2(piles []int, H int) int {
 	n := len(piles)
 	if H < n {
 		return -1
@@ -93,21 +99,59 @@ func minEatingSpeed(piles []int, H int) int {
 	return left
 }
 
+// 使用标准库，减少代码量
+func minEatingSpeed(piles []int, H int) int {
+	n := len(piles)
+	if H < n {
+		return -1
+	}
+	max := -1
+	for _, v := range piles {
+		if v > max {
+			max = v
+		}
+	}
+	if H == n {
+		return max
+	}
+	return sort.Search(max, func(i int) bool { // 注意取值为max的情况以及在前边返回，所以不再包含max
+		if i == 0 {
+			return false
+		}
+		return calCost(piles, i) <= H
+	})
+}
+
+// 仿照标准库改版Search函数
+func minEatingSpeed3(piles []int, H int) int {
+	n := len(piles)
+	if H < n {
+		return -1
+	}
+	max := -1
+	for _, v := range piles {
+		if v > max {
+			max = v
+		}
+	}
+	if H == n {
+		return max
+	}
+	return s.Search(1, max, func(i int) bool {
+		return calCost(piles, i) <= H
+	})
+}
+
 func calCost(piles []int, k int) int {
 	sum := 0
 	for _, v := range piles {
 		sum += (v-1)/k + 1
-	}
-	return sum
-}
-
-func caculateCost1(piles []int, k int) int {
-	sum := 0
-	for _, v := range piles {
+		/* 另一个实现
 		sum += v / k
 		if v%k > 0 {
 			sum += 1
 		}
+		*/
 	}
 	return sum
 }

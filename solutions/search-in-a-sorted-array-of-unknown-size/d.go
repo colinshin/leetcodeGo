@@ -32,36 +32,6 @@ package search_in_a_sorted_array_of_unknown_size
 
 /*
 因为数组中所有元素的值不同，且元素值域为[-9999, 9999]
-则数组中最多有2*9999+1个元素
-这样索引的范围就是[0, 2*9999]
-现在可以用二分法来寻找target
-*/
-func search1(reader ArrayReader, target int) int {
-	const (
-		outOfRange = 2147483647
-		limited    = 9999
-	)
-	if target > limited || target < -limited {
-		return -1
-	}
-	left, right := 0, 2*limited
-	for left <= right {
-		mid := left + (right-left)/2
-		val := reader.get(mid)
-		switch {
-		case val == target:
-			return mid
-		case val < target:
-			left = mid + 1
-		case val > target, val == outOfRange:
-			right = mid - 1
-		}
-	}
-	return -1
-}
-
-/*
-因为数组中所有元素的值不同，且元素值域为[-9999, 9999]
 则数组中最多有2*9999+1个元素，这样索引的范围就是[0, 2*9999]
 现在可以用二分法来寻找target
 

@@ -6,6 +6,50 @@ package partition_to_k_equal_sum_subsets
 
 import "sort"
 
+// 100 / 105 个通过测试用例， 在101用例超时
+func canPartition2(nums []int) bool {
+	const groups = 2
+	if len(nums) < groups {
+		return false
+	}
+	sum, max := 0, 0
+	for _, v := range nums {
+		sum += v
+		if v > max {
+			max = v
+		}
+	}
+	target := sum / groups
+	if sum%groups != 0 || max > target {
+		return false
+	}
+	used := make([]bool, len(nums))
+	return backTracking(groups, 0, 0, target, nums, used)
+}
+
+// 改进canPartition2，先对nums从大到小排序，极大降低递归次数
+// 如果不能修改原数组，可以深拷贝一份
+func canPartition(nums []int) bool {
+	const groups = 2
+	if len(nums) < groups {
+		return false
+	}
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
+	target := sum / groups
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] > nums[j]
+	})
+	if sum%groups != 0 || nums[0] > target {
+		return false
+	}
+	used := make([]bool, len(nums))
+	return backTracking(groups, 0, 0, target, nums, used)
+}
+
+// 01 package problem
 func canPartition1(nums []int) bool {
 	if len(nums) < 2 {
 		return false
@@ -30,43 +74,4 @@ func canPartition1(nums []int) bool {
 		}
 	}
 	return dp[c]
-}
-
-/*
-贪心+DFS回溯，注意对nums降序排列，可大大减少递归次数
-*/
-func canPartition(nums []int) bool {
-	if len(nums) < 2 {
-		return false
-	}
-	sum := 0
-	for _, v := range nums {
-		sum += v
-	}
-	halfSum, mod := sum/2, sum%2
-	if mod != 0 {
-		return false
-	}
-	targets := []int{halfSum, halfSum}
-	sort.Slice(nums, func(i, j int) bool {
-		return nums[i] > nums[j]
-	})
-
-	var search func(index int) bool
-	search = func(index int) bool {
-		if index == len(nums) {
-			return true
-		}
-		for i, v := range targets {
-			if v >= nums[index] {
-				targets[i] -= nums[index]
-				if search(index + 1) {
-					return true
-				}
-				targets[i] += nums[index]
-			}
-		}
-		return false
-	}
-	return search(0)
 }

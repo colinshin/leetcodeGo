@@ -25,24 +25,26 @@ func canPartitionKSubsets(nums []int, k int) bool {
 }
 
 /*
-尝试把所有元素放到k个组中，每组元素和为target
+backTracking通过穷举回溯，尝试把nums所有元素放到k个组中，每组元素和为target
 currSubSum 记录当前组累加的结果，start指明从nums的哪个位置开始
+
+如果nums是非递增序列，将大大减小递归次数；在某些场景，可以考虑对nums先做排序处理，再调用backTracking
 */
 func backTracking(k, currSubSum, start, target int, nums []int, used []bool) bool {
 	if k == 0 { // 说明所有数字都放入了对应组
 		return true
 	}
-	if currSubSum == target { // 已经构建了若干组
+	if currSubSum == target { // 已经构建了一组
 		// 构建下一组
 		return backTracking(k-1, 0, 0, target, nums, used)
 	}
 	for i := start; i < len(nums); i++ {
 		if !used[i] && currSubSum+nums[i] <= target {
-			used[i] = true // 当前值放入组
-			if backTracking(k, currSubSum+nums[i], i+1, target, nums, used) {
+			used[i] = true                                                    // 当前值放入当前构建的组
+			if backTracking(k, currSubSum+nums[i], i+1, target, nums, used) { // currSubSum本身不改，回溯时也不必改
 				return true
 			}
-			used[i] = false // 说明将当前值放入一组不能得到结果，回溯
+			used[i] = false // 说明将当前值放入当前组不能得到结果，回溯
 		}
 	}
 	return false

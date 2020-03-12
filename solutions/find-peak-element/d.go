@@ -4,7 +4,10 @@
 
 package find_peak_element
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 /*
 峰值元素是指其值大于左右相邻值的元素。
@@ -105,4 +108,11 @@ func findPeakElement3(nums []int) int {
 		return right
 	}
 	return left
+}
+
+// 使用标准库，减少代码量
+func findPeakElement4(nums []int) int {
+	return sort.Search(len(nums)-1, func(i int) bool {
+		return nums[i+1] <= nums[i]
+	})
 }

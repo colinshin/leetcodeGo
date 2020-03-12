@@ -32,7 +32,7 @@ package check_if_a_number_is_majority_element_in_a_sorted_array
 时间复杂度O(lgn)，空间复杂度O(1)
 */
 func isMajorityElement(nums []int, target int) bool {
-	left := search(nums, target)
+	left := search(nums, target) // 也可以用标准库sort包的Search方法，达到的效果一样
 	if left == len(nums) || nums[left] != target {
 		return false
 	}

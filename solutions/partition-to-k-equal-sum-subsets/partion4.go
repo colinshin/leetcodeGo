@@ -5,9 +5,8 @@
 package partition_to_k_equal_sum_subsets
 
 func makesquare(nums []int) bool {
-	n := len(nums)
 	const squareEdges = 4
-	if n < squareEdges {
+	if len(nums) < squareEdges {
 		return false
 	}
 	sum, max := 0, 0
