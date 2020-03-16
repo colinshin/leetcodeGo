@@ -48,17 +48,29 @@ func searchMatrix(matrix [][]int, target int) bool {
 	left, right := 0, m*n-1
 	for left <= right {
 		mid := left + (right-left)/2
-		r, c := mid/n, mid%n
-		if matrix[r][c] == target {
+		if matrix[mid/n][mid%n] == target {
 			return true
 		}
-		if matrix[r][c] < target {
+		if matrix[mid/n][mid%n] < target {
 			left = mid + 1
 		} else {
 			right = mid - 1
 		}
 	}
 	return false
+}
+```
+使用标准库的一个二分法版本：
+```
+func searchMatrix(matrix [][]int, target int) bool {
+	if len(matrix) == 0 || len(matrix[0]) == 0 {
+		return false
+	}
+	m, n := len(matrix), len(matrix[0])
+	i := sort.Search(m*n, func(i int) bool {
+		return matrix[i/n][i%n] >= target
+	})
+	return i != m*n && matrix[i/n][i%n] == target
 }
 ```
 线性时间复杂度的解法
