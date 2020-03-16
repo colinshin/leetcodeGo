@@ -53,7 +53,7 @@ Go solution for LeetCode problems
 * [intersection-of-two-arrays-ii](solutions/intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](solutions/find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](solutions/find-k-th-smallest-pair-distance/d.go)
-* [median of two sorted arrays](solutions/median_of_two_sorted_arrays)
+* [median of two sorted arrays](solutions/median_of_two_sorted_arrays/readme.md)
 ### array and strings
 * [trapping-rain-water](solutions/trapping-rain-water/d.go)
 * [construct-product-array](solutions/construct-product-array/d.go)
