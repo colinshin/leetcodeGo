@@ -4,7 +4,10 @@
 
 package random_pick_with_weight
 
-import "math/rand"
+import (
+	"math/rand"
+	"sort"
+)
 
 /*
 给定一个正整数数组 w ，其中 w[i] 代表位置 i 的权重，请写一个函数 pickIndex ，它可以随机地获取位置 i，选取位置 i 的概率与 w[i] 成正比。
@@ -70,7 +73,7 @@ func (s *Solution) PickIndex1() int {
 }
 
 // 改用二分法
-func (s *Solution) PickIndex() int {
+func (s *Solution) PickIndex2() int {
 	target := rand.Intn(s.total[len(s.total)-1])
 	left, right := 0, len(s.total)-1
 	for left != right {
@@ -83,4 +86,12 @@ func (s *Solution) PickIndex() int {
 		}
 	}
 	return left
+}
+
+// 二分法使用标准库，减少代码量
+func (s *Solution) PickIndex() int {
+	target := rand.Intn(s.total[len(s.total)-1])
+	return sort.Search(len(s.total), func(i int) bool {
+		return s.total[i] > target
+	})
 }

@@ -7,7 +7,8 @@ package min_absolute_in_bst
 import "math"
 
 /*
-Given a binary search tree with non-negative values, find the minimum absolute difference between values of any two nodes.
+Given a binary search tree with non-negative values,
+find the minimum absolute difference between values of any two nodes.
 
 Examroot.Lefte:
 
