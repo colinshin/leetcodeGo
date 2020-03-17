@@ -32,6 +32,7 @@ Go solution for LeetCode problems
 ### random
 * [[470] implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
 * [[528] random-pick-with-weight](solutions/random-pick-with-weight/d.go)
+* [[384]shuffle-an-array](solutions/shuffle-an-array/d.go)
 ### binary search
 * [shortest-distance-to-target-color](solutions/shortest-distance-to-target-color/d.go)
 * [fixed-point](solutions/fixed-point/d.go)
@@ -103,6 +104,7 @@ Go solution for LeetCode problems
 * [longest-univalue-path](solutions/longest-univalue-path/d.go)
 * [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
 * [verify-postorder-sequence-inbinary-search-tree](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
+* [recover-binary-search-tree](solutions/recover-binary-search-tree/d.go)
 ### graph
 * [course-schedule](solutions/course-schedule/d.go)
 * [connecting-cities-with-minimum-cost](solutions/connecting-cities-with-minimum-cost/readme.md)
@@ -138,7 +140,6 @@ Go solution for LeetCode problems
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
 ### others
-* [shuffle-an-array](solutions/shuffle-an-array/d.go)
 * [count-primes](solutions/count-primes/d.go)
 * [roman-to-integer](solutions/roman-to-integer/d.go)
 * [integer-to-roman](solutions/integer-to-roman/d.go)
@@ -150,6 +151,7 @@ Go solution for LeetCode problems
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
+[windliang](https://leetcode.wang/)<br>
 [aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
 [kylesliu/awesome-golang-leetcode](https://github.com/kylesliu/awesome-golang-leetcode)<br>

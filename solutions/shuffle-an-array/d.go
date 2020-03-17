@@ -55,3 +55,10 @@ func (s *Solution) Shuffle() []int {
 	}
 	return s.helper
 }
+
+func (s *Solution) Shuffle1() []int {
+	rand.Shuffle(len(s.helper), func(i, j int) {
+		s.helper[i], s.helper[j] = s.helper[j], s.helper[i]
+	})
+	return s.helper
+}
