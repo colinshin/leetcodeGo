@@ -95,20 +95,31 @@ func findMedianSortedArrays3(nums1 []int, nums2 []int) float64 {
 
 原理参考：<br>
 https://cloud.tencent.com/developer/article/1483811<br>
-
+问题转化为求数组第k个元素： 对于两个数组，假设长度分别是m、n，求合并后的中位数即求：<br>
+```text
+i. 合并后第(m+n)/2 + 1 个元素（m+n为奇数）
+ii. 合并后第(m+n)/2 个元素与第(m+n)/2 + 1个元素的平均值（m+n为偶数）
+```
+对于两个数组，求合并后的第k个元素，可以分别取两个数组第k/2个元素，通过比较这两个元素的大小，可以批量地减少搜索范围
+```text
+1.如果nums1[k/2] < nums2[k/2], 说明合并后的第k个元素肯定不在nums[0:k/2+1]区间里
+可以继续在nums1[k/2:]和nums2中搜索第k-(k/2+1)个元素
+2.反之，可以排除nums2的前k/2个元素继续搜索
+需要注意边界
+```
 ```
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-	n := len(nums1)
-	m := len(nums2)
-	if (n+m)%2 == 1 {
-		return getKth(nums1, nums2, (n+m+1)/2)
+	size := len(nums1) + len(nums2)
+	if size == 0 {
+		return 0.0
 	}
-	return (getKth(nums1, nums2, (n+m)/2) + getKth(nums1, nums2, (n+m)/2+1)) * 0.5
+	if size%2 == 1 {
+		return getKth(nums1, nums2, size/2+1)
+	}
+	return (getKth(nums1, nums2, size/2) + getKth(nums1, nums2, size/2+1)) * 0.5
 }
-
 func getKth(nums1, nums2 []int, k int) float64 {
-	m := len(nums1)
-	n := len(nums2)
+	m, n := len(nums1), len(nums2)
 	if m > n {
 		return getKth(nums2, nums1, k)
 	}
@@ -116,11 +127,9 @@ func getKth(nums1, nums2 []int, k int) float64 {
 		return float64(nums2[k-1])
 	}
 	if k == 1 {
-		return float64(integer.Min(nums1[0], nums2[0]))
+		return float64(min(nums1[0], nums2[0]))
 	}
-
-	i := integer.Min(m, k/2) - 1
-	j := integer.Min(n, k/2) - 1
+	i, j := min(m-1, k/2-1), min(n-1, k/2-1)
 	if nums1[i] > nums2[j] {
 		return getKth(nums1, nums2[j+1:], k-(j+1))
 	}
@@ -132,19 +141,46 @@ func getKth(nums1, nums2 []int, k int) float64 {
 
 原理参考：<br>
 https://blog.csdn.net/bjweimengshu/article/details/97717144<br>
+用i，j两个指针将两个数组分别划分为两部分，将nums1的左半部分和nums2的左半部分合起来看作合并后的左半部分，同样可以得到合并后右半部分<br>
+```text
+                        |
+nums1       0, ..., i-1,| i, ..., m-1
+                        |
+nums2 0, 1, ...,    j-1,| j, ..., n-1
+                        |
+              左半部分   |  右半部分
+```
+如果能保证左右部分的大小相当（m+n为偶数则左右部分大小相等；为奇数则左半部分比右半部分多一个），也就找到了合并后的中位数
+```text
+m+n为偶数时：
+i+j = m-i + n-j 即i+j = （m+n）/2
+m+n为奇数时：
+i+j = m-i + n-j + 1也就是 i+j = (m+n+1)/2
+因整数除法特性，可以统一为i+j = (m+n+1)/2
+```
+注意到确定了i，就确定了j， j = (m+n+1)/2 - i；<br>
+数组已排序，用二分搜索法来确定i:
+```text
+因为两个数组都是有序的，所以 nums1[i-1] <= nums1[i]，nums2[i-1] <= nums2[i] 是天然具备的，
+所以只需要保证 nums2[j-1] < = nums1[i] 和 nums1[i-1] <= nums2[j];对不满足的情况分两种情况讨论：
+nums2[j-1] > nums1[i]
+此时需要增加i
+nums1[i-1] > nums2[j]
+此时要减少i
+```
 
 ```
-func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	m, n := len(nums1), len(nums2)
 	if m > n {
 		m, n = n, m
 		nums1, nums2 = nums2, nums1
 	}
 
-	iMin, iMax, halfLen := 0, m, (m+n+1)/2
+	iMin, iMax := 0, m
 	for iMin <= iMax {
 		i := (iMin + iMax) / 2
-		j := halfLen - i
+		j := (m+n+1)/2 - i
 		if i < m && nums2[j-1] > nums1[i] {
 			// i is too smal
 			iMin = i + 1
@@ -159,7 +195,7 @@ func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
 			} else if j == 0 {
 				maxLeft = nums1[i-1]
 			} else {
-				maxLeft = integer.Max(nums1[i-1], nums2[j-1])
+				maxLeft = max(nums1[i-1], nums2[j-1])
 			}
 
 			if (m+n)%2 == 1 {
@@ -172,7 +208,7 @@ func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
 			} else if j == n {
 				minRight = nums1[i]
 			} else {
-				minRight = integer.Min(nums1[i], nums2[j])
+				minRight = min(nums1[i], nums2[j])
 			}
 			return float64(maxLeft+minRight) / 2
 		}

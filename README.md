@@ -51,7 +51,7 @@ Go solution for LeetCode problems
 * [intersection-of-two-arrays-ii](solutions/intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](solutions/find-the-duplicate-number/d.go)
 * [find-k-th-smallest-pair-distance](solutions/find-k-th-smallest-pair-distance/d.go)
-* [median of two sorted arrays](solutions/median_of_two_sorted_arrays/readme.md)
+* [[4] median of two sorted arrays](solutions/median_of_two_sorted_arrays/readme.md)
 ### array and strings
 * [[1078] occurrences-after-bigram](solutions/occurrences-after-bigram/d.go)
 * [[318] maximum-product-of-word-lengths](solutions/maximum-product-of-word-lengths/d.go)

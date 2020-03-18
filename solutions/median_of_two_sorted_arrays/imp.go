@@ -33,92 +33,6 @@ nums2 = [3, 4]
 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
-// 划归，寻找第K个数。参考：
-// https://cloud.tencent.com/developer/article/1483811
-func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-	size := len(nums1) + len(nums2)
-	if size == 0 {
-		return 0.0
-	}
-	if size%2 == 1 {
-		return getKth(nums1, nums2, size/2+1)
-	}
-	return (getKth(nums1, nums2, size/2) + getKth(nums1, nums2, size/2+1)) * 0.5
-}
-func getKth(nums1, nums2 []int, k int) float64 {
-	m, n := len(nums1), len(nums2)
-	if m > n {
-		return getKth(nums2, nums1, k)
-	}
-	if m == 0 {
-		return float64(nums2[k-1])
-	}
-	if k == 1 {
-		return float64(min(nums1[0], nums2[0]))
-	}
-	i, j := min(m-1, k/2-1), min(n-1, k/2-1)
-	if nums1[i] > nums2[j] {
-		return getKth(nums1, nums2[j+1:], k-(j+1))
-	}
-	return getKth(nums1[i+1:], nums2, k-(i+1))
-}
-func min(a, b int) int {
-	return int(math.Min(float64(a), float64(b)))
-}
-
-// 参考
-// https://blog.csdn.net/bjweimengshu/article/details/97717144
-func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
-	m, n := len(nums1), len(nums2)
-	if m > n {
-		m, n = n, m
-		nums1, nums2 = nums2, nums1
-	}
-
-	iMin, iMax, halfLen := 0, m, (m+n+1)/2
-	for iMin <= iMax {
-		i := (iMin + iMax) / 2
-		j := halfLen - i
-		if i < m && nums2[j-1] > nums1[i] {
-			// i is too smal
-			iMin = i + 1
-		} else if i > 0 && nums1[i-1] > nums2[j] {
-			// i is too big
-			iMax = i - 1
-		} else {
-			// i is perfect
-			maxLeft := 0
-			if i == 0 {
-				maxLeft = nums2[j-1]
-			} else if j == 0 {
-				maxLeft = nums1[i-1]
-			} else {
-				maxLeft = max(nums1[i-1], nums2[j-1])
-			}
-
-			if (m+n)%2 == 1 {
-				return float64(maxLeft)
-			}
-
-			minRight := 0
-			if i == m {
-				minRight = nums2[j]
-			} else if j == n {
-				minRight = nums1[i]
-			} else {
-				minRight = min(nums1[i], nums2[j])
-			}
-			return float64(maxLeft+minRight) / 2
-		}
-	}
-	return 0.0
-}
-
-func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
-}
-
 // 朴素实现，先merge再找中间的
 func findMedianSortedArrays2(nums1 []int, nums2 []int) float64 {
 	return medianOf(merge(nums1, nums2))
@@ -175,4 +89,85 @@ func findMedianSortedArrays3(nums1 []int, nums2 []int) float64 {
 		return float64(currentR)
 	}
 	return float64(lastR+currentR) * 0.5
+}
+
+// 划归，寻找第K个数。参考：
+// https://cloud.tencent.com/developer/article/1483811
+func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
+	size := len(nums1) + len(nums2)
+	if size == 0 {
+		return 0.0
+	}
+	if size%2 == 1 {
+		return getKth(nums1, nums2, size/2+1)
+	}
+	return (getKth(nums1, nums2, size/2) + getKth(nums1, nums2, size/2+1)) * 0.5
+}
+func getKth(nums1, nums2 []int, k int) float64 {
+	m, n := len(nums1), len(nums2)
+	if m > n {
+		return getKth(nums2, nums1, k)
+	}
+	if m == 0 {
+		return float64(nums2[k-1])
+	}
+	if k == 1 {
+		return float64(min(nums1[0], nums2[0]))
+	}
+	i, j := min(m-1, k/2-1), min(n-1, k/2-1)
+	if nums1[i] > nums2[j] {
+		return getKth(nums1, nums2[j+1:], k-(j+1))
+	}
+	return getKth(nums1[i+1:], nums2, k-(i+1))
+}
+
+// 参考
+// https://blog.csdn.net/bjweimengshu/article/details/97717144
+func findMedianSortedArrays1(nums1 []int, nums2 []int) float64 {
+	m, n := len(nums1), len(nums2)
+	if m > n {
+		return findMedianSortedArrays1(nums2, nums1) // prevent edge conditions
+	}
+
+	left, right := 0, m
+	for left <= right {
+		i := left + (right-left)/2
+		j := (m+n+1)/2 - i
+		if i < m && j > 0 && nums2[j-1] > nums1[i] { // i is too smal
+			left = i + 1
+		} else if i > 0 && j < n && nums1[i-1] > nums2[j] { // i is too big
+			right = i - 1
+		} else { // i is perfect
+			maxLeft := 0
+			if i == 0 {
+				maxLeft = nums2[j-1]
+			} else if j == 0 {
+				maxLeft = nums1[i-1]
+			} else {
+				maxLeft = max(nums1[i-1], nums2[j-1])
+			}
+
+			if (m+n)%2 == 1 {
+				return float64(maxLeft)
+			}
+
+			minRight := 0
+			if i == m {
+				minRight = nums2[j]
+			} else if j == n {
+				minRight = nums1[i]
+			} else {
+				minRight = min(nums1[i], nums2[j])
+			}
+			return float64(maxLeft+minRight) / 2
+		}
+	}
+	return 0.0
+}
+
+func max(a, b int) int {
+	return int(math.Max(float64(a), float64(b)))
+}
+func min(a, b int) int {
+	return int(math.Min(float64(a), float64(b)))
 }
