@@ -72,7 +72,7 @@ Go solution for LeetCode problems
 * [plus-one](solutions/plus-one/d.go)
 * [pascals-triangle](solutions/pascals-triangle/d.go)
 * [add-binary](solutions/add-binary/d.go)
-* [longest palindromic substring](solutions/longest_palindromic_substring)
+* [[5] longest palindromic substring](solutions/longest_palindromic_substring/readme.md)
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
