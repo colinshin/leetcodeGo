@@ -78,7 +78,8 @@ Go solution for LeetCode problems
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
 * [remove-duplicate-chars](solutions/remove-duplicate-chars/d.go)
 * [sliding-window-maximum](solutions/sliding-window-maximum/d.go)
-* [push-box](solutions/push-box/d.go)
+* [[1263] push-box](solutions/push-box/d.go)
+* [[329] longest-increasing-path-in-a-matrix](solutions/longest-increasing-path-in-a-matrix/d.go)
 ### linked list
 * [add two numbers](solutions/add_two_numbers/readme.md)
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)

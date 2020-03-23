@@ -77,7 +77,7 @@ func minPushBox(grid [][]byte) int {
 	visited := [maxSize][maxSize][maxSize][maxSize]bool{}
 	queue := [][]int{{box[0], box[1], person[0], person[1]}}
 	visited[box[0]][box[1]][person[0]][person[1]] = true
-	directories := [][]int{{0, 1}, {0, -1}, {-1, 0}, {1, 0}}
+	dirs := [][]int{{0, 1}, {0, -1}, {-1, 0}, {1, 0}}
 	for len(queue) > 0 {
 		length := len(queue)
 		for k := 0; k < length; k++ {
@@ -88,9 +88,9 @@ func minPushBox(grid [][]byte) int {
 			}
 			box := []int{current[0], current[1]}
 			person := []int{current[2], current[3]}
-			for _, directory := range directories {
-				boxTarget := []int{current[0] + directory[0], current[1] + directory[1]}    // 箱子将要到达的位置
-				personTarget := []int{current[0] - directory[0], current[1] - directory[1]} // 人将要到达的位置，与箱子要去的位置对称
+			for _, d := range dirs {
+				boxTarget := []int{current[0] + d[0], current[1] + d[1]}    // 箱子将要到达的位置
+				personTarget := []int{current[0] - d[0], current[1] - d[1]} // 人将要到达的位置，与箱子要去的位置对称
 				if isValid(boxTarget, grid) &&
 					!visited[boxTarget[0]][boxTarget[1]][current[0]][current[1]] &&
 					isValid(personTarget, grid) &&
@@ -134,7 +134,7 @@ func isValid(pos []int, grid [][]byte) bool {
 
 // person能否到达位置target，其中position是box的上下左右邻居位置里的一个
 func canMoveTo(target, box, person []int, grid [][]byte) bool {
-	directories := [][]int{{0, 1}, {0, -1}, {-1, 0}, {1, 0}}
+	dirs := [][]int{{0, 1}, {0, -1}, {-1, 0}, {1, 0}}
 	queue := [][]int{person}
 	const maxSize = 20
 	visited := [maxSize][maxSize]bool{}
@@ -145,8 +145,8 @@ func canMoveTo(target, box, person []int, grid [][]byte) bool {
 		if current[0] == target[0] && current[1] == target[1] {
 			return true
 		}
-		for _, directory := range directories {
-			r, c := current[0]+directory[0], current[1]+directory[1]
+		for _, d := range dirs {
+			r, c := current[0]+d[0], current[1]+d[1]
 			if isValid([]int{r, c}, grid) &&
 				!visited[r][c] &&
 				(r != box[0] || c != box[1]) {
