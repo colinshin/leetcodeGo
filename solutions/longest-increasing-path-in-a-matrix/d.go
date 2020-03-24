@@ -90,23 +90,23 @@ func longestIncreasingPath(matrix [][]int) int {
 	}
 	m, n := len(matrix), len(matrix[0])
 	dirs := [][]int{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}
-	cache := make([][]int, m)
-	for i := range cache {
-		cache[i] = make([]int, n) // 可以初始化全部元素为1，但也不一定必须如此，dfs函数返回前会将结果加一
+	memo := make([][]int, m)
+	for i := range memo {
+		memo[i] = make([]int, n) // 可以初始化全部元素为1，但也不一定必须如此，dfs函数返回前会将结果加一
 	}
 	var dfs func(r, c int) int
 	dfs = func(r, c int) int {
-		if cache[r][c] != 0 {
-			return cache[r][c]
+		if memo[r][c] != 0 {
+			return memo[r][c]
 		}
 		for _, d := range dirs {
 			x, y := r+d[0], c+d[1]
 			if x >= 0 && x < m && y >= 0 && y < n && matrix[x][y] > matrix[r][c] {
-				cache[r][c] = max(cache[r][c], dfs(x, y))
+				memo[r][c] = max(memo[r][c], dfs(x, y))
 			}
 		}
-		cache[r][c]++
-		return cache[r][c]
+		memo[r][c]++
+		return memo[r][c]
 	}
 	result := 0
 	for r := 0; r < m; r++ {

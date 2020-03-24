@@ -122,7 +122,8 @@ Go solution for LeetCode problems
 * [cherry-pickup](solutions/cherry-pickup/d.go)
 * [dungeon-game](solutions/dungeon-game/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
-* [coin-path](solutions/coin-path/d.go)
+* [[656] coin-path](solutions/coin-path/d.go)
+* [[45][55] jump-game](solutions/jump-game/readme.md)
 ### backtracking
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
 ### bit
