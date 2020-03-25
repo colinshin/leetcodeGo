@@ -61,7 +61,7 @@ func minEatingSpeed1(piles []int, H int) int {
 		return max
 	}
 
-	for k := 1; k <= max; k++ {
+	for k := 1; k < max; k++ {
 		if calCost(piles, k) <= H {
 			return k
 		}
@@ -87,7 +87,7 @@ func minEatingSpeed2(piles []int, H int) int {
 	if H == n {
 		return max
 	}
-	left, right := 1, max+1
+	left, right := 1, max // 注意取值为max的情况以及在前边返回，所以不再包含max
 	for left < right {
 		mid := left + (right-left)/2
 		if calCost(piles, mid) <= H { // 可能有多个值使得calCost(piles, mid) == H， 需要最左侧的那个值
