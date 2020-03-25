@@ -29,6 +29,7 @@ Go solution for LeetCode problems
 * [[491] increasing-subsequences](solutions/increasing-subsequences/d.go)
 * [[347] top-k-frequent-elements](solutions/top-k-frequent-elements/d.go)
 * [[74/240] search-a-2d-matrix](solutions/search-a-2d-matrix/readme.md)
+* [[778] swim-in-rising-water](solutions/swim-in-rising-water/d.go)
 ### random
 * [[470] implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
 * [[528] random-pick-with-weight](solutions/random-pick-with-weight/d.go)
