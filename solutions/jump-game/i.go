@@ -11,9 +11,7 @@ func canJump(nums []int) bool {
 		if i > farthest {
 			return false
 		}
-		if i+nums[i] > farthest {
-			farthest = i + nums[i]
-		}
+		farthest = min(farthest, i+nums[i])
 	}
 	return farthest >= len(nums)-1
 }
@@ -29,11 +27,7 @@ func canJump1(nums []int) bool {
 	dp := make([]bool, len(nums))
 	dp[len(nums)-1] = true
 	for i := len(nums) - 2; i >= 0; i-- {
-		end := i + nums[i]
-		if end > len(nums)-1 { // 防止索引越界
-			end = len(nums) - 1
-		}
-		for j := end; j > i; j-- { // j从左向右遍历也行
+		for j := min(len(nums)-1, i+nums[i]); j > i; j-- { // j的初值需要防止索引越界; 这里是从右向左遍历，也可以从左向右
 			if dp[j] {
 				dp[i] = true
 				break
@@ -62,11 +56,7 @@ func canJump2(nums []int) bool {
 		if memo[pos] == nok {
 			return false
 		}
-		end := pos + nums[pos]
-		if end > len(nums)-1 { // 防止索引越界
-			end = len(nums) - 1
-		}
-		for i := pos + 1; i <= end; i++ {
+		for i := min(pos+nums[pos], len(nums)-1); i > pos; i-- { // i的初值需要防止索引越界；这里是从右向左遍历，也可以从左向右
 			if canJumpFrom(i) {
 				memo[pos] = ok
 				return true
