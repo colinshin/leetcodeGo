@@ -7,7 +7,6 @@ package swim_in_rising_water
 import (
 	"container/heap"
 	"container/list"
-	"math"
 	"sort"
 
 	s "github.com/zrcoder/leetcodeGo/util/sort"
@@ -52,7 +51,101 @@ import (
 2 <= N <= 50.
 grid[i][j] 位于区间 [0, ..., N*N - 1] 内。
 */
+
 /*
+如下解法都是广度优先搜索，值得一提的是这个策略可以扩展，任意指定起点和终点（不一定是左上角和右下角）也能解决问题
+
+解法一：常规广度优先搜索
+
+假设所有平台最低高度和最高高度分别为min，max，答案就在区间 [min, max] 内
+不过有个点要注意，起点的高度如果大于min，得到的结果可能是错的，说白了不允许从高平台跳水跳到低平台，
+所以答案的精确区间是[grid[0][0], max]
+
+朴素解法：可以尝试高度从grid[0][0]向max递增，对每个高度，如果发现最终能到达终点，那么当前的高度就是答案
+
+对于一个特定的高度h，怎么判断是否可以最终到达终点呢？广度优先搜索即可
+从起点开始，将相邻且高度不大于h的平台放入集合，然后把这些平台一一出集合，出来后将它们的符合条件的相邻平台入集合
+这个集合用队、栈、list或者set（map）、切片都可以，对顺序没有要求
+判断出栈后的平台是不是最终平台，是的话就ok了
+
+时间复杂度是O(n^2*(max-grid[0][0]+1))，其中广度优先搜索复杂度为O(n^2)
+空间复杂度：O(n^2)，广度优先搜索中集合的大小
+
+当然在区间 [min, max]上用二分法更快，时间复杂度降为： O(n^2*log(max-grid[0][0]+1))
+*/
+
+/*
+不用二分法的朴素实现，时间复杂度O(n^2*(max-grid[0][0]+1))
+leetcode实测会花费376 ms，其他解法的时间在12-28ms内
+*/
+func swimInWater0(grid [][]int) int {
+	start := grid[0][0]
+	end := max(grid)
+	for i := start; i <= end; i++ {
+		if canReach(i, grid) {
+			return i
+		}
+	}
+	return 0
+}
+
+func swimInWater1(grid [][]int) int {
+	return s.Search(grid[0][0], max(grid)+1, func(i int) bool {
+		return canReach(i, grid)
+	})
+}
+
+// 二分法也可用标准库，减少代码量
+func swimInWater2(grid [][]int) int {
+	return sort.Search(max(grid)+1, func(i int) bool { // 这里其实有点浪费，在[0,max]的区间里搜所的
+		if i < grid[0][0] {
+			return false
+		}
+		return canReach(i, grid)
+	})
+}
+
+func max(grid [][]int) int {
+	result := 0
+	for r := 0; r < len(grid); r++ {
+		for c := 0; c < len(grid); c++ {
+			if grid[r][c] > result {
+				result = grid[r][c]
+			}
+		}
+	}
+	return result
+}
+
+func canReach(t int, grid [][]int) bool {
+	const maxN = 50
+	n := len(grid)
+	dr := []int{1, -1, 0, 0}
+	dc := []int{0, 0, 1, -1}
+	visited := [maxN][maxN]bool{}
+	visited[0][0] = true
+	set := list.New()
+	set.PushBack([]int{0, 0}) // 用长度为2的切片代表一个点,初始位置入栈
+	for set.Len() > 0 {
+		pos := set.Remove(set.Back()).([]int)
+		row, column := pos[0], pos[1]
+		if row == n-1 && column == n-1 {
+			return true
+		}
+		for i := 0; i < len(dr); i++ {
+			nextRow, nextColumn := row+dr[i], column+dc[i]
+			if nextRow >= 0 && nextRow < n && nextColumn >= 0 && nextColumn < n &&
+				!visited[nextRow][nextColumn] && grid[nextRow][nextColumn] <= t {
+				set.PushBack([]int{nextRow, nextColumn})
+				visited[nextRow][nextColumn] = true
+			}
+		}
+	}
+	return false
+}
+
+/*
+解法二： 借助小顶堆的广度优先搜索
 每到一个平台，在相邻平台+以前经过平台的相邻平台中选择高度最小的平台。
 题目中两个示例过于特殊，我们看下边的例子：
 0 1 4
@@ -72,8 +165,6 @@ grid[i][j] 位于区间 [0, ..., N*N - 1] 内。
 以这种方式到达终点，途经最高的平台就是答案
 就是借助小顶堆做广度优先搜索
 
-值得一提的是这个策略可以扩展，任意指定起点和终点也能解决问题
-
 时间复杂度： O(n^2*log(n^2))=O(n^2*2logn)=O(n^2*logn), 最大经过n^2个节平台，每个节平台需要O(log(n^2))时间进出堆
 空间复杂度：O(n^2)，是堆的最大值
 */
@@ -92,7 +183,9 @@ func swimInWater(grid [][]int) int {
 
 	for pq.Len() > 0 {
 		info := heap.Pop(pq).(pos) // 游到当前最低的平台上
-		result = max(result, grid[info.r][info.c])
+		if grid[info.r][info.c] > result {
+			result = grid[info.r][info.c]
+		}
 		if info.r == n-1 && info.c == n-1 { // 终点
 			break
 		}
@@ -120,79 +213,4 @@ func (h *posHeap) Pop() interface{} {
 	pos := (*h)[len(*h)-1]
 	*h = (*h)[:len(*h)-1]
 	return pos
-}
-
-func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
-}
-
-/*
-题目有个约束，平台的高度在区间 [0, ..., N*N-1] 内
-答案也就在这个区间内；不过有个点要注意，起点的高度如果不是0，得到的结果可能是错的，说白了不允许从高平台跳水跳到低平台，
-所以答案在区间[grid[0][0], ..., N*N-1]内，当然更精确地说，上限应该是grid的最大值max
-精确的区间是[grid[0][0], max]
-朴素解法：可以尝试高度从grid[0][0]向max递增，对每个高度，如果发现最终能到达终点，那么当前的高度就是答案
-当然用二分法更快
-
-对于一个特定的高度h，怎么判断是否可以最终到达终点呢？
-类似解法一，将相邻且高度不大于h的平台放入集合，然后把这些平台一一出集合，出来后将它们的符合条件的相邻平台入集合
-这个集合可以用队、栈、list或者set（map）都可以
-判断出栈后的平台是不是最终平台，是的话就ok了
-
-时间复杂度： O(n^2*log(max-grid[0][0]+1)), 二分搜索最多搜索log(max-grid[0][0]+1)次，广度优先搜索复杂度为O(n^2)
-空间复杂度：O(n^2)，栈的大小
-*/
-func swimInWater1(grid [][]int) int {
-	return s.Search(grid[0][0], highest(grid)+1, func(i int) bool {
-		return possible(i, grid)
-	})
-}
-
-func highest(grid [][]int) int {
-	result := 0
-	for r := 0; r < len(grid); r++ {
-		for c := 0; c < len(grid); c++ {
-			if grid[r][c] > result {
-				result = grid[r][c]
-			}
-		}
-	}
-	return result
-}
-
-func possible(t int, grid [][]int) bool {
-	const maxN = 50
-	n := len(grid)
-	dr := []int{1, -1, 0, 0}
-	dc := []int{0, 0, 1, -1}
-	visited := [maxN][maxN]bool{}
-	visited[0][0] = true
-	stack := list.New()
-	stack.PushBack([]int{0, 0}) // 用长度为2的切片代表一个点,初始位置入栈
-	for stack.Len() > 0 {
-		pos := stack.Remove(stack.Back()).([]int)
-		row, column := pos[0], pos[1]
-		if row == n-1 && column == n-1 {
-			return true
-		}
-		for i := 0; i < len(dr); i++ {
-			nextRow, nextColumn := row+dr[i], column+dc[i]
-			if nextRow >= 0 && nextRow < n && nextColumn >= 0 && nextColumn < n &&
-				!visited[nextRow][nextColumn] && grid[nextRow][nextColumn] <= t {
-				stack.PushBack([]int{nextRow, nextColumn})
-				visited[nextRow][nextColumn] = true
-			}
-		}
-	}
-	return false
-}
-
-// 二分法也可用标准库，减少代码量
-func swimInWater2(grid [][]int) int {
-	return sort.Search(highest(grid)+1, func(i int) bool { // 这里其实有点浪费，在[0,highest]的区间里搜所的
-		if i < grid[0][0] {
-			return false
-		}
-		return possible(i, grid)
-	})
 }
