@@ -116,7 +116,7 @@ Go solution for LeetCode problems
 ### dp
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
-* [longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
+* [[300] longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
 * [number-of-longest-increasing-subsequence](solutions/number-of-longest-increasing-subsequence/d.go)
 * [best-time-to-buy-and-sell-stock](solutions/best-time-to-buy-and-sell-stock)
 * [campus-bikes-ii](solutions/campus-bikes-ii/d.go)

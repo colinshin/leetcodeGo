@@ -34,7 +34,7 @@ func lengthOfLIS(nums []int) int {
 	if len(nums) == 0 {
 		return 0
 	}
-	dp := make([]int, len(nums))
+	dp := make([]int, len(nums)) // dp[i]代表nums[0:i]的最长子序列长度
 	maxLen := 0
 	for i := 0; i < len(nums); i++ {
 		dp[i] = 1 // 一个元素算递增长度为1
