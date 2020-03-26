@@ -2,7 +2,7 @@
  * Copyright (c) zrcoder 2019-2020. All rights reserved.
  */
 
-package remove_duplicate_chars
+package remove_duplicate_letters
 
 import "testing"
 

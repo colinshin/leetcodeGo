@@ -77,10 +77,11 @@ Go solution for LeetCode problems
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
-* [remove-duplicate-chars](solutions/remove-duplicate-chars/d.go)
+* [remove-duplicate-chars](solutions/remove-duplicate-letters/d.go)
 * [sliding-window-maximum](solutions/sliding-window-maximum/d.go)
 * [[1263] push-box](solutions/push-box/d.go)
 * [[329] longest-increasing-path-in-a-matrix](solutions/longest-increasing-path-in-a-matrix/d.go)
+* [[316] remove-duplicate-letters](solutions/remove-duplicate-letters/d.go)
 ### linked list
 * [add two numbers](solutions/add_two_numbers/readme.md)
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)
@@ -125,6 +126,7 @@ Go solution for LeetCode problems
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
 * [[656] coin-path](solutions/coin-path/d.go)
 * [[45][55] jump-game](solutions/jump-game/readme.md)
+* [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
 ### backtracking
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
 ### bit
