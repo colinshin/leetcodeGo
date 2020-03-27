@@ -28,52 +28,119 @@ type ListNode struct {
 }
 
 /*
- 归并排序：自顶向下，使用递归
+归并排序：自顶向下，使用递归
+时间复杂度O(nlogn), 空间复杂度O(logn)，为栈空间 —— 空间复杂度不满足题意
 */
-func sortList(head *ListNode) *ListNode {
+func sortList1(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
 	}
 	right := divide(head)
-	return merge(sortList(head), sortList(right))
+	return mergeSortedLists(sortList(head), sortList(right))
 }
+
 func divide(head *ListNode) *ListNode {
-	fast := head.Next // 最终返回的是中间节点的下一个节点；写成 fast := head.Next.Next也行，最终返回的是中间节点
+	/*
+		快慢指针，最终慢指针到达中点
+		我们希望最终切断中点前一个节点和中点，用prev来记录慢指针的前一个节点
+
+		还有个不需要prev指针的做法，需要一开始将fast指向head.Next；
+		首先divide的调用保证了head != nil && head.Next != nil, 可以放心这么写
+		其次这么做以后，最终slow指向的是中点的前一个节点
+	*/
+	fast, slow, prev := head, head, head
 	for fast != nil && fast.Next != nil {
+		prev = slow
 		fast = fast.Next.Next
-		head = head.Next
+		slow = slow.Next
 	}
-	fast = head.Next
-	head.Next = nil
-	return fast
+	prev.Next = nil // 切断
+	return slow
 }
-func merge(first, second *ListNode) *ListNode {
-	dummyHead := new(ListNode)
-	p := dummyHead
-	for first != nil && second != nil {
-		if first.Val <= second.Val {
+func mergeSortedLists(first, second *ListNode) *ListNode {
+	dummy := new(ListNode)
+	for p := dummy; first != nil || second != nil; p = p.Next {
+		if first != nil && second != nil && first.Val <= second.Val || second == nil {
 			p.Next = first
 			first = first.Next
 		} else {
 			p.Next = second
 			second = second.Next
 		}
-		p = p.Next
 	}
-	if first != nil {
-		p.Next = first
-	} else if second != nil {
-		p.Next = second
-	}
-	p = dummyHead.Next
-	dummyHead.Next, dummyHead = nil, nil
+	p := dummy.Next
+	dummy.Next = nil
 	return p
+}
+
+/*
+自底向上归并排序
+时间复杂度O(nlogn)， 空间复杂度O(1)
+*/
+func sortList(head *ListNode) *ListNode {
+	dummy := new(ListNode)
+	dummy.Next = head
+	length := getLen(head)
+	for step := 1; step < length; step *= 2 {
+		p, head := dummy, dummy.Next
+		for head != nil {
+			first := head
+			second := cut(first, step)
+			head = cut(second, step)
+			p.Next, p = merge(first, second)
+		}
+	}
+	head = dummy.Next
+	dummy.Next = nil
+	return head
+}
+
+func getLen(head *ListNode) int {
+	length := 0
+	for head != nil {
+		head = head.Next
+		length++
+	}
+	return length
+}
+
+func cut(head *ListNode, n int) *ListNode {
+	for n > 1 && head != nil {
+		head = head.Next
+		n--
+	}
+	if n == 1 && head != nil {
+		p := head.Next
+		head.Next = nil
+		return p
+	}
+	return nil
+}
+
+func merge(first *ListNode, second *ListNode) (*ListNode, *ListNode) {
+	dummy := new(ListNode)
+	p := dummy
+	for ; first != nil || second != nil; p = p.Next {
+		if (first != nil && second != nil && first.Val < second.Val) || second == nil {
+			p.Next = first
+			first = first.Next
+		} else {
+			p.Next = second
+			second = second.Next
+		}
+	}
+	first = dummy.Next
+	dummy.Next = nil
+	return first, p
 }
 
 /*
 快排，自顶向下，使用递归
 选择一个标准值，将比它大的放在一个链表中，比它小的放在一个链表中，和它一样大的，放在另一个链表中。
 然后针对小的和大的链表，继续排序。最终将三个链表按照小、相等、大进行连接。
+
+最坏时间复杂度O(n^2), 平均时间复杂度O(nlogn), ——但因常数因子以及最坏情况出现的概率较小，实际比归并排序快
+空间复杂度O(1)
 */
 func sortList2(head *ListNode) *ListNode {
 	return quickSort(head)
@@ -107,12 +174,13 @@ func quickSort(head *ListNode) *ListNode {
 	low.Next = midDummy.Next
 	mid.Next = highDummy.Next
 	low = lowDummy.Next
-	lowDummy, midDummy, highDummy = nil, nil, nil
+	lowDummy.Next, midDummy.Next, highDummy.Next = nil, nil, nil
 	return low
 }
 
 /*
-可以用一个数组，装入链表所有节点，然后用标准库对数组排序即可
+如果不限定空间复杂度为常数级，可以这么玩：
+用一个数组，装入链表所有节点，然后用标准库对数组排序即可
 时间复杂度是O(nlogn), 空间复杂度O(n)
 */
 func sortList9(head *ListNode) *ListNode {

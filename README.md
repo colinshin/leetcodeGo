@@ -89,6 +89,7 @@ Go solution for LeetCode problems
 * [sort-list](solutions/sort-list/d.go)
 * [middle-of-the-linked-list](solutions/middle-of-the-linked-list/d.go)
 * [[817]linked-list-components](solutions/linked-list-components/d.go)
+* [[1019] next-greater-node-in-linked-list](solutions/next-greater-node-in-linked-list/d.go)
 ### tree
 * [[530] min-absolute-in-bst](solutions/min-absolute-in-bst/d.go)
 * [[104/543] maximum-depth-of-binary-tree](solutions/maximum-depth-of-binary-tree/d.go)
@@ -114,6 +115,7 @@ Go solution for LeetCode problems
 * [connecting-cities-with-minimum-cost](solutions/connecting-cities-with-minimum-cost/readme.md)
 * [optimize-water-distribution-in-a-village](solutions/optimize-water-distribution-in-a-village/readme.md)
 * [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
+* [[113] clone-graph](solutions/clone-graph/d.go)
 ### dp
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
