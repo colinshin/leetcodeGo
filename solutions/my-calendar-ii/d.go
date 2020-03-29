@@ -4,10 +4,7 @@
 
 package my_calendar_ii
 
-import (
-	"math"
-	"sort"
-)
+import "math"
 
 /*
 731. 我的日程安排表 II
@@ -45,24 +42,18 @@ MyCalendar.book(25, 55); // returns true
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 /*
-朴素实现
-内部维护两个集合，分别表示已经添加的所有日程和已有日程重复的时间段组成的列表
+解法一、朴素实现
+内部维护两个集合，分别表示已经添加的所有日程和已有日程重叠时间段组成的列表
 集合可以用list或slice —— 如果后续需求增加，要支持日程删除，那用map还是挺合适的~
 
 时间复杂度O(n^2)， 空间复杂度O(n)
-一个可能的优化是保持两个集合有序，
-这样可以用二分法找到新日程应该插入的位置，并与其附近元素比较是否重叠
-用切片可以满足二分查询，但是要插入新值的时候，需要把后续的元素一一向后移动
-用每个日程区间的start作为排序和二分查找的依据
-综合复杂度O(n^2)， 空间复杂度不变，依然为O(n)
 */
 type interval struct {
 	start, end int
 }
 
 type MyCalendarTwo struct {
-	// 分别表示已经添加的所有日程和已有日程重复的时间段组成的列表
-	calendar, overlap []interval
+	calendar, overlap []interval // 分别表示已经添加的所有日程和已有日程重复的时间段组成的列表
 }
 
 func Constructor() MyCalendarTwo {
@@ -70,40 +61,19 @@ func Constructor() MyCalendarTwo {
 }
 
 func (mc *MyCalendarTwo) Book(start int, end int) bool {
-	if len(mc.overlap) > 0 {
-		// 二分搜索出新日程在overlap里的位置,不存在的话找需要插入的位置
-		pos := sort.Search(len(mc.overlap), func(i int) bool {
-			return mc.overlap[i].start >= start
-		})
-		// 查看搜索出的位置附件有没有和当前日程重叠的部分
-		if pos < len(mc.overlap) && mc.overlap[pos].start < end {
-			return false
-		}
-		if pos-1 >= 0 && mc.overlap[pos-1].end > start {
+	for _, val := range mc.overlap {
+		if start < val.end && end > val.start {
 			return false
 		}
 	}
-	pos := sort.Search(len(mc.calendar), func(i int) bool {
-		return mc.calendar[i].start >= start
-	})
-	if len(mc.calendar) > 0 {
-		if pos < len(mc.calendar) && mc.calendar[pos].start < end {
-			it := interval{start: max(start, mc.calendar[pos].start), end: min(end, mc.calendar[pos].end)}
-			i := sort.Search(len(mc.overlap), func(i int) bool {
-				return mc.overlap[i].start >= it.start
-			})
-			insert(&mc.overlap, it, i)
-		}
-		if pos-1 >= 0 && mc.calendar[pos-1].end > start {
-			it := interval{start: max(start, mc.calendar[pos-1].start), end: min(end, mc.calendar[pos-1].end)}
-			i := sort.Search(len(mc.overlap), func(i int) bool {
-				return mc.overlap[i].start >= it.start
-			})
-			insert(&mc.overlap, it, i)
+	for _, val := range mc.calendar {
+		if start < val.end && end > val.start {
+			it := interval{start: max(start, val.start), end: min(end, val.end)}
+			mc.overlap = append(mc.overlap, it)
 		}
 	}
 	it := interval{start: start, end: end}
-	insert(&mc.calendar, it, pos)
+	mc.calendar = append(mc.calendar, it)
 	return true
 }
 
@@ -113,15 +83,4 @@ func max(a, b int) int {
 
 func min(a, b int) int {
 	return int(math.Min(float64(a), float64(b)))
-}
-
-// 在s中将val插入索引i处，插入前i及其后边元素一一后移
-func insert(s *[]interval, val interval, i int) {
-	if i == len(*s) {
-		*s = append(*s, val)
-		return
-	}
-	*s = append(*s, interval{})
-	_ = copy((*s)[i+1:len(*s)], (*s)[i:len(*s)-1])
-	(*s)[i] = val
 }
