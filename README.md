@@ -15,7 +15,7 @@ Go solution for LeetCode problems
 * [[1207] unique-number-of-occurrences](solutions/unique-number-of-occurrences/d.go)
 * [[1030/54/498] matrix-traversal](solutions/matrix-traversal/readme.md)
 * [[932]beautiful-array](solutions/beautiful-array/d.go)
-* [children-weight-order](solutions/children-weight-order/d.go)
+* [[406] queue-reconstruction-by-height](solutions/queue-reconstruction-by-height/d.go)
 * [[1057] campus-bikes](solutions/campus-bikes/d.go)
 * [[1033] moving-stones-until-consecutive](solutions/moving-stones-until-consecutive/d.go)
 * [[219] contains-duplicate-ii](solutions/contains-duplicate-ii/d.go)
@@ -72,7 +72,7 @@ Go solution for LeetCode problems
 * [largest-number-at-least-twice-of-others](solutions/largest-number-at-least-twice-of-others/d.go)
 * [plus-one](solutions/plus-one/d.go)
 * [pascals-triangle](solutions/pascals-triangle/d.go)
-* [add-binary](solutions/add-binary/d.go)
+* [[67/415] add-strings](solutions/add-binary/d.go)
 * [[5] longest palindromic substring](solutions/longest_palindromic_substring/readme.md)
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
@@ -134,7 +134,7 @@ Go solution for LeetCode problems
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 ### design
-* [min-stack](solutions/min-stack/d.go)
+* [[155] min-stack](solutions/min-stack/d.go)
 * [design-compressed-string-iterator](solutions/design-compressed-string-iterator/d.go)
 * [max-queue](solutions/max-queue/d.go)
 * [design-twitter](solutions/design-twitter/)
@@ -144,7 +144,7 @@ Go solution for LeetCode problems
 * [exam-room](solutions/exam-room/readme.md)
 * [range-sum-query-2d-matrix](solutions/range-sum-query-2d-matrix/readme.md)
 * [[432] all-oone-data-structure](solutions/all-oone-data-structure/d.go)
-* [[731] my-calendar-ii](solutions/my-calendar-ii/d.go)
+* [[729 731 732] my-calendar](solutions/my-calendar/readme.md)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)

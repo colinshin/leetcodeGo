@@ -2,7 +2,7 @@
  * Copyright (c) zrcoder 2019-2020. All rights reserved.
  */
 
-package children_weight_order
+package queue_reconstruction_by_height
 
 import (
 	"reflect"

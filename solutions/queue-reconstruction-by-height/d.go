@@ -2,7 +2,7 @@
  * Copyright (c) zrcoder 2019-2020. All rights reserved.
  */
 
-package children_weight_order
+package queue_reconstruction_by_height
 
 import (
 	"sort"
@@ -26,6 +26,12 @@ import (
 */
 /*
 想起中小学时代排队跑操~
+
+题意有点不好理解，这样想一下：
+本来所有人站成一队（不一定有序），这时候统计下每个人前边有几个身高大于等于自己的人
+突然，打乱了这些人的顺序~~~
+问题是恢复这些人的顺序
+
 很自然的思路：
 先按照k升序排序（或者按照身高降序排序），再微调， 原地排序
 时间复杂度O(n^2),空间复杂度O(1)

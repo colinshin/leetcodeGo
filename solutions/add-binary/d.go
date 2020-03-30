@@ -28,6 +28,7 @@ import "math/big"
 /*
 方法一：
 各个进制的通用解法，只需修改base常量，这个问题中base为2
+如： 415. 字符串相加 https://leetcode-cn.com/problems/add-strings/
 时空复杂度都是O(max(m, n))， 其中m，n为两个字符串的长度
 */
 func addBinary(a string, b string) string {
