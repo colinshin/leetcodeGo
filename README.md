@@ -8,6 +8,8 @@ Go solution for LeetCode problems
 ## solutions
 ### map, array, sort
 * [[1] two sum](solutions/two_sum/readme.md)
+* [[7] reverse-integer](solutions/reverse-integer/d.go)
+* [[215] kth-largest-element-in-an-array](solutions/kth-largest-element-in-an-array/d.go)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
 * [[1181] before-and-after-puzzle](solutions/before-and-after-puzzle/d.go)
 * [[1228] missing-number-in-arithmetic](solutions/missing-number-in-arithmetic/d.go)
@@ -23,7 +25,6 @@ Go solution for LeetCode problems
 * [[941] valid-mountain-array](solutions/valid-mountain-array/d.go)
 * [[1056] confusing-number](solutions/confusing-number/d.go)
 * [[408] valid-word-abbreviation](solutions/valid-word-abbreviation/d.go)
-* [[7] reverse-integer](solutions/reverse-integer/d.go)
 * [[681] next-closest-time](solutions/next-closest-time/d.go)
 * [[1060] missing-element-in-sorted-array](solutions/missing-element-in-sorted-array/d.go)
 * [[491] increasing-subsequences](solutions/increasing-subsequences/d.go)
@@ -74,6 +75,9 @@ Go solution for LeetCode problems
 * [pascals-triangle](solutions/pascals-triangle/d.go)
 * [[67/415] add-strings](solutions/add-binary/d.go)
 * [[5] longest palindromic substring](solutions/longest_palindromic_substring/readme.md)
+* [[179] largest-number](solutions/largest-number/d.go)
+* [[1021] remove-outermost-parentheses](solutions/remove-outermost-parentheses/d.go)
+* [[1271] hexspeak](solutions/hexspeak/d.go)
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
