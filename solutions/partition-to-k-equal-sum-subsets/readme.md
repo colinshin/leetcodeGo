@@ -1,5 +1,7 @@
-## [698. 划分为k个相等的子集](https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets)
+许多问题，缩小视野、限于特例就会变得困难，如果跳出来发现一般形式，问题反而更明朗，更容易解决。<br>
+以下三个leetcode问题，本质是一个，让我们从最普遍的问题开始逆序遍历这几个问题：<br>
 `题目来源：力扣（LeetCode）;著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。`
+## [698. 划分为k个相等的子集](https://leetcode-cn.com/problems/partition-to-k-equal-sum-subsets)
 ```text
 给定一个整数数组  nums 和一个正整数 k，找出是否有可能把这个数组分成 k 个非空子集，其总和都相等。
 
@@ -15,8 +17,30 @@
 1 <= k <= len(nums) <= 16
 0 < nums[i] < 10000
 ```
-穷举搜索：<br>
-对于 nums 中的每个数字，可以将其添加到 k 个子集中的一个，只要该子集的和不会超过目标值。
+穷举搜索，适时回溯：
+```text
+对于 nums 中的每个数字，可以将其添加到 k 个子集中的一个，只要该子集的和不会超过目标值;
+在不满足预期的时候做好回溯。
+```
+程序框架：
+```go
+func canPartitionKSubsets(nums []int, k int) bool {
+	sum, max := 0, 0 // 注意到输入限制为非负，且和不会溢出
+	for _, v := range nums {
+		sum += v
+		if v > max {
+			max = v
+		}
+	}
+	target := sum / k // 尝试把所有元素放到k个组中，每组元素和为target
+	if sum%k != 0 || max > target {
+		return false
+	}
+	used := make([]bool, len(nums))
+	return backTracking(k, 0, 0, target, nums, used)
+}
+```
+核心的穷举回溯函数backTracking()
 ```go
 /*
 尝试把所有元素放到k个组中，每组元素和为target
@@ -42,7 +66,6 @@ func backTracking(k, currSubSum, start, target int, nums []int, used []bool) boo
 	return false
 }
 ```
-[solution](partitionk.go)
 
 ## [473. 火柴拼正方形](https://leetcode-cn.com/problems/matchsticks-to-square)
 ```text
@@ -91,4 +114,5 @@ func backTracking(k, currSubSum, start, target int, nums []int, used []bool) boo
 
 解释: 数组不能分割成两个元素和相等的子集.
 ```
-即问题698中k为2的特例，另有一个01背包的解法 [solution](partition2.go)
+即问题698中k为2的特例，但直接套框架会有部分用例超时，可以预先将数组从大到小排序来优化。<br>
+另有一个01背包的解法 [solution](partition2.go)

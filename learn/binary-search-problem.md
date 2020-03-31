@@ -1,4 +1,5 @@
 # 二分查找问题
+**二分搜索，思想很简单，细节是魔鬼。让我们搞定这个魔鬼**<br>
 参考  [leetcode二分查找专题](https://leetcode-cn.com/explore/learn/card/binary-search)
 ## 问题
 对于已排序的数组nums，查找到给定元素target，返回其索引，如果不存在返回-1
