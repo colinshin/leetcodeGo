@@ -155,6 +155,7 @@ Go solution for LeetCode problems
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
+* [number-of-burgers-with-no-waste-of-ingredients](solutions/number-of-burgers-with-no-waste-of-ingredients/d.go)
 ### others
 * [count-primes](solutions/count-primes/d.go)
 * [roman-to-integer](solutions/roman-to-integer/d.go)
