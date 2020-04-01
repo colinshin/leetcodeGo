@@ -31,6 +31,7 @@ Go solution for LeetCode problems
 * [[347] top-k-frequent-elements](solutions/top-k-frequent-elements/d.go)
 * [[74/240] search-a-2d-matrix](solutions/search-a-2d-matrix/readme.md)
 * [[778] swim-in-rising-water](solutions/swim-in-rising-water/readme.md)
+* [[1061] lexicographically-smallest-equivalent-string](solutions/lexicographically-smallest-equivalent-string/readme.md)
 ### random
 * [[470] implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
 * [[528] random-pick-with-weight](solutions/random-pick-with-weight/d.go)
@@ -85,7 +86,9 @@ Go solution for LeetCode problems
 * [sliding-window-maximum](solutions/sliding-window-maximum/d.go)
 * [[1263] push-box](solutions/push-box/d.go)
 * [[329] longest-increasing-path-in-a-matrix](solutions/longest-increasing-path-in-a-matrix/d.go)
-* [[778] swim-in-rising-water](solutions/swim-in-rising-water/d.go)
+* [[752] open-the-lock](solutions/open-the-lock/readme.md)
+* [[778] swim-in-rising-water](solutions/swim-in-rising-water/readme.md)
+
 ### linked list
 * [add two numbers](solutions/add_two_numbers/readme.md)
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)
@@ -165,7 +168,5 @@ Go solution for LeetCode problems
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
 [windliang](https://leetcode.wang/)<br>
-[aQuaYi/LeetCode-in-Go](https://github.com/aQuaYi/LeetCode-in-Go)<br>
 [halfrost/LeetCode-Go](https://github.com/halfrost/LeetCode-Go)<br>
-[kylesliu/awesome-golang-leetcode](https://github.com/kylesliu/awesome-golang-leetcode)<br>
 [luliyucoordinate/Leetcode](https://github.com/luliyucoordinate/Leetcode)
