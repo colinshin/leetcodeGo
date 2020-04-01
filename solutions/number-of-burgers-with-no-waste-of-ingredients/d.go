@@ -4,6 +4,8 @@
 
 package number_of_burgers_with_no_waste_of_ingredients
 
+import "sort"
+
 /*
 1276. 不浪费原料的汉堡制作方案 https://leetcode-cn.com/problems/number-of-burgers-with-no-waste-of-ingredients/
 
@@ -44,6 +46,67 @@ package number_of_burgers_with_no_waste_of_ingredients
 0 <= tomatoSlices <= 10^7
 0 <= cheeseSlices <= 10^7
 */
-func numOfBurgers(tomatoSlices int, cheeseSlices int) []int {
 
+/*
+这是要解一个二元一次方程啊~~~
+为叙述方便，t = tomatoSlices， c = cheeseSlices
+设最终巨无霸x个，小皇堡y个，根据题意列出方程组：
+4x + 2y = t
+x + y = c
+解得
+x = t/2 -c
+y = 2c - t/2
+需要t为偶数，且最终的x、y非负就行了
+时空复杂度都是常数级
+*/
+func numOfBurgers(tomatoSlices int, cheeseSlices int) []int {
+	if tomatoSlices%2 != 0 {
+		return nil
+	}
+	x := tomatoSlices/2 - cheeseSlices
+	y := 2*cheeseSlices - tomatoSlices/2
+	if x < 0 || y < 0 {
+		return nil
+	}
+	return []int{x, y}
+}
+
+/*
+翻了翻leetcode题解，另有二分的解法
+根据方程组：
+x + y = c
+4x + 2y = t
+可知x的可能范围是[0, t/4]
+这个问题使用二分法经典模板比较合适
+*/
+func numOfBurgers1(tomatoSlices int, cheeseSlices int) []int {
+	lo, hi := 0, tomatoSlices/4
+	for lo <= hi {
+		x := lo + (hi-lo)/2
+		y := cheeseSlices - x
+		if 4*x+2*y == tomatoSlices {
+			return []int{x, y}
+		}
+		if 4*x+2*y < tomatoSlices {
+			lo = x + 1
+		} else {
+			hi = x - 1
+		}
+	}
+	return nil
+}
+
+/*
+使用标准库，减少点代码量，标准库的实现其实是模板二
+*/
+func numOfBurgers2(tomatoSlices int, cheeseSlices int) []int {
+	x := sort.Search(tomatoSlices/4+1, func(x int) bool {
+		y := cheeseSlices - x
+		return 4*x+2*y >= tomatoSlices
+	})
+	y := cheeseSlices - x
+	if 4*x+2*y == tomatoSlices {
+		return []int{x, y}
+	}
+	return nil
 }

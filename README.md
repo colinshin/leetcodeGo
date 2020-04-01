@@ -130,7 +130,7 @@ Go solution for LeetCode problems
 * [number-of-longest-increasing-subsequence](solutions/number-of-longest-increasing-subsequence/d.go)
 * [best-time-to-buy-and-sell-stock](solutions/best-time-to-buy-and-sell-stock)
 * [campus-bikes-ii](solutions/campus-bikes-ii/d.go)
-* [cherry-pickup](solutions/cherry-pickup/d.go)
+* [[741] cherry-pickup](solutions/cherry-pickup/d.go)
 * [dungeon-game](solutions/dungeon-game/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
 * [[656] coin-path](solutions/coin-path/d.go)
