@@ -9,6 +9,7 @@ Go solution for LeetCode problems
 ### map, array, sort
 * [[1] two sum](solutions/two_sum/readme.md)
 * [[7] reverse-integer](solutions/reverse-integer/d.go)
+* [[46/47] permutations](solutions/permutations/readme.md)
 * [[215] kth-largest-element-in-an-array](solutions/kth-largest-element-in-an-array/d.go)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
 * [[1181] before-and-after-puzzle](solutions/before-and-after-puzzle/d.go)

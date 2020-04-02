@@ -57,9 +57,8 @@ func reconstructQueue(people [][]int) [][]int {
 			}
 		}
 		if countK > p[1] {
-			tmp := []int{p[0], p[1]}
 			_ = copy(people[j+1:i+1], people[j:i])
-			people[j] = tmp
+			people[j] = []int{p[0], p[1]}
 		}
 	}
 	return people
@@ -85,10 +84,8 @@ func reconstructQueue1(people [][]int) [][]int {
 		if k >= len(result) {
 			result = append(result, p)
 		} else {
-			// 在索引k处插入
-			result = append(result, []int{})
-			_ = copy(result[k+1:], result[k:])
-			result[k] = p
+			// 在索引k处插入p
+			result = append(append(result[:k:k], p), result[k:]...)
 		}
 	}
 	return result

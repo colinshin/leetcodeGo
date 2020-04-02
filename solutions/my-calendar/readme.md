@@ -98,19 +98,9 @@ func (mc *MyCalendar) Book(start int, end int) bool {
 		pos-1 >= 0 && mc.calendar[pos-1].end > start {
 		return false
 	}
-	insert(&mc.calendar, Interval{start:start, end:end}, pos)
+    it := Interval{start:start, end:end}
+    mc.calendar = append(append(mc.calendar[:pos:pos], it), mc.calendar[pos:]...)
 	return true
-}
-
-// 在s中将val插入索引i处，插入前i及其后边元素一一后移
-func insert(s *[]Interval, val Interval, i int) {
-	if i == len(*s) {
-		*s = append(*s, val)
-		return
-	}
-	*s = append(*s, Interval{})
-	_ = copy((*s)[i+1:len(*s)], (*s)[i:len(*s)-1])
-	(*s)[i] = val
 }
 ```
 ```text
@@ -285,14 +275,16 @@ func (mc *MyCalendarTwo) Book(start int, end int) bool {
 			pos := sort.Search(len(mc.overlap), func(i int) bool {
 				return mc.overlap[i].start >= it.start
 			})
-			insert(&mc.overlap, it, pos)
+			// 在pos处插入it
+			mc.overlap = append(append(mc.overlap[:pos:pos], it), mc.overlap[pos:]...)
 		}
 	}
 	pos := sort.Search(len(mc.calendar), func(i int) bool {
 		return mc.calendar[i].start >= start
 	})
 	it := interval{start: start, end: end}
-	insert(&mc.calendar, it, pos)
+	// 在pos处插入it
+	mc.calendar = append(append(mc.calendar[:pos:pos], it), mc.calendar[pos:]...)
 	return true
 }
 
@@ -302,17 +294,6 @@ func max(a, b int) int {
 
 func min(a, b int) int {
 	return int(math.Min(float64(a), float64(b)))
-}
-
-// 在s中将val插入索引i处，插入前i及其后边元素一一后移
-func insert(s *[]interval, val interval, i int, ) {
-	if i == len(*s) {
-		*s = append(*s, val)
-		return
-	}
-	*s = append(*s, interval{})
-	_ = copy((*s)[i+1:len(*s)], (*s)[i:len(*s)-1])
-	(*s)[i] = val
 }
 ```
 ### [732. 我的日程安排表 III](https://leetcode-cn.com/problems/my-calendar-ii)

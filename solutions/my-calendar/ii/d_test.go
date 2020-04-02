@@ -32,21 +32,3 @@ func TestMyCalendarTwo_Book(t *testing.T) {
 		}
 	}
 }
-
-func Test_insert(t *testing.T) {
-	tests := []struct {
-		s   *[]interval
-		val interval
-		i   int
-	}{
-		{
-			s:   &[]interval{{start: 27, end: 40}},
-			val: interval{start: 5, end: 19},
-			i:   0,
-		},
-	}
-	for _, tt := range tests {
-		insert(tt.s, tt.val, tt.i)
-		t.Log(tt.s)
-	}
-}
