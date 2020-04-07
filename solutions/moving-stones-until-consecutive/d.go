@@ -7,6 +7,7 @@ package moving_stones_until_consecutive
 import "sort"
 
 /*
+1033. 移动石子直到连续 https://leetcode-cn.com/problems/moving-stones-until-consecutive
 三枚石子放置在数轴上，位置分别为 a，b，c。
 
 每一回合，我们假设这三枚石子当前分别位于位置 x, y, z 且 x < y < z。
@@ -31,12 +32,7 @@ import "sort"
 1 <= b <= 100
 1 <= c <= 100
 a != b, b != c, c != a
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/moving-stones-until-consecutive
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
 func numMovesStones(a int, b int, c int) []int {
 	sorted := []int{a, b, c}
 	sort.Ints(sorted)

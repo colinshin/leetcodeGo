@@ -7,10 +7,9 @@ package unique_number_of_occurrences
 import "sort"
 
 /*
+1207. 独一无二的出现次数 https://leetcode-cn.com/problems/unique-number-of-occurrences
 给你一个整数数组 arr，请你帮忙统计数组中每个数的出现次数。
-
 如果每个数的出现次数都是独一无二的，就返回 true；否则返回 false。
-
 示例 1：
 输入：arr = [1,2,2,1,1,3]
 输出：true
@@ -23,10 +22,6 @@ import "sort"
 示例 3：
 输入：arr = [-3,0,1,-3,1,1,1,-3,10,0]
 输出：true
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/unique-number-of-occurrences
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 /*
 借助一个map统计元素个数
@@ -48,7 +43,8 @@ func uniqueOccurrences(arr []int) bool {
 	return true
 }
 
-/* 先排序，再用二分法计算每个元素的数量（对于一个特定元素，遍历时左边界确定，右边界用二分法计算，最后计算长度）
+/*
+先排序，再用二分法计算每个元素的数量（对于一个特定元素，遍历时左边界确定，右边界用二分法计算，最后计算长度）
 另用一个set，不断存入计算出来的元素个数，当发现有重复的时候返回false，遍历完毕还没有重复即true
 时间复杂度O(nlgn)，空间复杂度O(n)，但是要比前一个方法少申请一个map
 */
