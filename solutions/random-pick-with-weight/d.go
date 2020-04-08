@@ -10,6 +10,7 @@ import (
 )
 
 /*
+528. 按权重随机选择 https://leetcode-cn.com/problems/random-pick-with-weight
 给定一个正整数数组 w ，其中 w[i] 代表位置 i 的权重，
 请写一个函数 pickIndex ，它可以随机地获取位置 i，选取位置 i 的概率与 w[i] 成正比。
 
@@ -33,10 +34,6 @@ pickIndex 将被调用不超过 10000 次
 输入语法说明：
 输入是两个列表：调用成员函数名和调用的参数。Solution 的构造函数有一个参数，即数组 w。
 pickIndex 没有参数。输入参数是一个列表，即使参数为空，也会输入一个 [] 空列表。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/random-pick-with-weight
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 /*

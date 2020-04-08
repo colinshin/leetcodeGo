@@ -7,12 +7,13 @@ package min_absolute_in_bst
 import "math"
 
 /*
-Given a binary search tree with non-negative values,
-find the minimum absolute difference between values of any two nodes.
+530. 二叉搜索树的最小绝对差 https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst
 
-Examroot.Lefte:
+给你一棵所有节点为非负值的二叉搜索树，请你计算树中任意两节点的差的绝对值的最小值。
 
-Input:
+示例：
+
+输入：
 
    1
     \
@@ -20,15 +21,17 @@ Input:
     /
    2
 
-Output:
+输出：
 1
 
-Exroot.Leftanation:
-The minimum absolute difference is 1, which is the difference between 2 and 1 (or between 2 and 3).
+解释：
+最小绝对差为 1，其中 2 和 1 的差的绝对值为 1（或者 2 和 3）。
 
-Note: There are at least two nodes in this BST.
 
-https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+提示：
+
+树中至少有 2 个节点。
+本题与 783 https://leetcode-cn.com/problems/minimum-distance-between-bst-nodes/ 相同
 */
 
 type TreeNode struct {
@@ -47,17 +50,17 @@ BST中序遍历即得到一个排序好的列表；问题划归为求一个已�
 */
 func getMinimumDifference(root *TreeNode) int {
 	result := math.MaxInt32
-	lastVal := -1
-	var inorder func(t *TreeNode)
+	var prev *TreeNode
+	var inorder func(*TreeNode)
 	inorder = func(t *TreeNode) {
 		if t == nil {
 			return
 		}
 		inorder(t.Left)
-		if lastVal != -1 && t.Val-lastVal < result {
-			result = t.Val - lastVal
+		if prev != nil && t.Val-prev.Val < result {
+			result = t.Val - prev.Val
 		}
-		lastVal = t.Val
+		prev = t
 		inorder(t.Right)
 	}
 	inorder(root)

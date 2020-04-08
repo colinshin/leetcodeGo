@@ -1,10 +1,10 @@
 # leetcodeGo
-Go solution for LeetCode problems
+LeetCode 问题 Go 语言之旅
 ## learn
-[binary-search-problem](learn/binary-search-problem.md)<br>
-[union-find](learn/union-find.md)<br>
-[sort](learn/sort.md)<br>
-[tree-traversal](learn/tree-traversal.md)
+[二分法](learn/binary-search-problem.md)<br>
+[并查集](learn/union-find.md)<br>
+[排序](learn/sort.md)<br>
+[遍历树](learn/tree-traversal.md)
 ## solutions
 ### map, array, sort
 * [[1] 两数之和](solutions/two_sum/readme.md)
@@ -21,41 +21,41 @@ Go solution for LeetCode problems
 * [[1057] 校园自行车分配](solutions/campus-bikes/d.go)
 * [[1033] 移石子的步数](solutions/moving-stones-until-consecutive/d.go)
 * [[219/220] 存在重复元素](solutions/contains-duplicate/d.go)
-* [[168] excel-sheet-column-title](solutions/excel-sheet-column-title/d.go)
-* [[941] valid-mountain-array](solutions/valid-mountain-array/d.go)
-* [[1056] confusing-number](solutions/confusing-number/d.go)
-* [[408] valid-word-abbreviation](solutions/valid-word-abbreviation/d.go)
-* [[681] next-closest-time](solutions/next-closest-time/d.go)
-* [[1060] missing-element-in-sorted-array](solutions/missing-element-in-sorted-array/d.go)
-* [[491] increasing-subsequences](solutions/increasing-subsequences/d.go)
-* [[347] top-k-frequent-elements](solutions/top-k-frequent-elements/d.go)
-* [[74/240] search-a-2d-matrix](solutions/search-a-2d-matrix/readme.md)
-* [[778] swim-in-rising-water](solutions/swim-in-rising-water/readme.md)
-* [[1061] lexicographically-smallest-equivalent-string](solutions/lexicographically-smallest-equivalent-string/readme.md)
+* [[168] Excel列名称](solutions/excel-sheet-column-title/d.go)
+* [[941] 有效的山脉数组](solutions/valid-mountain-array/d.go)
+* [[1056] 易混淆数](solutions/confusing-number/d.go)
+* [[408] 有效单词缩写](solutions/valid-word-abbreviation/d.go)
+* [[681] 最近时刻](solutions/next-closest-time/d.go)
+* [[1060] 有序数组中的缺失元素](solutions/missing-element-in-sorted-array/d.go)
+* [[491] 递增子序列](solutions/increasing-subsequences/d.go)
+* [[347] 前 K 个高频元素](solutions/top-k-frequent-elements/d.go)
+* [[74/240] 搜索有序二维矩阵](solutions/search-a-2d-matrix/readme.md)
+* [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
+* [[1061] 按字典序排列最小的等效字符串](solutions/lexicographically-smallest-equivalent-string/readme.md)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
 ### random
-* [[470] implement-rand10-using-rand7](solutions/implement-rand10-using-rand7/d.go)
-* [[528] random-pick-with-weight](solutions/random-pick-with-weight/d.go)
-* [[384]shuffle-an-array](solutions/shuffle-an-array/d.go)
+* [[470] 用Rand7实现Rand10](solutions/implement-rand10-using-rand7/d.go)
+* [[528] 按权重随机选择](solutions/random-pick-with-weight/d.go)
+* [[384] 打乱数组](solutions/shuffle-an-array/d.go)
 ### binary search
 * [shortest-distance-to-target-color](solutions/shortest-distance-to-target-color/d.go)
 * [fixed-point](solutions/fixed-point/d.go)
 * [check-if-a-number-is-majority-element-in-a-sorted-array](solutions/check-if-a-number-is-majority-element-in-a-sorted-array/d.go)
 * [closest-binary-search-tree-value](solutions/closest-binary-search-tree-value/d.go)
 * [find-smallest-common-element-in-all-rows](solutions/find-smallest-common-element-in-all-rows/d.go)
-* [[875] koko-eating-bananas](solutions/koko-eating-bananas/d.go)
 * [search-in-rotated-sorted-array](solutions/search-in-rotated-sorted-array/d.go)
 * [find-peak-element](solutions/find-peak-element/d.go)
 * [find-minimum-in-rotated-sorted-array](solutions/find-minimum-in-rotated-sorted-array/d.go)
 * [find-first-and-last-position-of-element-in-sorted-array](solutions/find-first-and-last-position-of-element-in-sorted-array/d.go)
-* [[658] 找到 K 个最接近的元素](solutions/find-k-closest-elements/d.go)
 * [search-in-a-sorted-array-of-unknown-size](solutions/search-in-a-sorted-array-of-unknown-size/d.go)
 * [powx-n](solutions/powx-n/d.go)
 * [intersection-of-two-arrays](solutions/intersection-of-two-arrays/d.go)
 * [intersection-of-two-arrays-ii](solutions/intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](solutions/find-the-duplicate-number/d.go)
+* [[658] 找到 K 个最接近的元素](solutions/find-k-closest-elements/d.go)
 * [[719] 找出第 k 小的距离对](solutions/find-k-th-smallest-pair-distance/d.go)
-* [[4] median of two sorted arrays](solutions/median_of_two_sorted_arrays/readme.md)
+* [[875] 爱吃香蕉的珂珂](solutions/koko-eating-bananas/d.go)
+* [[4] 两个有序数组的中位数](solutions/median_of_two_sorted_arrays/readme.md)
 ### array and strings
 * [[88] 合并两个有序数组](solutions/merge-sorted-array/d.go)
 * [[1078] occurrences-after-bigram](solutions/occurrences-after-bigram/d.go)
@@ -101,7 +101,7 @@ Go solution for LeetCode problems
 * [[817] linked-list-components](solutions/linked-list-components/d.go)
 * [[1019] next-greater-node-in-linked-list](solutions/next-greater-node-in-linked-list/d.go)
 ### tree
-* [[530] min-absolute-in-bst](solutions/min-absolute-in-bst/d.go)
+* [[530] 二叉搜索树的最小绝对差](solutions/min-absolute-in-bst/d.go)
 * [[104/543] 二叉树的深度和直径](solutions/maximum-depth-of-binary-tree/d.go)
 * [[98] 验证二叉搜索树](solutions/validate-binary-search-tree/d.go)
 * [[144] 二叉树的前序遍历](solutions/binary-tree-preorder-traversal/d.go)
@@ -159,6 +159,8 @@ Go solution for LeetCode problems
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
 * [number-of-burgers-with-no-waste-of-ingredients](solutions/number-of-burgers-with-no-waste-of-ingredients/d.go)
+* [面试题57 - II. 和为s的连续正数序列](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+continuous-nums-with-target-sum
 ### others
 * [count-primes](solutions/count-primes/d.go)
 * [roman-to-integer](solutions/roman-to-integer/d.go)

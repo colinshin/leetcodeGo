@@ -5,6 +5,7 @@
 package valid_word_abbreviation
 
 /*
+408. 有效单词缩写 https://leetcode-cn.com/problems/valid-word-abbreviation
 给一个 非空 字符串 s 和一个单词缩写 abbr ，判断这个缩写是否可以是给定单词的缩写。
 
 字符串 "word" 的所有有效缩写为：
@@ -27,10 +28,6 @@ package valid_word_abbreviation
 给定 s = "apple", abbr = "a2e":
 
 函数返回 false.
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/valid-word-abbreviation
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func validWordAbbreviation(word string, abbr string) bool {
 	i, num := 0, 0

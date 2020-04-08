@@ -7,6 +7,7 @@ package confusing_number
 import "strconv"
 
 /*
+1056. 易混淆数 https://leetcode-cn.com/problems/confusing-number
 给定一个数字 N，当它满足以下条件的时候返回 true：
 
 原数字旋转 180° 以后可以得到新的数字。
@@ -45,10 +46,6 @@ import "strconv"
 提示：
 0 <= N <= 10^9
 可以忽略掉旋转后得到的前导零，例如，如果我们旋转后得到 0008 那么该数字就是 8 。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/confusing-number
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func confusingNumber(N int) bool {
 	num := rotate(N)

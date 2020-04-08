@@ -77,7 +77,7 @@ func findMedianSortedArrays3(nums1 []int, nums2 []int) float64 {
 	start1, start2 := 0, 0
 	for i := 0; i <= (m+n)/2; i++ {
 		lastR = currentR
-		if start1 < m && (start2 == n || nums1[start1] <= nums2[start2]) {
+		if start1 < m && (start2 < n && nums1[start1] <= nums2[start2] || start2 == n) {
 			currentR = nums1[start1]
 			start1++
 		} else {

@@ -1,23 +1,23 @@
-# [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+# [4. 寻找两个有序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays)
 
 ## 题目
-There are two sorted arrays nums1 and nums2 of size m and n respectively.
+给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
 
-Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
 
-长度分别为m和n的两个已排序数组，求其中位数，时间复杂度控制在O(log (m+n))内
+你可以假设 nums1 和 nums2 不会同时为空。
 
-Example 1:
-```
+示例 1:
+```text
 nums1 = [1, 3]
 nums2 = [2]
-The median is 2.0
+则中位数是 2.0
 ```
-Example 2:
-```
+示例 2:
+```text
 nums1 = [1, 2]
 nums2 = [3, 4]
-The median is (2 + 3)/2 = 2.5
+则中位数是 (2 + 3)/2 = 2.5
 ```
 ## 分析
 对于一个有序数组，如果元素个数为奇数，中位数即中间元素的值；若元素个数为偶数，中位数为中间两个元素的平均值。<br>
