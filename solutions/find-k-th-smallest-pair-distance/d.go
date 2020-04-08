@@ -7,6 +7,8 @@ package find_k_th_smallest_pair_distance
 import "sort"
 
 /*
+719. 找出第 k 小的距离对 https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance
+
 给定一个整数数组，返回所有数对之间的第 k 个最小距离。
 一对 (A, B) 的距离被定义为 A 和 B 之间的绝对差值。
 
@@ -26,11 +28,6 @@ k = 1
 2 <= len(nums) <= 10000.
 0 <= nums[i] < 1000000.
 1 <= k <= len(nums) * (len(nums) - 1) / 2.
-
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/find-k-th-smallest-pair-distance
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 /*
@@ -41,26 +38,7 @@ func smallestDistancePair(nums []int, k int) int {
 		return 0
 	}
 	sort.Ints(nums)
-	max := nums[len(nums)-1] - nums[0] // 数对距离最大为max
-	left, right := 0, max+1
-	for left < right {
-		mid := left + (right-left)/2
-		if countLowers(nums, mid) >= k {
-			right = mid
-		} else {
-			left = mid + 1
-		}
-	}
-	return left
-}
-
-// 使用标准库，减少代码量
-func smallestDistancePair1(nums []int, k int) int {
-	if len(nums) < 2 {
-		return 0
-	}
-	sort.Ints(nums)
-	max := nums[len(nums)-1] - nums[0] // 数对距离最大为max
+	max := nums[len(nums)-1] - nums[0]
 	return sort.Search(max+1, func(i int) bool {
 		return countLowers(nums, i) >= k
 	})

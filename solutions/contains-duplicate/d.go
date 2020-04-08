@@ -58,6 +58,7 @@ func containsNearbyDuplicate(nums []int, k int) bool {
 线性搜索
 
 时间复杂度O(n * min(n, k))
+空间复杂度O(1)
 */
 func containsNearbyAlmostDuplicate1(nums []int, k int, t int) bool {
 	n := len(nums)
@@ -87,6 +88,9 @@ func min(a, b int) int {
                   -------        -------       -------     -------
 桶内数字范围      | -6 ~ -4  |    | -3 ~ -1 |   | 0 ~ 2 |   | 3 ~ 5 |
                   -------        -------       -------     -------
+
+时间复杂度O(n)
+空间复杂度O(min(n,k)), 最坏情况下所有元素都放入map
 */
 func containsNearbyAlmostDuplicate(nums []int, k int, t int) bool {
 	if t < 0 {

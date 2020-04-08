@@ -7,6 +7,8 @@ package sort_list
 import "sort"
 
 /*
+148. 排序链表 https://leetcode-cn.com/problems/sort-list/
+
 在 O(n log n) 时间复杂度和常数级空间复杂度下，对链表进行排序。
 
 示例 1:
@@ -17,10 +19,6 @@ import "sort"
 
 输入: -1->5->3->4->0
 输出: -1->0->3->4->5
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/sort-list
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 type ListNode struct {
 	Val  int
@@ -78,8 +76,7 @@ func mergeSortedLists(first, second *ListNode) *ListNode {
 时间复杂度O(nlogn)， 空间复杂度O(1)
 */
 func sortList(head *ListNode) *ListNode {
-	dummy := new(ListNode)
-	dummy.Next = head
+	dummy := &ListNode{Next: head}
 	length := getLen(head)
 	for step := 1; step < length; step *= 2 {
 		p, head := dummy, dummy.Next
@@ -90,8 +87,7 @@ func sortList(head *ListNode) *ListNode {
 			p.Next, p = merge(first, second)
 		}
 	}
-	head = dummy.Next
-	dummy.Next = nil
+	head, dummy.Next = dummy.Next, nil
 	return head
 }
 
@@ -129,8 +125,7 @@ func merge(first *ListNode, second *ListNode) (*ListNode, *ListNode) {
 			second = second.Next
 		}
 	}
-	first = dummy.Next
-	dummy.Next = nil
+	first, dummy.Next = dummy.Next, nil
 	return first, p
 }
 
