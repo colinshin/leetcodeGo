@@ -7,6 +7,8 @@ package maximum_depth_of_binary_tree
 import "math"
 
 /*
+104. 二叉树的最大深度 https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
+
 给定一个二叉树，找出其最大深度。
 
 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
@@ -22,10 +24,6 @@ import "math"
     /  \
    15   7
 返回它的最大深度 3 。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/maximum-depth-of-binary-tree
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 //Definition for a binary tree node.
@@ -52,7 +50,7 @@ func max(a, b int) int {
 /*
 变体： 如果求二叉树的最大直径呢？
 
-https://leetcode-cn.com/problems/diameter-of-binary-tree
+543. 二叉树的直径 https://leetcode-cn.com/problems/diameter-of-binary-tree
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
 总节点数 = 左子树最大深度 + 右子树最大深度 + 1（node本身）
@@ -71,7 +69,7 @@ func diameterOfBinaryTree(root *TreeNode) int {
 // 可以进一步优化，在求最大深度的过程中更新结果
 func diameterOfBinaryTree1(root *TreeNode) int {
 	result := 0
-	var depth func(node *TreeNode) int
+	var depth func(*TreeNode) int
 	depth = func(node *TreeNode) int { // 计算node的最大深度
 		if node == nil {
 			return 0

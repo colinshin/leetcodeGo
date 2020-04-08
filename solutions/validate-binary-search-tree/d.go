@@ -5,6 +5,8 @@
 package validate_binary_search_tree
 
 /*
+98. 验证二叉搜索树 https://leetcode-cn.com/problems/validate-binary-search-tree
+
 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
 
 假设一个二叉搜索树具有如下特征：
@@ -29,10 +31,6 @@ package validate_binary_search_tree
 输出: false
 解释: 输入为: [5,1,4,null,null,3,6]。
      根节点的值为 5 ，但是其右子节点值为 4 。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/validate-binary-search-tree
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 type TreeNode struct {
 	Val   int
@@ -135,6 +133,35 @@ func isValidBST1(root *TreeNode) bool {
 		}
 		prev = root
 		root = root.Right
+	}
+	return true
+}
+
+/*
+节点标记迭代
+时空复杂度均为O(n), n为节点总数
+*/
+func isValidBST11(root *TreeNode) bool {
+	var prev *TreeNode
+	stack := []*TreeNode{root}
+	marked := make(map[*TreeNode]bool, 0)
+	for len(stack) > 0 {
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if node == nil {
+			continue
+		}
+		if marked[node] {
+			if prev != nil && prev.Val >= node.Val {
+				return false
+			}
+			prev = node
+			continue
+		}
+		marked[node] = true
+		stack = append(stack, node.Right)
+		stack = append(stack, node)
+		stack = append(stack, node.Left)
 	}
 	return true
 }

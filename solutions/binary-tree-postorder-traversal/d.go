@@ -5,6 +5,8 @@
 package binary_tree_postorder_traversal
 
 /*
+145. 二叉树的后序遍历 https://leetcode-cn.com/problems/binary-tree-postorder-traversal
+
 给定一个二叉树，返回它的 后序 遍历。
 
 示例:
@@ -17,10 +19,6 @@ package binary_tree_postorder_traversal
    3
 
 输出: [3,2,1]
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/binary-tree-postorder-traversal
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 type TreeNode struct {
 	Val   int
@@ -54,26 +52,23 @@ func postorderTraversal(root *TreeNode) []int {
 这个方法在前序、中序、后续遍历里的实现代码总体逻辑一致，只是入栈的顺序稍微调整即可
 */
 func postorderTraversal2(root *TreeNode) []int {
-	type item struct {
-		node   *TreeNode
-		marked bool
-	}
 	var result []int
-	stack := []*item{{node: root}}
+	stack := []*TreeNode{root}
+	marked := map[*TreeNode]bool{}
 	for len(stack) > 0 {
-		top := stack[len(stack)-1]
+		node := stack[len(stack)-1]
 		stack = stack[:len(stack)-1]
-		if top.node == nil {
+		if node == nil {
 			continue
 		}
-		if top.marked {
-			result = append(result, top.node.Val)
+		if marked[node] {
+			result = append(result, node.Val)
 			continue
 		}
-		top.marked = true
-		stack = append(stack, top)
-		stack = append(stack, &item{node: top.node.Right})
-		stack = append(stack, &item{node: top.node.Left})
+		marked[node] = true
+		stack = append(stack, node)
+		stack = append(stack, node.Right)
+		stack = append(stack, node.Left)
 	}
 	return result
 }

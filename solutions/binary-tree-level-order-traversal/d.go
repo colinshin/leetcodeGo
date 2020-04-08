@@ -7,6 +7,8 @@ package binary_tree_level_order_traversal
 import "container/list"
 
 /*
+102. 二叉树的层序遍历 https://leetcode-cn.com/problems/binary-tree-level-order-traversal
+
 给定一个二叉树，返回其按层次遍历的节点值。 （即逐层地，从左到右访问所有节点）。
 
 例如:
@@ -24,10 +26,6 @@ import "container/list"
   [9,20],
   [15,7]
 ]
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/binary-tree-level-order-traversal
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 type TreeNode struct {
 	Val   int
