@@ -27,7 +27,6 @@ import "math"
 链接：https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
-
 /*
 双指针
 时间复杂度O(target);两个指针移动均单调不减，且最多移动 target/2 次
@@ -35,8 +34,7 @@ import "math"
 */
 func findContinuousSequence(target int) [][]int {
 	var r [][]int
-	left, right := 1, 2
-	for left < right {
+	for left, right := 1, 2; left < right; {
 		size := right - left + 1
 		sum := (left + right) * size / 2
 		if sum == target {

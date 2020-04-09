@@ -28,9 +28,7 @@ import (
 朴素实现，时间复杂度O(nlgn)，空间复杂度O(1)
 */
 func findKthLargest0(nums []int, k int) int {
-	sort.Slice(nums, func(i, j int) bool {
-		return nums[i] > nums[j]
-	})
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
 	return nums[k-1]
 }
 
@@ -70,36 +68,40 @@ func findKthLargest1(nums []int, k int) int {
 空间复杂度 : O(1)
 */
 func findKthLargest(nums []int, k int) int {
-	return quickSelect(nums, 0, len(nums)-1, k)
+	if k < 1 || k > len(nums) {
+		return 0
+	}
+	quickSelect(nums, 0, len(nums)-1, k)
+	return nums[k-1]
 }
 
-func quickSelect(nums []int, left, right, k int) int {
+func quickSelect(nums []int, left, right, k int) {
 	if left == right { // 递归结束条件：区间里仅有一个元素
-		return nums[left]
+		return
 	}
-	// 在区间[left, right]里随机选一个索引
-	pivotIndex := left + rand.Intn(right-left+1)
-	pivotIndex = partition(nums, left, right, pivotIndex)
+	pivotIndex := partition(nums, left, right)
 	if pivotIndex+1 == k {
-		return nums[pivotIndex]
+		return
 	}
 	if pivotIndex+1 > k {
-		return quickSelect(nums, left, pivotIndex-1, k)
+		quickSelect(nums, left, pivotIndex-1, k)
+	} else {
+		quickSelect(nums, pivotIndex+1, right, k)
 	}
-	return quickSelect(nums, pivotIndex+1, right, k)
 }
 
 // 以pivotIndex处元素做划分，不妨称这个元素为基准元素，大于基准的放在左侧，小于基准的放在右侧
 // 返回最终基准元素的索引
-func partition(nums []int, left, right, pivotIndex int) int {
+func partition(nums []int, left, right int) int {
+	// 0. 在区间[left, right]里随机选一个索引
+	pivotIndex := left + rand.Intn(right-left+1)
+	pivot := nums[pivotIndex]
 	// 1. 先把基准元素放到最后
 	nums[right], nums[pivotIndex] = nums[pivotIndex], nums[right]
-
-	pivot := nums[right]
 	storeIndex := left
 	// 2. 把所有大于基准元素的元素放到左侧
 	for i := left; i < right; i++ {
-		if nums[i] > pivot {
+		if nums[i] >= pivot {
 			nums[storeIndex], nums[i] = nums[i], nums[storeIndex]
 			storeIndex++
 		}

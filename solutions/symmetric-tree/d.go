@@ -5,6 +5,7 @@
 package symmetric_tree
 
 /*
+101. 对称二叉树 https://leetcode-cn.com/problems/symmetric-tree
 给定一个二叉树，检查它是否是镜像对称的。
 
 例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
@@ -24,10 +25,6 @@ package symmetric_tree
 说明:
 
 如果你可以运用递归和迭代两种方法解决这个问题，会很加分。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/symmetric-tree
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 //Definition for a binary tree node.
@@ -38,10 +35,7 @@ type TreeNode struct {
 }
 
 func isSymmetric(root *TreeNode) bool {
-	if root == nil {
-		return true
-	}
-	return isMirror(root.Left, root.Right)
+	return isMirror(root, root)
 }
 
 // 递归式
@@ -68,9 +62,9 @@ func isMirror1(t1, t2 *TreeNode) bool {
 			这里也可以取出前边两个，但是在缩短list的时候（list = list[2:])可能会导致底层数组更容易扩容
 			也可以用真正的list而不是切片
 		*/
-		l := len(list)
-		t1, t2 = list[l-2], list[l-1]
-		list = list[:l-2]
+		n := len(list)
+		t1, t2 = list[n-2], list[n-1]
+		list = list[:n-2]
 		switch {
 		case t1 == nil && t2 == nil:
 			continue

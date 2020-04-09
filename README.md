@@ -10,7 +10,8 @@ LeetCode 问题 Go 语言之旅
 * [[1] 两数之和](solutions/two_sum/readme.md)
 * [[7] 整数反转](solutions/reverse-integer/d.go)
 * [[46/47] 全排列](solutions/permutations/readme.md)
-* [[215] 数组中的第K个最大元素](solutions/kth-largest-element-in-an-array/d.go)
+* [[53] 最大子序和](solutions/maximum-subarray/d.go)
+* [[215] 数组中的第 K 个最大元素](solutions/kth-largest-element-in-an-array/d.go)
 * [[1181] 短语前后拼接](solutions/before-and-after-puzzle/d.go)
 * [[1228] 等差数列中缺失的数字](solutions/missing-number-in-arithmetic/d.go)
 * [[26] 删除排序数组中的重复项](solutions/remove-duplicates/d.go)
@@ -32,6 +33,7 @@ LeetCode 问题 Go 语言之旅
 * [[74/240] 搜索有序二维矩阵](solutions/search-a-2d-matrix/readme.md)
 * [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[1061] 按字典序排列最小的等效字符串](solutions/lexicographically-smallest-equivalent-string/readme.md)
+* [面试题66. 构建乘积数组](solutions/construct-multiple-array/d.go)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
 ### random
 * [[470] 用Rand7实现Rand10](solutions/implement-rand10-using-rand7/d.go)
@@ -45,7 +47,7 @@ LeetCode 问题 Go 语言之旅
 * [find-smallest-common-element-in-all-rows](solutions/find-smallest-common-element-in-all-rows/d.go)
 * [search-in-rotated-sorted-array](solutions/search-in-rotated-sorted-array/d.go)
 * [find-peak-element](solutions/find-peak-element/d.go)
-* [find-minimum-in-rotated-sorted-array](solutions/find-minimum-in-rotated-sorted-array/d.go)
+* [[153/154] 寻找旋转排序数组中的最小值](solutions/find-minimum-in-rotated-sorted-array/d.go)
 * [find-first-and-last-position-of-element-in-sorted-array](solutions/find-first-and-last-position-of-element-in-sorted-array/d.go)
 * [search-in-a-sorted-array-of-unknown-size](solutions/search-in-a-sorted-array-of-unknown-size/d.go)
 * [powx-n](solutions/powx-n/d.go)
@@ -53,7 +55,7 @@ LeetCode 问题 Go 语言之旅
 * [intersection-of-two-arrays-ii](solutions/intersection-of-two-arrays-ii/d.go)
 * [find-the-duplicate-number](solutions/find-the-duplicate-number/d.go)
 * [[658] 找到 K 个最接近的元素](solutions/find-k-closest-elements/d.go)
-* [[719] 找出第 k 小的距离对](solutions/find-k-th-smallest-pair-distance/d.go)
+* [[719] 找出第 K 小的距离对](solutions/find-k-th-smallest-pair-distance/d.go)
 * [[875] 爱吃香蕉的珂珂](solutions/koko-eating-bananas/d.go)
 * [[4] 两个有序数组的中位数](solutions/median_of_two_sorted_arrays/readme.md)
 ### array and strings
@@ -98,6 +100,7 @@ LeetCode 问题 Go 语言之旅
 * [alindrome-linked-list](solutions/alindrome-linked-list/d.go)
 * [linked-list-cycle](solutions/linked-list-cycle/d.go)
 * [middle-of-the-linked-list](solutions/middle-of-the-linked-list/d.go)
+* [[430] 扁平化多级双向链表](solutions/flatten-a-multilevel-doubly-linked-list/d.go)
 * [[817] linked-list-components](solutions/linked-list-components/d.go)
 * [[1019] next-greater-node-in-linked-list](solutions/next-greater-node-in-linked-list/d.go)
 ### tree
@@ -111,11 +114,11 @@ LeetCode 问题 Go 语言之旅
 * [[108] convert-sorted-array-to-binary-search-tree](solutions/convert-sorted-array-to-binary-search-tree/d.go)
 * [construct-binary-tree-from-inorder-and-postorder-traversal](solutions/construct-binary-tree-from-inorder-and-postorder-traversal/d.go)
 * [construct-binary-tree-from-preorder-and-inorder-traversal](solutions/construct-binary-tree-from-preorder-and-inorder-traversal/d.go)
-* [lowest-common-ancestor-of-a-binary-tree](solutions/lowest-common-ancestor-of-a-binary-tree/d.go)
-* [lowest-common-ancestor-of-a-binary-search-tree](solutions/lowest-common-ancestor-of-a-binary-search-tree/d.go)
+* [[235] 二叉搜索树的最近公共祖先](solutions/lowest-common-ancestor-of-a-binary-search-tree/d.go)
+* [[236] 二叉树的最近公共祖先](solutions/lowest-common-ancestor-of-a-binary-tree/d.go)
 * [serialize-and-deserialize-binary-tree](solutions/serialize-and-deserialize-binary-tree/d.go)
 * [path-sum](solutions/path-sum/d.go)
-* [symmetric-tree](solutions/symmetric-tree/d.go)
+* [[101] 对称二叉树](solutions/symmetric-tree/d.go)
 * [longest-univalue-path](solutions/longest-univalue-path/d.go)
 * [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
 * [verify-postorder-sequence-inbinary-search-tree](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
@@ -143,6 +146,7 @@ LeetCode 问题 Go 语言之旅
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
+* [面试题65. 不用加减乘除做加法](solutions/plus-without-arithmetic-operators/d.go)
 ### design
 * [[155] min-stack](solutions/min-stack/d.go)
 * [design-compressed-string-iterator](solutions/design-compressed-string-iterator/d.go)
@@ -159,8 +163,9 @@ LeetCode 问题 Go 语言之旅
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
 * [number-of-burgers-with-no-waste-of-ingredients](solutions/number-of-burgers-with-no-waste-of-ingredients/d.go)
-* [面试题57 - II. 和为s的连续正数序列](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
-continuous-nums-with-target-sum
+* [面试题57 - II. 和为s的连续正数序列](solutions/continuous-nums-with-target-sum/d.go)
+* [面试题60. n个骰子的点数](solutions/dice-points-rate/d.go)
+* [[169] 多数元素](solutions/majority-element/d.go)
 ### others
 * [count-primes](solutions/count-primes/d.go)
 * [roman-to-integer](solutions/roman-to-integer/d.go)
