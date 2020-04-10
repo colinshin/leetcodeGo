@@ -7,7 +7,7 @@
 输入: [1,2,3]
 输出:
 [
-  [1,2,3],
+   [1,2,3],
   [1,3,2],
   [2,1,3],
   [2,3,1],
@@ -15,6 +15,23 @@
   [3,2,1]
 ]
 ```
+递归
+```go
+func permute(nums []int) [][]int {
+	if len(nums) < 2 {
+		return [][]int{nums}
+	}
+	var result [][]int
+	for _, v := range permute(nums[:len(nums)-1]) {
+		for i := 0; i <= len(v); i++ {
+			t := append(append(v[:i:i], nums[len(nums)-1]), v[i:]...)
+			result = append(result, t)
+		}
+	}
+	return result
+}
+```
+
 深度优先搜索，有一个简雅的递归，参见dfs函数:
 ```go
 func permute(nums []int) [][]int {
