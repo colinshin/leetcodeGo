@@ -6,7 +6,7 @@
 * 堆排序
 * 快速排序
 ## 线性排序
-* [计数排序](sort/countsort)
+* [计数排序](sort/countsort/readme.md)
 * 基数排序
 * 桶排序
 ## 复杂度

@@ -7,6 +7,7 @@ package maximum
 import "container/list"
 
 /*
+239. 滑动窗口最大值 https://leetcode-cn.com/problems/sliding-window-maximum
 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。
 你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
 
@@ -34,10 +35,6 @@ import "container/list"
 
 进阶：
 你能在线性时间复杂度内解决此题吗？
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/sliding-window-maximum
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 /*
 朴素实现：用一个list或切片模拟窗口，或者直接用两个指针确定窗口，遍历确定窗口里的最大值
@@ -115,20 +112,20 @@ func max(queue *list.List) int {
 
 // 使用切片实现单调队列， 队列里存储元素索引（也可以改成存储值）
 func maxSlidingWindow(nums []int, k int) []int {
-	var result, dequeue []int // dequeue是一个单调队列，并非存储所有窗口里的元素，而是维持单调非递增序列； 队列中存储索引
+	var result, queue []int // queue是一个单调队列，并非存储所有窗口里的元素，而是维持单调非递增序列； 队列中存储索引
 	for i, v := range nums {
 		// 出队
-		if i >= k && len(dequeue) > 0 && dequeue[0] <= i-k {
-			dequeue = dequeue[1:]
+		if i >= k && len(queue) > 0 && queue[0] <= i-k {
+			queue = queue[1:]
 		}
 		// 入队
-		for len(dequeue) > 0 && nums[dequeue[len(dequeue)-1]] <= v { // 入队前将队列里已有不大于当前值的元素移除
-			dequeue = dequeue[:len(dequeue)-1]
+		for len(queue) > 0 && nums[queue[len(queue)-1]] < v { // 入队前将队列里小于当前值的元素移除
+			queue = queue[:len(queue)-1]
 		}
-		dequeue = append(dequeue, i) // 当前元素入队， 这里入队的是元素的索引
+		queue = append(queue, i) // 当前元素入队， 这里入队的是元素的索引
 		// 将窗口中最大元素加入结果
 		if i >= k-1 {
-			result = append(result, nums[dequeue[0]])
+			result = append(result, nums[queue[0]])
 		}
 	}
 	return result

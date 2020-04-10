@@ -7,6 +7,7 @@ package minimum_window_substring
 import "math"
 
 /*
+76. 最小覆盖子串 https://leetcode-cn.com/problems/minimum-window-substring
 给你一个字符串 S、一个字符串 T，请在字符串 S 里面找出：包含 T 所有字母的最小子串。
 
 示例：
@@ -17,10 +18,6 @@ import "math"
 
 如果 S 中不存这样的子串，则返回空字符串 ""。
 如果 S 中存在这样的子串，我们保证它是唯一的答案。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/minimum-window-substring
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 /*
@@ -40,7 +37,8 @@ func minWindow(s string, t string) string {
 滑动窗口解法：
 1、在字符串 S 中使用双指针中的左右指针技巧，初始化 left = right = 0，把索引闭区间 [left, right] 称为一个「窗口」。
 2、先不断地增加 right 指针扩大窗口 [left, right]，直到窗口中的字符串符合要求（包含了 T 中的所有字符）。
-3、此时，停止增加 right，转而不断增加 left 指针缩小窗口 [left, right]，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。同时，每次增加 left，我们都要更新一轮结果。
+3、此时，停止增加 right，转而不断增加 left 指针缩小窗口 [left, right]，直到窗口中的字符串不再符合要求（不包含 T 中的所有字符了）。
+同时，每次增加 left，我们都要更新一轮结果。
 4、重复第 2 和第 3 步，直到 right 到达字符串 S 的尽头。
 怎么判断window里是否有t中所有的字符？分别用两个map计数器即可，key为字符，value为字符在串里的个数；
 时空复杂度都是(m+n)，m，n分别是s和t的长度

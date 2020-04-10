@@ -94,7 +94,7 @@ find缺一点路径压缩的处理，不难实现；
 另外因为都是小写字母，最多26个字母，其实可以用切片替换哈希表
 ```
 优化后发现leetcode上的用例耗时从4ms降低到了0ms，<br>
-主要是吧map改成切片得到的优化，路径压缩在这些用例里对性能的提升不明显<br>
+主要是map改成切片得到的优化，路径压缩在这些用例里对性能的提升不明显<br>
 最终实现：
 ```go
 func smallestEquivalentString(A string, B string, S string) string {

@@ -9,6 +9,7 @@ import (
 )
 
 /*
+255. 验证前序遍历序列二叉搜索树 https://leetcode-cn.com/problems/verify-preorder-sequence-in-binary-search-tree
 给定一个整数数组，你需要验证它是否是一个二叉搜索树正确的先序遍历序列。
 
 你可以假定该序列中的数都是不相同的。
@@ -27,10 +28,6 @@ import (
 示例 2：
 输入: [5,2,1,3,6]
 输出: true
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/verify-preorder-sequence-in-binary-search-tree
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 // 递归解法；如果题目要求判断是否是后序遍历序列，可以根据这个递归方式简单修改解决
@@ -52,7 +49,7 @@ func verifyPreorder0(preorder []int) bool {
 		}
 	}
 	// 截止目前，保证了i之前的元素（不包括最开始的root）均小于root， i之后的元素包括i处元素均大于root
-	if i > 0 && !verifyPreorder0(preorder[1:i]) {
+	if !verifyPreorder0(preorder[1:i]) {
 		return false
 	}
 	if i < len(preorder) && !verifyPreorder0(preorder[i:]) {

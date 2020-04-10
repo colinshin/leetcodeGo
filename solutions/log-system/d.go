@@ -51,13 +51,13 @@ func Constructor() LogSystem {
 	return LogSystem{logs: list.New(), m: map[int]*list.Element{}}
 }
 
-func (logSystem *LogSystem) add(id int, timeStamp int) {
+func (ls *LogSystem) add(id int, timeStamp int) {
 	item := &Log{id: id, time: timeStamp}
-	if logSystem.logs.Len() == 0 {
-		logSystem.m[id] = logSystem.logs.PushBack(item)
+	if ls.logs.Len() == 0 {
+		ls.m[id] = ls.logs.PushBack(item)
 		return
 	}
-	e := logSystem.logs.Front()
+	e := ls.logs.Front()
 	for e != nil {
 		if e.Value.(*Log).time >= timeStamp {
 			break
@@ -65,28 +65,28 @@ func (logSystem *LogSystem) add(id int, timeStamp int) {
 		e = e.Next()
 	}
 	if e != nil {
-		logSystem.m[id] = logSystem.logs.InsertBefore(item, e)
+		ls.m[id] = ls.logs.InsertBefore(item, e)
 	} else {
-		logSystem.m[id] = logSystem.logs.PushBack(item)
+		ls.m[id] = ls.logs.PushBack(item)
 	}
 }
 
 // 在日志系统中尝试删除这个 ID 对应的日志记录。如果该日志 ID 在系统中不存在，返回 -1，否则删除这条日志，并返回 0。
-func (logSystem *LogSystem) delete(id int) int {
-	if e, ok := logSystem.m[id]; ok {
-		_ = logSystem.logs.Remove(e)
-		delete(logSystem.m, id)
+func (ls *LogSystem) delete(id int) int {
+	if e, ok := ls.m[id]; ok {
+		_ = ls.logs.Remove(e)
+		delete(ls.m, id)
 		return 0
 	}
 	return -1
 }
 
 // 返回日志系统中生成时间大于等于 startTime 且小于等于 endTime 的日志数量。如果没有，返回 0。
-func (logSystem *LogSystem) query(startTime int, endTime int) int {
+func (ls *LogSystem) query(startTime int, endTime int) int {
 	if startTime > endTime {
 		startTime, endTime = endTime, startTime
 	}
-	e := logSystem.logs.Front()
+	e := ls.logs.Front()
 	for e != nil && e.Value.(*Log).time < startTime {
 		e = e.Next()
 	}

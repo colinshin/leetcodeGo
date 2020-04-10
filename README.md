@@ -33,6 +33,7 @@ LeetCode 问题 Go 语言之旅
 * [[74/240] 搜索有序二维矩阵](solutions/search-a-2d-matrix/readme.md)
 * [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[1061] 按字典序排列最小的等效字符串](solutions/lexicographically-smallest-equivalent-string/readme.md)
+* [[315/面试题51] 数组中的逆序对](solutions/count-of-smaller-numbers-after-self/readme.md)
 * [面试题66. 构建乘积数组](solutions/construct-multiple-array/d.go)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
 ### random
@@ -85,7 +86,7 @@ LeetCode 问题 Go 语言之旅
 * [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
 * [[316] remove-duplicate-letters](solutions/remove-duplicate-letters/d.go)
-* [sliding-window-maximum](solutions/sliding-window-maximum/d.go)
+* [[239] 滑动窗口最大值](solutions/sliding-window-maximum/d.go)
 * [[1263] push-box](solutions/push-box/d.go)
 * [[329] longest-increasing-path-in-a-matrix](solutions/longest-increasing-path-in-a-matrix/d.go)
 * [[752] open-the-lock](solutions/open-the-lock/readme.md)
@@ -120,8 +121,8 @@ LeetCode 问题 Go 语言之旅
 * [path-sum](solutions/path-sum/d.go)
 * [[101] 对称二叉树](solutions/symmetric-tree/d.go)
 * [longest-univalue-path](solutions/longest-univalue-path/d.go)
-* [verify-preorder-sequence-in-binary-search-tree](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
-* [verify-postorder-sequence-inbinary-search-tree](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
+* [[255] 验证前序遍历序列二叉搜索树](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
+* [面试题33. 二叉搜索树的后序遍历序列](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
 * [recover-binary-search-tree](solutions/recover-binary-search-tree/d.go)
 ### graph
 * [course-schedule](solutions/course-schedule/d.go)
@@ -159,6 +160,7 @@ LeetCode 问题 Go 语言之旅
 * [range-sum-query-2d-matrix](solutions/range-sum-query-2d-matrix/readme.md)
 * [[432] all-oone-data-structure](solutions/all-oone-data-structure/d.go)
 * [[729 731 732] my-calendar](solutions/my-calendar/readme.md)
+* [log-system](solutions/log-system/d.go)
 ### math
 * [water-and-jug-problem](solutions/water-and-jug-problem/d.go)
 * [divide-two-integers](solutions/divide-two-integers/d.go)
