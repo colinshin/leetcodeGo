@@ -33,6 +33,7 @@ LeetCode 问题 Go 语言之旅
 * [[1030/54/498] 二维矩阵遍历](solutions/matrix-traversal/readme.md)
 * [[130] 被围绕的区域](solutions/surrounded-regions/d.go)
 * [[1293] 网格中的最短路径](solutions/shortest-path-in-a-grid-with-obstacles-elimination/d.go)
+* [[] 不同路径](solutions/unique-paths/readme.md)
 * [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[1061] 按字典序排列最小的等效字符串](solutions/lexicographically-smallest-equivalent-string/readme.md)
 * [[315/面试题51] 数组中的逆序对](solutions/count-of-smaller-numbers-after-self/readme.md)
