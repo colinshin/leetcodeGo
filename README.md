@@ -16,7 +16,6 @@ LeetCode 问题 Go 语言之旅
 * [[1228] 等差数列中缺失的数字](solutions/missing-number-in-arithmetic/d.go)
 * [[26] 删除排序数组中的重复项](solutions/remove-duplicates/d.go)
 * [[1207] 独一无二的出现次数](solutions/unique-number-of-occurrences/d.go)
-* [[1030/54/498] 二维矩阵遍历](solutions/matrix-traversal/readme.md)
 * [[932] 漂亮数组](solutions/beautiful-array/d.go)
 * [[406] 根据身高重建队列](solutions/queue-reconstruction-by-height/d.go)
 * [[1057] 校园自行车分配](solutions/campus-bikes/d.go)
@@ -31,6 +30,9 @@ LeetCode 问题 Go 语言之旅
 * [[491] 递增子序列](solutions/increasing-subsequences/d.go)
 * [[347] 前 K 个高频元素](solutions/top-k-frequent-elements/d.go)
 * [[74/240] 搜索有序二维矩阵](solutions/search-a-2d-matrix/readme.md)
+* [[1030/54/498] 二维矩阵遍历](solutions/matrix-traversal/readme.md)
+* [[130] 被围绕的区域](solutions/surrounded-regions/d.go)
+* [[1293] 网格中的最短路径](solutions/shortest-path-in-a-grid-with-obstacles-elimination/d.go)
 * [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[1061] 按字典序排列最小的等效字符串](solutions/lexicographically-smallest-equivalent-string/readme.md)
 * [[315/面试题51] 数组中的逆序对](solutions/count-of-smaller-numbers-after-self/readme.md)
@@ -91,6 +93,7 @@ LeetCode 问题 Go 语言之旅
 * [[329] longest-increasing-path-in-a-matrix](solutions/longest-increasing-path-in-a-matrix/d.go)
 * [[752] open-the-lock](solutions/open-the-lock/readme.md)
 * [[778] swim-in-rising-water](solutions/swim-in-rising-water/readme.md)
+* [[640] 求解方程](solutions/solve-the-equation/d.go)
 
 ### linked list
 * [[21] 合并两个有序链表](solutions/merge-two-sorted-lists/d.go)

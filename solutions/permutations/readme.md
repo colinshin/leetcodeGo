@@ -15,7 +15,7 @@
   [3,2,1]
 ]
 ```
-递归
+递归，在已有n-1大小的排列的每个空隙插入最后一个元素
 ```go
 func permute(nums []int) [][]int {
 	if len(nums) < 2 {
@@ -31,8 +31,7 @@ func permute(nums []int) [][]int {
 	return result
 }
 ```
-
-深度优先搜索，有一个简雅的递归，参见dfs函数:
+深度优先搜索，有一个自然的递归，先固定前边几个元素，然后开始尝试排列后边的。参见dfs函数:
 ```go
 func permute(nums []int) [][]int {
 	n := len(nums)
