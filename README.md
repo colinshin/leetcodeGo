@@ -32,10 +32,6 @@ LeetCode 问题 Go 语言之旅
 * [[79] 单词搜索](solutions/word-search/d.go)
 * [[74/240] 搜索有序二维矩阵](solutions/search-a-2d-matrix/readme.md)
 * [[1030/54/498] 二维矩阵遍历](solutions/matrix-traversal/readme.md)
-* [[130] 被围绕的区域](solutions/surrounded-regions/d.go)
-* [[1293] 网格中的最短路径](solutions/shortest-path-in-a-grid-with-obstacles-elimination/d.go)
-* [[] 不同路径](solutions/unique-paths/readme.md)
-* [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[1061] 按字典序排列最小的等效字符串](solutions/lexicographically-smallest-equivalent-string/readme.md)
 * [[315/面试题51] 数组中的逆序对](solutions/count-of-smaller-numbers-after-self/readme.md)
 * [面试题66. 构建乘积数组](solutions/construct-multiple-array/d.go)
@@ -111,7 +107,7 @@ LeetCode 问题 Go 语言之旅
 * [[1019] next-greater-node-in-linked-list](solutions/next-greater-node-in-linked-list/d.go)
 ### tree
 * [[530] 二叉搜索树的最小绝对差](solutions/min-absolute-in-bst/d.go)
-* [[104/543] 二叉树的深度和直径](solutions/maximum-depth-of-binary-tree/d.go)
+* [[104/543/687/124] 二叉树的深度、直径、最长同值路径、最大路径和](solutions/maximum-depth-of-binary-tree/d.go)
 * [[98] 验证二叉搜索树](solutions/validate-binary-search-tree/d.go)
 * [[144] 二叉树的前序遍历](solutions/binary-tree-preorder-traversal/d.go)
 * [[94] 二叉树的中序遍历](solutions/binary-tree-inorder-traversal/d.go)
@@ -125,7 +121,6 @@ LeetCode 问题 Go 语言之旅
 * [serialize-and-deserialize-binary-tree](solutions/serialize-and-deserialize-binary-tree/d.go)
 * [path-sum](solutions/path-sum/d.go)
 * [[101] 对称二叉树](solutions/symmetric-tree/d.go)
-* [longest-univalue-path](solutions/longest-univalue-path/d.go)
 * [[255] 验证前序遍历序列二叉搜索树](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
 * [面试题33. 二叉搜索树的后序遍历序列](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
 * [recover-binary-search-tree](solutions/recover-binary-search-tree/d.go)
@@ -135,6 +130,7 @@ LeetCode 问题 Go 语言之旅
 * [optimize-water-distribution-in-a-village](solutions/optimize-water-distribution-in-a-village/readme.md)
 * [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
 * [[113] clone-graph](solutions/clone-graph/d.go)
+* [[797] 所有可能的路径](solutions/all-paths-from-source-to-target/d.go)
 ### dp
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
@@ -149,8 +145,13 @@ LeetCode 问题 Go 语言之旅
 * [[45][55] jump-game](solutions/jump-game/readme.md)
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
 * [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
-### backtracking
+### backtracking, dfs, bfs
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
+* [[130] 被围绕的区域](solutions/surrounded-regions/d.go)
+* [[1293] 网格中的最短路径](solutions/shortest-path-in-a-grid-with-obstacles-elimination/d.go)
+* [[62/63/980] 不同路径](solutions/unique-paths/readme.md)
+* [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
+* [[576] 出界的路径数](solutions/out-of-boundary-paths/d.go)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 * [面试题65. 不用加减乘除做加法](solutions/plus-without-arithmetic-operators/d.go)

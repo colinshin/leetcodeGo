@@ -43,17 +43,13 @@ func maxDepth(root *TreeNode) int {
 	return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
 }
 
-func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
-}
-
 /*
 变体： 如果求二叉树的最大直径呢？
 
 543. 二叉树的直径 https://leetcode-cn.com/problems/diameter-of-binary-tree
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 
-总节点数 = 左子树最大深度 + 右子树最大深度 + 1（node本身）
+直径所覆盖的箭头上总节点数 = 左子树最大深度 + 右子树最大深度 + 1（node本身）
 直径需要-1，故直径 = leftDepth + rightDepth
 */
 func diameterOfBinaryTree(root *TreeNode) int {
@@ -80,4 +76,129 @@ func diameterOfBinaryTree1(root *TreeNode) int {
 	}
 	_ = depth(root)
 	return result
+}
+
+/*
+变体：
+687. 最长同值路径 https://leetcode-cn.com/problems/longest-univalue-path
+
+给定一个二叉树，找到最长的路径，这个路径中的每个节点具有相同值。 这条路径可以经过也可以不经过根节点。
+
+注意：两个节点之间的路径长度由它们之间的边数表示。
+
+示例 1:
+
+输入:
+
+              5
+             / \
+            4   5
+           / \   \
+          1   1   5
+输出:
+2
+示例 2:
+
+输入:
+
+              1
+             / \
+            4   5
+           / \   \
+          4   4   5
+输出:
+2
+
+注意: 给定的二叉树不超过10000个结点。 树的高度不超过1000。
+*/
+
+/*
+对于一个节点node， 以其为根节点的路径就是分别向左下和右下延伸形成的箭头
+
+设计一个递归函数，返回当前节点的最大同值路径
+如果该节点的值与左右子树的值都不相等，则其最大同值路径为0
+如果该节点的值与左右子树的值都相等，则其最大同值路径是其左子树最大同值路径+1 + 右子树最大同值路径+1
+如果该节点的值等于其左子树的值但不等于右子树的值，则最长同值路径为左子树的最长同值路径+1
+如果该节点的值等于其右子树的值，则最长同值路径为右子树的最长同值路径+1
+
+我们用一个全局变量记录这个最大值，不断更新
+*/
+func longestUnivaluePath(root *TreeNode) int {
+	result := 0
+
+	var calculate func(root *TreeNode) int
+	calculate = func(root *TreeNode) int { // 返回与root值相同的左子树最大路径和与root值相同的右子树最大路径里边较大的路径，方便递归
+		if root == nil {
+			return 0
+		}
+		left := calculate(root.Left)
+		right := calculate(root.Right)
+		if root.Left != nil && root.Left.Val == root.Val {
+			left++
+		} else {
+			left = 0
+		}
+		if root.Right != nil && root.Right.Val == root.Val {
+			right++
+		} else {
+			right = 0
+		}
+		result = max(result, left+right)
+		return max(left, right)
+	}
+
+	_ = calculate(root)
+	return result
+}
+
+/*
+变体
+124. 二叉树中的最大路径和 https://leetcode-cn.com/problems/binary-tree-maximum-path-sum
+给定一个非空二叉树，返回其最大路径和。
+
+本题中，路径被定义为一条从树中任意节点出发，达到任意节点的序列。该路径至少包含一个节点，且不一定经过根节点。
+
+示例 1:
+
+输入: [1,2,3]
+
+       1
+      / \
+     2   3
+
+输出: 6
+示例 2:
+
+输入: [-10,9,20,null,null,15,7]
+
+   -10
+   / \
+  9  20
+    /  \
+   15   7
+
+输出: 42
+*/
+func maxPathSum(root *TreeNode) int {
+	result := math.MinInt32
+	var help func(node *TreeNode) int
+	help = func(node *TreeNode) int {
+		if node == nil {
+			return 0
+		}
+		left, right := help(node.Left), help(node.Right)
+		lmr := node.Val + max(0, left) + max(0, right)
+		r := node.Val + max(0, max(left, right))
+		result = max(result, max(lmr, r))
+		return r
+	}
+	_ = help(root)
+	return result
+}
+
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
