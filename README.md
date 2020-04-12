@@ -29,6 +29,7 @@ LeetCode 问题 Go 语言之旅
 * [[1060] 有序数组中的缺失元素](solutions/missing-element-in-sorted-array/d.go)
 * [[491] 递增子序列](solutions/increasing-subsequences/d.go)
 * [[347] 前 K 个高频元素](solutions/top-k-frequent-elements/d.go)
+* [[79] 单词搜索](solutions/word-search/d.go)
 * [[74/240] 搜索有序二维矩阵](solutions/search-a-2d-matrix/readme.md)
 * [[1030/54/498] 二维矩阵遍历](solutions/matrix-traversal/readme.md)
 * [[130] 被围绕的区域](solutions/surrounded-regions/d.go)
@@ -147,6 +148,7 @@ LeetCode 问题 Go 语言之旅
 * [[656] coin-path](solutions/coin-path/d.go)
 * [[45][55] jump-game](solutions/jump-game/readme.md)
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
+* [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
 ### backtracking
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
 ### bit
