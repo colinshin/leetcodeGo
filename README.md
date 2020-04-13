@@ -123,6 +123,7 @@ LeetCode 问题 Go 语言之旅
 * [[101] 对称二叉树](solutions/symmetric-tree/d.go)
 * [[255] 验证前序遍历序列二叉搜索树](solutions/verify-preorder-sequence-in-binary-search-tree/d.go)
 * [面试题33. 二叉搜索树的后序遍历序列](solutions/verify-postorder-sequence-inbinary-search-tree/d.go)
+* [[666] 路径和IV](solutions/path-sum-iv/d.go)
 * [recover-binary-search-tree](solutions/recover-binary-search-tree/d.go)
 ### graph
 * [course-schedule](solutions/course-schedule/d.go)
@@ -141,7 +142,7 @@ LeetCode 问题 Go 语言之旅
 * [[741] cherry-pickup](solutions/cherry-pickup/d.go)
 * [dungeon-game](solutions/dungeon-game/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
-* [[656] coin-path](solutions/coin-path/d.go)
+* [[656] 金币路径](solutions/coin-path/d.go)
 * [[45][55] jump-game](solutions/jump-game/readme.md)
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
 * [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
@@ -152,6 +153,7 @@ LeetCode 问题 Go 语言之旅
 * [[62/63/980] 不同路径](solutions/unique-paths/readme.md)
 * [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[576] 出界的路径数](solutions/out-of-boundary-paths/d.go)
+* [[1102] 得分最高的路径](solutions/path-with-maximum-minimum-value/d.go)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 * [面试题65. 不用加减乘除做加法](solutions/plus-without-arithmetic-operators/d.go)
@@ -159,7 +161,7 @@ LeetCode 问题 Go 语言之旅
 * [[155] min-stack](solutions/min-stack/d.go)
 * [design-compressed-string-iterator](solutions/design-compressed-string-iterator/d.go)
 * [max-queue](solutions/max-queue/d.go)
-* [design-twitter](solutions/design-twitter/)
+* [355. 设计推特](solutions/design-twitter/readme.md)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
 * [lru-cache](solutions/lru-cache/d.go)
 * [stack-with-queen](solutions/stack-with-queen/d.go)

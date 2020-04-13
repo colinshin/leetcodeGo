@@ -1,4 +1,4 @@
-## 设计tweet
+## [设计tweet](https://leetcode-cn.com/problems/design-twitter)
 
 ```设计一个简化版的推特(Twitter)，可以让用户实现发送推文，关注/取消关注其他用户，能够看见关注人（包括自己）的最近十条推文。
 你的设计需要支持以下的几个功能：
@@ -26,11 +26,6 @@ twitter.unfollow(1, 2);
 // 用户1的获取推文应当返回一个列表，其中包含一个id为5的推文.
 // 因为用户1已经不再关注用户2.
 twitter.getNewsFeed(1);
-```
-```
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/design-twitter
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 ```
 面向对象的设计，主要逻辑在User类；
 

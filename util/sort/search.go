@@ -12,16 +12,16 @@ package sort
 // the first true index. If there is no such index, Search returns n.
 // It is just another version of the same name function in standard lib, package sort.
 // this version is a little different of parameters
-func Search(from, to int, f func(int) bool) int {
-	for from < to {
-		mid := int(uint(from+to) >> 1) // avoid overflow
-		// from ≤ mid < to
+func Search(lo, hi int, f func(int) bool) int {
+	for lo < hi {
+		mid := int(uint(lo+hi) >> 1) // avoid overflow
+		// lo ≤ mid < hi
 		if !f(mid) {
-			from = mid + 1 // preserves f(from-1) == false
+			lo = mid + 1 // preserves f(from-1) == false
 		} else {
-			to = mid // preserves f(to) == true
+			hi = mid // preserves f(to) == true
 		}
 	}
-	// from == to, f(to-1) == false, and f(to) == true  =>  answer is from (or to).
-	return from
+	// lo == hi, f(hi-1) == false, and f(hi) == true  =>  answer is lo (or hi).
+	return lo
 }

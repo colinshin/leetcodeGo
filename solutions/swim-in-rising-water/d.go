@@ -60,28 +60,46 @@ func max(grid [][]int) int {
 func canReach(t int, grid [][]int) bool {
 	const maxN = 50
 	n := len(grid)
-	dr := []int{1, -1, 0, 0}
-	dc := []int{0, 0, 1, -1}
+	dirs := [][]int{{1, 0}, {-1, 0}, {0, 1}, {0, -1}}
 	visited := [maxN][maxN]bool{}
 	visited[0][0] = true
-	set := list.New()
-	set.PushBack([]int{0, 0})
-	for set.Len() > 0 {
-		pos := set.Remove(set.Back()).([]int)
-		row, column := pos[0], pos[1]
-		if row == n-1 && column == n-1 {
+	queue := list.New()
+	queue.PushBack([]int{0, 0})
+	for queue.Len() > 0 {
+		pos := queue.Remove(queue.Front()).([]int)
+		r, c := pos[0], pos[1]
+		if r == n-1 && c == n-1 {
 			return true
 		}
-		for i := 0; i < len(dr); i++ {
-			nextRow, nextColumn := row+dr[i], column+dc[i]
-			if nextRow >= 0 && nextRow < n && nextColumn >= 0 && nextColumn < n &&
-				!visited[nextRow][nextColumn] && grid[nextRow][nextColumn] <= t {
-				set.PushBack([]int{nextRow, nextColumn})
-				visited[nextRow][nextColumn] = true
+		for _, d := range dirs {
+			nr, nc := r+d[0], c+d[1]
+			if nr >= 0 && nr < n && nc >= 0 && nc < n &&
+				!visited[nr][nc] && grid[nr][nc] <= t {
+				queue.PushBack([]int{nr, nc})
+				visited[nr][nc] = true
 			}
 		}
 	}
 	return false
+}
+
+func canReach1(t int, grid [][]int) bool {
+	const maxN = 50
+	n := len(grid)
+	visited := [maxN][maxN]bool{}
+	var dfs func(r, c int) bool
+	dfs = func(r, c int) bool {
+		if r < 0 || c < 0 || r >= n || c >= n ||
+			visited[r][c] || grid[r][c] > t {
+			return false
+		}
+		if r == n-1 && c == n-1 {
+			return true
+		}
+		visited[r][c] = true
+		return dfs(r+1, c) || dfs(r-1, c) || dfs(r, c+1) || dfs(r, c-1)
+	}
+	return dfs(0, 0)
 }
 
 /*
