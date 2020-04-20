@@ -11,6 +11,7 @@ LeetCode 问题 Go 语言之旅
 * [[7] 整数反转](solutions/reverse-integer/d.go)
 * [[46/47] 全排列](solutions/permutations/readme.md)
 * [[53] 最大子序和](solutions/maximum-subarray/d.go)
+* [[78] 子集](solutions/subset/d.go)
 * [[215] 数组中的第 K 个最大元素](solutions/kth-largest-element-in-an-array/d.go)
 * [[1181] 短语前后拼接](solutions/before-and-after-puzzle/d.go)
 * [[1228] 等差数列中缺失的数字](solutions/missing-number-in-arithmetic/d.go)
@@ -83,7 +84,7 @@ LeetCode 问题 Go 语言之旅
 * [[1021] remove-outermost-parentheses](solutions/remove-outermost-parentheses/d.go)
 * [[1271] hexspeak](solutions/hexspeak/d.go)
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
-* [find-all-anagrams-in-a-string](solutions/find-all-anagrams-in-a-string/d.go)
+* [[242/438] 字母异位词](solutions/find-all-anagrams-in-a-string/d.go)
 * [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
 * [[316] remove-duplicate-letters](solutions/remove-duplicate-letters/d.go)
 * [[239] 滑动窗口最大值](solutions/sliding-window-maximum/d.go)
@@ -92,6 +93,7 @@ LeetCode 问题 Go 语言之旅
 * [[752] open-the-lock](solutions/open-the-lock/readme.md)
 * [[778] swim-in-rising-water](solutions/swim-in-rising-water/readme.md)
 * [[640] 求解方程](solutions/solve-the-equation/d.go)
+* [[10] 正则表达式匹配](solutions/regular-expression-matching/d.go)
 
 ### linked list
 * [[21] 合并两个有序链表](solutions/merge-two-sorted-lists/d.go)
@@ -136,6 +138,8 @@ LeetCode 问题 Go 语言之旅
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
 * [[300] longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
+* [[376] 摆动序列](solutions/wiggle-subsequence/d.go)
+* [[402] 删除k个数字使结果最小](solutions/remove-k-digits/d.go)
 * [number-of-longest-increasing-subsequence](solutions/number-of-longest-increasing-subsequence/d.go)
 * [best-time-to-buy-and-sell-stock](solutions/best-time-to-buy-and-sell-stock)
 * [campus-bikes-ii](solutions/campus-bikes-ii/d.go)
