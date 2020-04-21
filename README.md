@@ -151,6 +151,7 @@ LeetCode 问题 Go 语言之旅
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
 * [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
 ### backtracking, dfs, bfs
+* [[51/52] N皇后](solutions/n-queen/d.go)
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
 * [[130] 被围绕的区域](solutions/surrounded-regions/d.go)
 * [[1293] 网格中的最短路径](solutions/shortest-path-in-a-grid-with-obstacles-elimination/d.go)
@@ -168,7 +169,6 @@ LeetCode 问题 Go 语言之旅
 * [355. 设计推特](solutions/design-twitter/readme.md)
 * [implement-trie-prefix-tree](solutions/implement-trie-prefix-tree/d.go)
 * [lru-cache](solutions/lru-cache/d.go)
-* [stack-with-queen](solutions/stack-with-queen/d.go)
 * [exam-room](solutions/exam-room/readme.md)
 * [range-sum-query-2d-matrix](solutions/range-sum-query-2d-matrix/readme.md)
 * [[432] all-oone-data-structure](solutions/all-oone-data-structure/d.go)
