@@ -128,7 +128,8 @@ LeetCode 问题 Go 语言之旅
 * [[666] 路径和IV](solutions/path-sum-iv/d.go)
 * [recover-binary-search-tree](solutions/recover-binary-search-tree/d.go)
 ### graph
-* [course-schedule](solutions/course-schedule/d.go)
+* [[207] 课程表](solutions/course-schedule/d.go)
+* [[210] 课程表 II](solutions/course-schedule-ii/readme.md)
 * [connecting-cities-with-minimum-cost](solutions/connecting-cities-with-minimum-cost/readme.md)
 * [optimize-water-distribution-in-a-village](solutions/optimize-water-distribution-in-a-village/readme.md)
 * [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
@@ -185,9 +186,8 @@ LeetCode 问题 Go 语言之旅
 * [count-primes](solutions/count-primes/d.go)
 * [roman-to-integer](solutions/roman-to-integer/d.go)
 * [integer-to-roman](solutions/integer-to-roman/d.go)
-* [course-schedule-ii](solutions/course-schedule-ii)
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
-* [meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
+* TODO: [ meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 * [[679] 24-game](solutions/24-game/d.go)
 * [[733] flood-fill](solutions/flood-fill/d.go)
 ## reference
