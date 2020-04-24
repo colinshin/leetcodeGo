@@ -29,4 +29,4 @@
 拓扑排序也可以通过 BFS 完成。]	
 ```
 
-这道与[course-schedule](../course-schedule/d.go)非常像；可直接参考
+这道与[course-schedule](../course-schedule/d.go)非常像；可直接[参考](d.go)

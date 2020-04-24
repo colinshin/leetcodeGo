@@ -42,7 +42,6 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 func findOrder11(numCourses int, prerequisites [][]int) []int {
 	neighbors := make([][]int, numCourses)
 	for _, req := range prerequisites {
-		// 写成 neighbors[req[1]] = append(neighbors[req[1]], req[0]) 也对，都是统计邻居
 		neighbors[req[0]] = append(neighbors[req[0]], req[1])
 	}
 	flags := make([]int, numCourses)
