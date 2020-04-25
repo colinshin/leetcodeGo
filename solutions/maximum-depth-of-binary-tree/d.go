@@ -127,12 +127,11 @@ func longestUnivaluePath(root *TreeNode) int {
 	result := 0
 
 	var calculate func(root *TreeNode) int
-	calculate = func(root *TreeNode) int { // 返回与root值相同的左子树最大路径和与root值相同的右子树最大路径里边较大的路径，方便递归
+	calculate = func(root *TreeNode) int { // 返回包含root的最大同值路径
 		if root == nil {
 			return 0
 		}
-		left := calculate(root.Left)
-		right := calculate(root.Right)
+		left, right := calculate(root.Left), calculate(root.Right)
 		if root.Left != nil && root.Left.Val == root.Val {
 			left++
 		} else {
@@ -182,15 +181,14 @@ func longestUnivaluePath(root *TreeNode) int {
 func maxPathSum(root *TreeNode) int {
 	result := math.MinInt32
 	var help func(node *TreeNode) int
-	help = func(node *TreeNode) int {
+	help = func(node *TreeNode) int { // 返回包含node的最大路径和
 		if node == nil {
 			return 0
 		}
 		left, right := help(node.Left), help(node.Right)
-		lmr := node.Val + max(0, left) + max(0, right)
-		r := node.Val + max(0, max(left, right))
-		result = max(result, max(lmr, r))
-		return r
+		left, right = max(0, left), max(0, right)
+		result = max(result, node.Val+left+right)
+		return node.Val + max(left, right)
 	}
 	_ = help(root)
 	return result
