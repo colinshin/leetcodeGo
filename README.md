@@ -85,7 +85,7 @@ LeetCode 问题 Go 语言之旅
 * [[1271] hexspeak](solutions/hexspeak/d.go)
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [[242/438] 字母异位词](solutions/find-all-anagrams-in-a-string/d.go)
-* [longest-substring-without-repeating-characters](solutions/longest-substring-without-repeating-characters/d.go)
+* [[3] 无重复字符都最长子串](solutions/longest-substring-without-repeating-characters/d.go)
 * [[316] remove-duplicate-letters](solutions/remove-duplicate-letters/d.go)
 * [[239] 滑动窗口最大值](solutions/sliding-window-maximum/d.go)
 * [[1263] push-box](solutions/push-box/d.go)
@@ -191,7 +191,6 @@ LeetCode 问题 Go 语言之旅
 * TODO: [ meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
 * [[679] 24-game](solutions/24-game/d.go)
 * [[733] flood-fill](solutions/flood-fill/d.go)
-* [TODO [358/621/767] 重排使相同元素至少间隔k](solutions/rearrange-k-distance-apart/readme.md)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>

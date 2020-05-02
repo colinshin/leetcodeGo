@@ -25,14 +25,9 @@ import (
  需要考虑这样的用例：[[9,10],[4,9],[4,17]]，用以上的方法求的的会议室是3，但实际上应该是2.
  如果把最后一个会议放到最前边，变成[[4,17],[9,10],[4,9]]，就能得到正确答案，为什么呢？
  想一想容易明白，需要事先把所有会议排序，按照开始时间升序排序即可
-
- 来源：力扣（LeetCode）
- 链接：https://leetcode-cn.com/problems/meeting-rooms-ii
- 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  时间复杂度O(n^2), 空间复杂度O(1)
 */
 func minMeetingRooms(intervals [][]int) int {
-	// TODO:
 	if len(intervals) == 0 {
 		return 0
 	}
