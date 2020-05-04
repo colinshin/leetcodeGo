@@ -148,8 +148,9 @@ LeetCode 问题 Go 语言之旅
 * [dungeon-game](solutions/dungeon-game/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
 * [[656] 金币路径](solutions/coin-path/d.go)
-* [[45][55] 跳跃游戏](solutions/jump-game/readme.md)
+* [[45/55] 跳跃游戏](solutions/jump-game/readme.md)
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
+* [[621/358/767] 重排使相同元素至少间隔k](solutions/rearrange-k-distance-apart/readme.md)
 * [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
 * [[813] 最大平均值和的分组](solutions/largest-sum-of-averages/d.go)
 ### backtracking, dfs, bfs
