@@ -151,7 +151,7 @@ LeetCode 问题 Go 语言之旅
 * [[45][55] jump-game](solutions/jump-game/readme.md)
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
 * [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
-* [TODO 813. 最大平均值和的分组](https://leetcode-cn.com/problems/largest-sum-of-averages)
+* [[813] 最大平均值和的分组](solutions/largest-sum-of-averages/d.go)
 ### backtracking, dfs, bfs
 * [[51/52] N皇后](solutions/n-queen/d.go)
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)
