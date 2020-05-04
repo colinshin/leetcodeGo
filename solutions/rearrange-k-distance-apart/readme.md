@@ -1,26 +1,4 @@
 # 重排使相同元素至少间隔k
-## [358. K 距离间隔重排字符串](https://leetcode-cn.com/problems/rearrange-string-k-distance-apart/)
-```text
-给你一个非空的字符串 s 和一个整数 k，你要将这个字符串中的字母进行重新排列，
-使得重排后的字符串中相同字母的位置间隔距离至少为 k。
-所有输入的字符串都由小写字母组成，如果找不到距离至少为 k 的重排结果，请返回一个空字符串 ""。
-
-示例 1：
-输入: s = "aabbcc", k = 3
-输出: "abcabc" 
-解释: 相同的字母在新的字符串中间隔至少 3 个单位距离。
-
-示例 2:
-输入: s = "aaabc", k = 3
-输出: "" 
-解释: 没有办法找到可能的重排结果。
-
-示例 3:
-输入: s = "aaadbbcc", k = 2
-输出: "abacabcd"
-解释: 相同的字母在新的字符串中间隔至少 2 个单位距离。
-```
-[参考代码](rearrange_k.go)
 ## [621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler/)
 ```text
 给定一个用字符数组表示的 CPU 需要执行的任务列表。
@@ -44,7 +22,59 @@ CPU 在任何一个单位时间内都可以执行一个任务，或者在待命�
 任务的总个数为 [1, 10000]。
 n 的取值范围为 [0, 100]。
 ```
-[参考代码](task_schedule.go)
+一般思路
+```text
+先统计每个任务的数量，贪心策略，需要先安排数量大的任务
+以n+1个任务为一轮，同一轮中一个任务最多被安排一次。
+每一轮中，将当前任务按照剩余次数降序排列，再选择剩余次数最多的n+1个任务一次执行
+如果任务的种类 t 少于 n + 1 个，就只选择全部的 t 种任务，其余的时间空闲。
+
+时间复杂度: O(result),给每个任务都安排了时间，因此时间复杂度和最终的答案成正比
+空间复杂度: O(26)=O(1)
+```
+```go
+func leastInterval(tasks []byte, n int) int {
+	count := make([]int, 26)
+	for _, v := range tasks {
+		count[v-'A']++
+	}
+	sort.Ints(count)
+	result := 0
+	for count[25] > 0 {
+		for i := 0; i <= n && count[25] > 0; i++ {
+			result++
+			if i < 26 && count[25-i] > 0 {
+				count[25-i]--
+			}
+		}
+		sort.Ints(count)
+	}
+	return result
+}
+```
+另有两个解法，详见[参考代码](task_schedule.go)
+## [358. K 距离间隔重排字符串](https://leetcode-cn.com/problems/rearrange-string-k-distance-apart/)
+```text
+给你一个非空的字符串 s 和一个整数 k，你要将这个字符串中的字母进行重新排列，
+使得重排后的字符串中相同字母的位置间隔距离至少为 k。
+所有输入的字符串都由小写字母组成，如果找不到距离至少为 k 的重排结果，请返回一个空字符串 ""。
+
+示例 1：
+输入: s = "aabbcc", k = 3
+输出: "abcabc" 
+解释: 相同的字母在新的字符串中间隔至少 3 个单位距离。
+
+示例 2:
+输入: s = "aaabc", k = 3
+输出: "" 
+解释: 没有办法找到可能的重排结果。
+
+示例 3:
+输入: s = "aaadbbcc", k = 2
+输出: "abacabcd"
+解释: 相同的字母在新的字符串中间隔至少 2 个单位距离。
+```
+类似问题621一般思路，详见[参考代码](rearrange_k.go)
 ## [767. 重构字符串](https://leetcode-cn.com/problems/reorganize-string/)
 ```text
 767. 重构字符串
@@ -62,4 +92,4 @@ n 的取值范围为 [0, 100]。
 注意:
 S 只包含小写字母并且长度在[1, 500]区间内。
 ```
-问题358变体，k==2的特例。 [参考代码](rearrange_2.go)
+问题358变体，k==2的特例；另有其他解法，详见 [参考代码](rearrange_2.go)

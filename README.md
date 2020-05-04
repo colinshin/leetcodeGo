@@ -135,7 +135,7 @@ LeetCode 问题 Go 语言之旅
 * [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
 * [[113] clone-graph](solutions/clone-graph/d.go)
 * [[797] 所有可能的路径](solutions/all-paths-from-source-to-target/d.go)
-### dp
+### dp,贪心
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
 * [[300] longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
