@@ -4,7 +4,9 @@
 
 package jump_game
 
-import "math"
+import (
+	"math"
+)
 
 /*
 自顶向下动态规划，或者理解为带备忘的回溯
@@ -78,24 +80,32 @@ func jump3(nums []int) int {
 贪心策略
 每次在可跳范围内选择可以跳得更远的位置
 遍历时对i+nums[i]使用贪心策略做选择
+例如，对于数组 [2,3,1,2,4,2,3]，初始位置是下标 0，从下标 0 出发，最远可到达下标 2。
+下标 0 可到达的位置中，下标 1 的值是 3，从下标 1 出发可以达到更远的位置，因此第一步到达下标 1。
+从下标 1 出发，最远可到达下标 4。
+下标 1 可到达的位置中，下标 4 的值是 4 ，从下标 4 出发可以达到更远的位置，因此第二步到达下标 4。
+...
+依次类推
+
 时间复杂度O(n), 空间复杂度O(1)
 */
 func jump(nums []int) int {
-	var (
-		end      = 0 // 代表当前可以调到的边界
-		farthest = 0 // 代表下一跳可以跳到的最远位置
-		result   = 0
-	)
+	end := 0 // 表示当前能跳的边界；如以上举例，end分别是0,2,4,8
+	maxPosition := 0
+	steps := 0
 	for i := 0; i < len(nums)-1; i++ {
-		farthest = max(farthest, i+nums[i])
+		maxPosition = max(maxPosition, i+nums[i])
 		if i == end {
-			end = farthest
-			result++
+			end = maxPosition
+			steps++
 		}
 	}
-	return result
+	return steps
 }
 
-func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
 }
