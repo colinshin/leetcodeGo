@@ -188,9 +188,10 @@ LeetCode 问题 Go 语言之旅
 * [roman-to-integer](solutions/roman-to-integer/d.go)
 * [integer-to-roman](solutions/integer-to-roman/d.go)
 * [course-schedule-iii](solutions/course-schedule-iii/d.go)
-* TODO: [ meeting-rooms-ii](solutions/meeting-rooms-ii/d.go)
+* [[253] 会议室 II](solutions/meeting-rooms-ii/d.go)
 * [[679] 24-game](solutions/24-game/d.go)
 * [[733] flood-fill](solutions/flood-fill/d.go)
+* [TODO [358/621/767] 重排使相同元素至少间隔k](solutions/rearrange-k-distance-apart/readme.md)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
