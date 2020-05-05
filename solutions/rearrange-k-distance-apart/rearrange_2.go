@@ -15,11 +15,7 @@ func reorganizeString0(s string) string {
 
 func reorganizeString(s string) string {
 	result := []byte(s)
-	pairs := make([]Pair, 26)
-	for _, b := range result {
-		pairs[b-'a'].char = b
-		pairs[b-'a'].count++
-	}
+	pairs := count(result)
 	sort.Slice(pairs, func(i, j int) bool {
 		return pairs[i].count > pairs[j].count
 	})
@@ -27,7 +23,7 @@ func reorganizeString(s string) string {
 		return ""
 	}
 	j := 0
-	for i := 0; isValid(pairs, i); i++ {
+	for i := 0; i < len(pairs) && pairs[i].count > 0; i++ {
 		for t := 0; t < pairs[i].count; t++ {
 			result[j] = pairs[i].char
 			j += 2
@@ -37,10 +33,6 @@ func reorganizeString(s string) string {
 		}
 	}
 	return string(result)
-}
-
-func isValid(pairs []Pair, i int) bool {
-	return i < len(pairs) && pairs[i].count > 0
 }
 
 func reorganizeString1(S string) string {

@@ -38,16 +38,16 @@ func leastInterval(tasks []byte, n int) int {
 	for _, v := range tasks {
 		count[v-'A']++
 	}
-	sort.Ints(count)
+	sort.Sort(sort.Reverse(sort.IntSlice(count)))
 	result := 0
-	for count[25] > 0 {
-		for i := 0; i <= n && count[25] > 0; i++ {
+	for count[0] > 0 {
+		for i := 0; i <= n && count[0] > 0; i++ {
 			result++
-			if i < 26 && count[25-i] > 0 {
-				count[25-i]--
+			if i < 26 && count[i] > 0 {
+				count[i]--
 			}
 		}
-		sort.Ints(count)
+		sort.Sort(sort.Reverse(sort.IntSlice(count)))
 	}
 	return result
 }

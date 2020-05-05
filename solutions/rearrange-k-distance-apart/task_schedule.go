@@ -6,6 +6,7 @@ package rearrange_k_distance_apart
 
 import (
 	"container/heap"
+	"container/list"
 	"sort"
 )
 
@@ -23,16 +24,16 @@ func leastInterval(tasks []byte, n int) int {
 	for _, v := range tasks {
 		count[v-'A']++
 	}
-	sort.Ints(count)
+	sort.Sort(sort.Reverse(sort.IntSlice(count)))
 	result := 0
-	for count[25] > 0 {
-		for i := 0; i <= n && count[25] > 0; i++ {
+	for count[0] > 0 {
+		for i := 0; i <= n && count[0] > 0; i++ {
 			result++
-			if i < 26 && count[25-i] > 0 {
-				count[25-i]--
+			if i < 26 && count[i] > 0 {
+				count[i]--
 			}
 		}
-		sort.Ints(count)
+		sort.Sort(sort.Reverse(sort.IntSlice(count)))
 	}
 	return result
 }
@@ -45,6 +46,56 @@ func leastInterval(tasks []byte, n int) int {
 时空复杂度与上面一样
 */
 func leastInterval1(tasks []byte, n int) int {
+	h := prepareHeap(tasks)
+	result := 0
+	set := list.New()
+	for h.Len() > 0 {
+		for i := 0; i <= n; i++ {
+			if h.Len() == 0 && set.Len() == 0 {
+				return result
+			}
+			result++
+			if h.Len() == 0 { // 需要待命只到i==n
+				continue
+			}
+			t := heap.Pop(h).(int)
+			if t > 1 {
+				set.PushBack(t - 1)
+			}
+		}
+		for set.Len() > 0 {
+			heap.Push(h, set.Remove(set.Front()).(int))
+		}
+	}
+	return result
+}
+
+func leastInterval11(tasks []byte, n int) int {
+	h := prepareHeap(tasks)
+	result := 0
+	set := list.New()
+	for h.Len() > 0 {
+		count := 0
+		for i := 0; i <= n && h.Len() > 0; i++ {
+			t := heap.Pop(h).(int)
+			if t > 1 {
+				set.PushBack(t - 1)
+			}
+			count++
+		}
+		for set.Len() > 0 {
+			heap.Push(h, set.Remove(set.Front()).(int))
+		}
+		if h.Len() > 0 {
+			result += n + 1
+		} else {
+			result += count
+		}
+	}
+	return result
+}
+
+func prepareHeap(tasks []byte) *Heap {
 	count := make([]int, 26)
 	for _, v := range tasks {
 		count[v-'A']++
@@ -55,24 +106,7 @@ func leastInterval1(tasks []byte, n int) int {
 			heap.Push(h, v)
 		}
 	}
-	result := 0
-	for h.Len() > 0 {
-		var tmp []int
-		for i := 0; i <= n && (h.Len() > 0 || len(tmp) > 0); i++ {
-			result++
-			if h.Len() == 0 {
-				continue
-			}
-			t := heap.Pop(h).(int)
-			if t > 1 {
-				tmp = append(tmp, t-1)
-			}
-		}
-		for _, v := range tmp {
-			heap.Push(h, v)
-		}
-	}
-	return result
+	return h
 }
 
 type Heap []int
