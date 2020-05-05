@@ -6,6 +6,7 @@ package rearrange_k_distance_apart
 
 import (
 	"container/heap"
+	"container/list"
 	"sort"
 )
 
@@ -23,16 +24,16 @@ func leastInterval(tasks []byte, n int) int {
 	for _, v := range tasks {
 		count[v-'A']++
 	}
-	sort.Ints(count)
+	sort.Sort(sort.Reverse(sort.IntSlice(count)))
 	result := 0
-	for count[25] > 0 {
-		for i := 0; i <= n && count[25] > 0; i++ {
+	for count[0] > 0 {
+		for i := 0; i <= n && count[0] > 0; i++ {
 			result++
-			if i < 26 && count[25-i] > 0 {
-				count[25-i]--
+			if i < 26 && count[i] > 0 {
+				count[i]--
 			}
 		}
-		sort.Ints(count)
+		sort.Sort(sort.Reverse(sort.IntSlice(count)))
 	}
 	return result
 }
@@ -45,6 +46,56 @@ func leastInterval(tasks []byte, n int) int {
 时空复杂度与上面一样
 */
 func leastInterval1(tasks []byte, n int) int {
+	h := prepareHeap(tasks)
+	result := 0
+	set := list.New()
+	for h.Len() > 0 {
+		for i := 0; i <= n; i++ {
+			if h.Len() == 0 && set.Len() == 0 {
+				return result
+			}
+			result++
+			if h.Len() == 0 { // 需要待命只到i==n
+				continue
+			}
+			t := heap.Pop(h).(int)
+			if t > 1 {
+				set.PushBack(t - 1)
+			}
+		}
+		for set.Len() > 0 {
+			heap.Push(h, set.Remove(set.Front()).(int))
+		}
+	}
+	return result
+}
+
+func leastInterval11(tasks []byte, n int) int {
+	h := prepareHeap(tasks)
+	result := 0
+	set := list.New()
+	for h.Len() > 0 {
+		count := 0
+		for i := 0; i <= n && h.Len() > 0; i++ {
+			t := heap.Pop(h).(int)
+			if t > 1 {
+				set.PushBack(t - 1)
+			}
+			count++
+		}
+		for set.Len() > 0 {
+			heap.Push(h, set.Remove(set.Front()).(int))
+		}
+		if h.Len() > 0 {
+			result += n + 1
+		} else {
+			result += count
+		}
+	}
+	return result
+}
+
+func prepareHeap(tasks []byte) *Heap {
 	count := make([]int, 26)
 	for _, v := range tasks {
 		count[v-'A']++
@@ -55,24 +106,7 @@ func leastInterval1(tasks []byte, n int) int {
 			heap.Push(h, v)
 		}
 	}
-	result := 0
-	for h.Len() > 0 {
-		var tmp []int
-		for i := 0; i <= n && (h.Len() > 0 || len(tmp) > 0); i++ {
-			result++
-			if h.Len() == 0 {
-				continue
-			}
-			t := heap.Pop(h).(int)
-			if t > 1 {
-				tmp = append(tmp, t-1)
-			}
-		}
-		for _, v := range tmp {
-			heap.Push(h, v)
-		}
-	}
-	return result
+	return h
 }
 
 type Heap []int
@@ -89,44 +123,21 @@ func (h *Heap) Pop() interface{} {
 }
 
 /*
-时间复杂度：O(M)，其中 M 是任务的总数，即tasks数组的长度。
-空间复杂度：O(1)。
-*/
-func leastInterval2(tasks []byte, n int) int {
-	count := make([]int, 26)
-	for _, v := range tasks {
-		count[v-'A']++
-	}
-	sort.Ints(count)
-	max := count[25] - 1
-	idleSlots := max * n
-	for i := 24; i >= 0 && count[i] > 0; i-- {
-		idleSlots -= min(count[i], max)
-	}
-	result := len(tasks)
-	if idleSlots > 0 {
-		result += idleSlots
-	}
-	return result
-}
+1.统计数量最大的任务的数量max；假设数组 ["A","A","A","B","B","C"]，n = 2，A的频率最高，记为max = 3，
+两个A之间必须间隔2个任务，才能满足题意并且是最短时间（两个A的间隔大于2的总时间必然不是最短），
+因此执行顺序为： A->X->X->A->X->X->A，这里的X表示除了A以外其他字母，或者是待命，不用关心具体是什么。
+max个A，中间有 max - 1个间隔，每个间隔需要搭配n个X，再加上最后一个A，所以总时间为 (max - 1) * (n + 1) + 1
+2.要注意可能会出现多个频率相同且都是最高的任务，比如 ["A","A","A","B","B","B","C","C"]，所以最后会剩下一个A和一个B，
+因此最后要加上频率最高的不同任务的个数 maxCount
+3.公式算出的值可能会比数组的长度小，如["A","A","B","B"]，n = 0，此时要取数组的长度
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
-/*
 时间复杂度：O(M)，其中 M 是任务的总数，即tasks数组的长度。
 空间复杂度：O(1)。
 */
 func leastInterval3(tasks []byte, n int) int {
-	if n == 0 {
-		return len(tasks)
-	}
-	// 统计每个任务的数量，数量最大的任务的数量及个数
-	count := make([]int, 26)
+	// 统计每个任务的数量
+	count := [26]int{}
+	// 数量最大的任务的数量及个数
 	max, maxCount := 0, 0
 	for _, v := range tasks {
 		c := count[v-'A'] + 1
@@ -140,7 +151,7 @@ func leastInterval3(tasks []byte, n int) int {
 	}
 	result := (max-1)*(n+1) + maxCount
 	if result < len(tasks) {
-		return len(tasks)
+		result = len(tasks)
 	}
 	return result
 }

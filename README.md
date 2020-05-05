@@ -135,7 +135,7 @@ LeetCode 问题 Go 语言之旅
 * [is-graph-bipartite](solutions/is-graph-bipartite/d.go)
 * [[113] clone-graph](solutions/clone-graph/d.go)
 * [[797] 所有可能的路径](solutions/all-paths-from-source-to-target/d.go)
-### dp
+### dp,贪心
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
 * [[300] longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
@@ -148,10 +148,11 @@ LeetCode 问题 Go 语言之旅
 * [dungeon-game](solutions/dungeon-game/d.go)
 * [number-of-corner-rectangles](solutions/number-of-corner-rectangles/d.go)
 * [[656] 金币路径](solutions/coin-path/d.go)
-* [[45][55] jump-game](solutions/jump-game/readme.md)
+* [[45/55] 跳跃游戏](solutions/jump-game/readme.md)
 * [[263/264/1201] ugly-number](solutions/ugly-number/d.go)
+* [[621/358/767] 重排使相同元素至少间隔k](solutions/rearrange-k-distance-apart/readme.md)
 * [[931] 下降路径最小和](solutions/minimum-falling-path-sum/d.go)
-* [TODO 813. 最大平均值和的分组](https://leetcode-cn.com/problems/largest-sum-of-averages)
+* [[813] 最大平均值和的分组](solutions/largest-sum-of-averages/d.go)
 ### backtracking, dfs, bfs
 * [[51/52] N皇后](solutions/n-queen/d.go)
 * [[698/473/416] partition-to-k-equal-sum-subsets](solutions/partition-to-k-equal-sum-subsets/readme.md)

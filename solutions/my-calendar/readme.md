@@ -160,6 +160,7 @@ func (mc *MyCalendar) Book(start int, end int) bool {
 实际测试，朴素BST的实现比朴素实现好一点，但是不比切片的实现好
 有缘再手动实现下红黑树吧~~
 ```
+[参考实现](i/d.go)
 ### [731. 我的日程安排表 II](https://leetcode-cn.com/problems/my-calendar-ii)
 与上面的问题类似，但是这次允许日程有所重叠：
 ```text
@@ -296,7 +297,8 @@ func min(a, b int) int {
 	return int(math.Min(float64(a), float64(b)))
 }
 ```
-### [732. 我的日程安排表 III](https://leetcode-cn.com/problems/my-calendar-ii)
+[参考实现](ii/d.go)
+### [732. 我的日程安排表 III](https://leetcode-cn.com/problems/my-calendar-iii/)
 这次不再限制日程重叠度，放开限制随便加日程，但是每次加完要返回一个整数K，表示最大的 K 次预订。
 ```text
 当 K 个日程安排有一些时间上的交叉时（例如K个日程安排都在同一时间内），就会产生 K 次预订。
@@ -327,55 +329,9 @@ MyCalendarThree.book(25, 55); // returns 3
 每个测试用例，调用 MyCalendar.book 函数最多不超过 400次。
 调用函数 MyCalendar.book(start, end)时， start 和 end 的取值范围为 [0, 10^9]。
 ```
-题意有点难懂~，以下朴素解法有用例不通过：
 ```text
-不通过的用例比如：
-["MyCalendarThree","book","book","book","book","book"]
-[[],[24,40],[27,43],[5,21],[30,40],[14,29]]
-
-我输出[null,1,2,2,3,4]
-leetcode输出[null,1,2,2,3,3]
-
-看了题解，发现其实是要统计所有日程中，同一时间点重叠最大的次数
-——是时间点~~~这太坑了
-```
-```go
-type Interval struct {
-	start, end int
-}
-
-type MyCalendarThree struct {
-	calendar []Interval
-	k        int
-}
-
-func Constructor() MyCalendarThree {
-	return MyCalendarThree{}
-}
-
-func (mc *MyCalendarThree) Book(start int, end int) int {
-	k := 1
-	for _, v := range mc.calendar {
-		if max(start, v.start) < min(end, v.end) {
-			k++
-		}
-	}
-	mc.k = max(mc.k, k)
-	mc.calendar = append(mc.calendar, Interval{start: start, end: end})
-    return mc.k
-}
-
-func max(a, b int) int {
-	return int(math.Max(float64(a), float64(b)))
-}
-
-func min(a, b int) int {
-	return int(math.Min(float64(a), float64(b)))
-}
-```
-```text
-好吧，按照时间点来统计：
-把原问题想象成在一个数轴上画线段，如果线段有重合，则重合的部分颜色加深
+朴素实现。按照时间点来统计：
+把原问题想象成在数轴上画线段，如果线段有重合，则重合的部分颜色加深
 所幸我们关注的点都是整数。对于数轴上每个点，统计其被多少条线段覆盖，可为点增加一个深度的属性来记录
 为了能在常数时间插入点，可用list
 时空复杂度都是O(n)
@@ -388,39 +344,46 @@ type point struct {
 
 type MyCalendarThree struct {
 	points *list.List
+	k      int
 }
 
 func Constructor() MyCalendarThree {
 	mc := MyCalendarThree{points: list.New()}
-	// 结合list特点, 方便后续处理，先预置两个点，原点和无限大点（输入有上限10^9）
-	mc.points.PushBack(&point{pos:0, deep:0})
-	mc.points.PushBack(&point{pos:math.MaxInt64, deep:0})
+	// 结合list特点, 方便后续处理，先预置两个点，无限小点和和无限大点
+	// 注意输入的start和end在范围[0, 10^9]内
+	mc.points.PushBack(&point{pos: -1, deep: 0})
+	mc.points.PushBack(&point{pos: 1e9 + 1, deep: 0})
 	return mc
 }
 
 func (mc *MyCalendarThree) Book(start int, end int) int {
 	var startNode, endNode *list.Element
-	// 插入起始点
-	for e := mc.points.Front(); e != nil; e = e.Next() {
-		if start == e.Value.(*point).pos { // 避免重复，如果该点已经存在了就不新建了
+	// 插入起始点，如果已经存在则不插入
+	for e := mc.points.Front(); e.Next() != nil; e = e.Next() {
+		p := e.Value.(*point)
+		if start == p.pos {
 			startNode = e
 			break
 		}
-		if start > e.Value.(*point).pos &&
-			start < e.Next().Value.(*point).pos { // 新建一个点，注意新建点的颜色深度 暂时 和它前面的点的颜色深度一致
-			startNode = mc.points.InsertAfter(&point{pos: start, deep: e.Value.(*point).deep}, e)
+		// 插入点，注意其深度暂时和其前驱点深度一致
+		nextP := e.Next().Value.(*point)
+		if start > p.pos && start < nextP.pos {
+			p := &point{pos: start, deep: p.deep}
+			startNode = mc.points.InsertAfter(p, e)
 			break
 		}
 	}
-	// 插入结束点。
-	for e := mc.points.Back(); e != nil; e = e.Prev() {
-		if end == e.Value.(*point).pos {
+	// 插入结束点，如果已经存在则不插入
+	for e := mc.points.Back(); e.Prev() != nil; e = e.Prev() {
+		p := e.Value.(*point)
+		if end == p.pos {
 			endNode = e
 			break
 		}
-		if end < e.Value.(*point).pos &&
-			end > e.Prev().Value.(*point).pos {
-			endNode = mc.points.InsertBefore(&point{pos: end, deep: e.Prev().Value.(*point).deep}, e)
+		prevP := e.Prev().Value.(*point)
+		if end < p.pos && end > prevP.pos {
+			p := &point{pos: end, deep: prevP.deep}
+			endNode = mc.points.InsertBefore(p, e)
 			break
 		}
 	}
@@ -428,14 +391,16 @@ func (mc *MyCalendarThree) Book(start int, end int) int {
 	for e := startNode; e != endNode && e != nil; e = e.Next() {
 		p := e.Value.(*point)
 		p.deep++
+		mc.k = max(mc.k, p.deep)
 	}
+	return mc.k
+}
 
-	k := 0
-	for e := mc.points.Front(); e != nil; e = e.Next() {
-		if e.Value.(*point).deep > k {
-			k = e.Value.(*point).deep
-		}
+func max(a, b int) int {
+	if a > b {
+		return a
 	}
-	return k
+	return b
 }
 ```
+[参考实现](iii/d.go)

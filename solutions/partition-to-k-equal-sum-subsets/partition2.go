@@ -49,6 +49,39 @@ func canPartition(nums []int) bool {
 	return backTracking(groups, 0, 0, target, nums, used)
 }
 
+func canPartition00(nums []int) bool {
+	const groups = 2
+	if len(nums) < groups {
+		return false
+	}
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
+	if sum%groups != 0 {
+		return false
+	}
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+	return backtrack(0, sum/groups, nums)
+}
+
+func backtrack(index int, remain int, nums []int) bool {
+	if index < 0 || nums[index] > remain {
+		return false
+	}
+	if nums[index] == remain {
+		return true
+	}
+	for i := 1; i >= 0; i-- {
+		remain -= nums[index] * i
+		if backtrack(index-1, remain, nums) {
+			return true
+		}
+		remain += nums[index] * i
+	}
+	return false
+}
+
 /*
 其实这是一个01背包问题：
 

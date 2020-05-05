@@ -7,13 +7,17 @@ package jump_game
 // 贪心，也是最朴素的实现方法；时间复杂度O(n), 空间复杂度O(1)
 func canJump(nums []int) bool {
 	farthest := 0
-	for i := 0; i < len(nums)-1; i++ {
+	n := len(nums)
+	for i, v := range nums {
 		if i > farthest {
 			return false
 		}
-		farthest = min(farthest, i+nums[i])
+		farthest = max(farthest, i+v)
+		if farthest >= n-1 {
+			return true
+		}
 	}
-	return farthest >= len(nums)-1
+	return false
 }
 
 /*

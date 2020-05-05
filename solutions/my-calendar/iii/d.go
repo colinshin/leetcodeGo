@@ -6,7 +6,6 @@ package iii
 
 import (
 	"container/list"
-	"math"
 )
 
 type point struct {
@@ -16,39 +15,46 @@ type point struct {
 
 type MyCalendarThree struct {
 	points *list.List
+	k      int
 }
 
 func Constructor() MyCalendarThree {
 	mc := MyCalendarThree{points: list.New()}
 	// 结合list特点, 方便后续处理，先预置两个点，无限小点和和无限大点
+	// 注意输入的start和end在范围[0, 10^9]内
 	mc.points.PushBack(&point{pos: -1, deep: 0})
-	mc.points.PushBack(&point{pos: math.MaxInt64, deep: 0})
+	mc.points.PushBack(&point{pos: 1e9 + 1, deep: 0})
 	return mc
 }
 
 func (mc *MyCalendarThree) Book(start int, end int) int {
 	var startNode, endNode *list.Element
-	// 插入起始点
-	for e := mc.points.Front(); e != nil; e = e.Next() {
-		if start == e.Value.(*point).pos { // 避免重复，如果该点已经存在了就不新建了
+	// 插入起始点，如果已经存在则不插入
+	for e := mc.points.Front(); e.Next() != nil; e = e.Next() {
+		p := e.Value.(*point)
+		if start == p.pos {
 			startNode = e
 			break
 		}
-		if start > e.Value.(*point).pos &&
-			start < e.Next().Value.(*point).pos { // 新建一个点，注意新建点的颜色深度 暂时 和它前面的点的颜色深度一致
-			startNode = mc.points.InsertAfter(&point{pos: start, deep: e.Value.(*point).deep}, e)
+		// 插入点，注意其深度暂时和其前驱点深度一致
+		nextP := e.Next().Value.(*point)
+		if start > p.pos && start < nextP.pos {
+			p := &point{pos: start, deep: p.deep}
+			startNode = mc.points.InsertAfter(p, e)
 			break
 		}
 	}
-	// 插入结束点。
-	for e := mc.points.Back(); e != nil; e = e.Prev() {
-		if end == e.Value.(*point).pos {
+	// 插入结束点，如果已经存在则不插入
+	for e := mc.points.Back(); e.Prev() != nil; e = e.Prev() {
+		p := e.Value.(*point)
+		if end == p.pos {
 			endNode = e
 			break
 		}
-		if end < e.Value.(*point).pos &&
-			end > e.Prev().Value.(*point).pos {
-			endNode = mc.points.InsertBefore(&point{pos: end, deep: e.Prev().Value.(*point).deep}, e)
+		prevP := e.Prev().Value.(*point)
+		if end < p.pos && end > prevP.pos {
+			p := &point{pos: end, deep: prevP.deep}
+			endNode = mc.points.InsertBefore(p, e)
 			break
 		}
 	}
@@ -56,13 +62,14 @@ func (mc *MyCalendarThree) Book(start int, end int) int {
 	for e := startNode; e != endNode && e != nil; e = e.Next() {
 		p := e.Value.(*point)
 		p.deep++
+		mc.k = max(mc.k, p.deep)
 	}
+	return mc.k
+}
 
-	k := 0
-	for e := mc.points.Front(); e != nil; e = e.Next() {
-		if e.Value.(*point).deep > k {
-			k = e.Value.(*point).deep
-		}
+func max(a, b int) int {
+	if a > b {
+		return a
 	}
-	return k
+	return b
 }
