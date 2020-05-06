@@ -4,7 +4,10 @@
 
 package longest_continuous_subarray_with_absolute_diff_less_than_or_equal_to_limit
 
-import "container/heap"
+import (
+	"container/heap"
+	"github.com/zrcoder/leetcodeGo/util/intheap"
+)
 
 /*
 1438. 绝对差不超过限制的最长连续子数组 https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/
@@ -89,11 +92,11 @@ func longestSubarray(nums []int, limit int) int {
 	if len(nums) < 2 {
 		return len(nums)
 	}
-	minHeap := &Heap{}
+	minHeap := &intheap.Heap{}
 	minHeap.InitWithCmp(func(i, j int) bool {
 		return minHeap.Get(i) < minHeap.Get(j)
 	})
-	maxHeap := &Heap{}
+	maxHeap := &intheap.Heap{}
 	maxHeap.InitWithCmp(func(i, j int) bool {
 		return maxHeap.Get(i) > maxHeap.Get(j)
 	})
@@ -124,35 +127,4 @@ func max(a, b int) int {
 		return a
 	}
 	return b
-}
-
-type Heap struct {
-	slice []int
-	cmp   func(i, j int) bool
-}
-
-func (h *Heap) InitWithCmp(cmp func(i, j int) bool) {
-	h.cmp = cmp
-}
-
-func (h Heap) Len() int            { return len(h.slice) }
-func (h Heap) Less(i, j int) bool  { return h.cmp(i, j) }
-func (h Heap) Swap(i, j int)       { h.slice[i], h.slice[j] = h.slice[j], h.slice[i] }
-func (h *Heap) Peek() int          { return h.slice[0] }
-func (h *Heap) Push(x interface{}) { h.slice = append(h.slice, x.(int)) }
-func (h *Heap) Pop() interface{} {
-	x := h.slice[len(h.slice)-1]
-	h.slice = (h.slice)[:len(h.slice)-1]
-	return x
-}
-func (h *Heap) Get(i int) int {
-	return h.slice[i]
-}
-func (h *Heap) Remove(v int) {
-	for i, n := range h.slice {
-		if v == n {
-			_ = heap.Remove(h, i)
-			return
-		}
-	}
 }

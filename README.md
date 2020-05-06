@@ -1,10 +1,12 @@
 # leetcodeGo
 LeetCode 问题 Go 语言之旅
 ## learn
-[二分法](learn/binary-search-problem.md)<br>
-[并查集](learn/union-find.md)<br>
-[排序](learn/sort.md)<br>
-[遍历树](learn/tree-traversal.md)
+* [二分法](learn/binary-search-problem.md)
+* [并查集](learn/union-find.md)
+* [排序](learn/sort.md)
+* [遍历树](learn/tree-traversal.md)
+* [在切片指定位置插入](learn/slice-insert.md)
+* [统一实现大顶堆、小顶堆](learn/heap.md)
 ## solutions
 ### map, array, sort
 * [[1] 两数之和](solutions/two_sum/readme.md)
