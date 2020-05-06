@@ -64,24 +64,24 @@ func isValidBST(root *TreeNode) bool {
 */
 
 func isValidBST(root *TreeNode) bool {
-	return helper(root, nil, nil)
+	return help(root, nil, nil)
 }
 
 /*
 如果一个二叉树是BST， 那么所有元素的值都在开区间(min, max)里
 时空复杂度均为O(n), n为节点总数
 */
-func helper(t, min, max *TreeNode) bool {
+func help(t, lo, hi *TreeNode) bool {
 	switch {
 	case t == nil:
 		return true
-	case min != nil && min.Val >= t.Val:
+	case lo != nil && lo.Val >= t.Val:
 		return false
-	case max != nil && max.Val <= t.Val:
+	case hi != nil && hi.Val <= t.Val:
 		return false
-	case !helper(t.Left, min, t):
+	case !help(t.Left, lo, t):
 		return false
-	case !helper(t.Right, t, max):
+	case !help(t.Right, t, hi):
 		return false
 	default:
 		return true
@@ -107,12 +107,30 @@ func isValidBST0(root *TreeNode) bool {
 			return false
 		}
 		prev = t
-		if !inorder(t.Right) {
-			return false
-		}
-		return true
+		return inorder(t.Right)
 	}
 	return inorder(root)
+}
+
+// 或者
+func isValidBST01(root *TreeNode) bool {
+	var prev *TreeNode
+	result := true // root为nil或空节点的情况应该返回true
+	var inorder func(t *TreeNode)
+	inorder = func(t *TreeNode) {
+		if t == nil {
+			return
+		}
+		inorder(t.Left)
+		if prev != nil && prev.Val >= t.Val {
+			result = false
+			return
+		}
+		prev = t
+		inorder(t.Right)
+	}
+	inorder(root)
+	return result
 }
 
 /* 借助栈，迭代式中序遍历
