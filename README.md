@@ -94,6 +94,7 @@ LeetCode 问题 Go 语言之旅
 * [[778] swim-in-rising-water](solutions/swim-in-rising-water/readme.md)
 * [[640] 求解方程](solutions/solve-the-equation/d.go)
 * [[10] 正则表达式匹配](solutions/regular-expression-matching/d.go)
+* [[1438] 绝对差不超过限制的最长连续子数组](solutions/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/d.go)
 
 ### linked list
 * [[21] 合并两个有序链表](solutions/merge-two-sorted-lists/d.go)
