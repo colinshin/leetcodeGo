@@ -112,6 +112,7 @@ LeetCode 问题 Go 语言之旅
 * [[1019] next-greater-node-in-linked-list](solutions/next-greater-node-in-linked-list/d.go)
 ### tree
 * [[530] 二叉搜索树的最小绝对差](solutions/min-absolute-in-bst/d.go)
+* [[572] 另一个树的子树](solutions/subtree-of-another-tree/d.go)
 * [[104/543/687/124] 二叉树的深度、直径、最长同值路径、最大路径和](solutions/maximum-depth-of-binary-tree/d.go)
 * [[98] 验证二叉搜索树](solutions/validate-binary-search-tree/d.go)
 * [[144] 二叉树的前序遍历](solutions/binary-tree-preorder-traversal/d.go)
