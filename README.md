@@ -20,7 +20,6 @@ LeetCode 问题 Go 语言之旅
 * [[26] 删除排序数组中的重复项](solutions/remove-duplicates/d.go)
 * [[1207] 独一无二的出现次数](solutions/unique-number-of-occurrences/d.go)
 * [[932] 漂亮数组](solutions/beautiful-array/d.go)
-* [[406] 根据身高重建队列](solutions/queue-reconstruction-by-height/d.go)
 * [[1057] 校园自行车分配](solutions/campus-bikes/d.go)
 * [[1033] 移石子的步数](solutions/moving-stones-until-consecutive/d.go)
 * [[219/220] 存在重复元素](solutions/contains-duplicate/d.go)
@@ -142,7 +141,13 @@ LeetCode 问题 Go 语言之旅
 ### dp,贪心
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
-* [[300] longest-increasing-subsequence](solutions/longest-increasing-subsequence/d.go)
+
+* [[300] 最长上升子序列](solutions/longest-increasing-subsequence/d.go)
+* [[406] 根据身高重建队列](solutions/queue-reconstruction-by-height/d.go)
+* [面试题 17.08. 马戏团人塔](solutions/circus-tower-lcci/readme.md)
+* [[354] 俄罗斯套娃信封问题](solutions/russian-doll-envelopes/d.go)
+* [面试题 08.13. 堆箱子](solutions/pile-box-lcci/d.go)
+
 * [[376] 摆动序列](solutions/wiggle-subsequence/d.go)
 * [[402] 删除k个数字使结果最小](solutions/remove-k-digits/d.go)
 * [number-of-longest-increasing-subsequence](solutions/number-of-longest-increasing-subsequence/d.go)

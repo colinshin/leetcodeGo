@@ -77,7 +77,7 @@ func reconstructQueue1(people [][]int) [][]int {
 		}
 		return people[i][0] > people[j][0]
 	})
-	result := make([][]int, 0)
+	result := make([][]int, 0, len(people))
 	for i := 0; i < len(people); i++ {
 		p := people[i]
 		k := p[1]
