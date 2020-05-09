@@ -169,6 +169,7 @@ LeetCode 问题 Go 语言之旅
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 * [面试题65. 不用加减乘除做加法](solutions/plus-without-arithmetic-operators/d.go)
+* [面试题 05.07. 配对交换](solutions/exchange-lcci/readme.md)
 ### design
 * [[155] min-stack](solutions/min-stack/d.go)
 * [design-compressed-string-iterator](solutions/design-compressed-string-iterator/d.go)
