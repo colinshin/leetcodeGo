@@ -26,7 +26,7 @@ import "sort"
 动态规划，时间复杂度O(n^2),  空间复杂度O(n)
 */
 func lengthOfLIS(nums []int) int {
-	dp := make([]int, len(nums)) // dp[i]代表nums[0:i]的最长子序列长度
+	dp := make([]int, len(nums)) // dp[i]代表nums[0:i+1]的最长子序列长度
 	maxLen := 0
 	for i, v := range nums {
 		dp[i] = 1 // 一个元素算递增长度为1
