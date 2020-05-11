@@ -38,6 +38,7 @@ LeetCode 问题 Go 语言之旅
 * [[315/面试题51] 数组中的逆序对](solutions/count-of-smaller-numbers-after-self/readme.md)
 * [面试题66. 构建乘积数组](solutions/construct-multiple-array/d.go)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
+* [面试题 16.22. 兰顿蚂蚁](solutions/langtons-ant-lcci/d.go)
 ### random
 * [[470] 用Rand7实现Rand10](solutions/implement-rand10-using-rand7/d.go)
 * [[528] 按权重随机选择](solutions/random-pick-with-weight/d.go)
