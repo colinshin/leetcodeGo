@@ -143,6 +143,7 @@ LeetCode 问题 Go 语言之旅
 ### dp,贪心
 * [house-robber](solutions/house-robber/d.go)
 * [gifts-max-value](solutions/gifts-max-value/d.go)
+* [[312] 戳气球](solutions/burst-balloons/d.go)
 
 * [[300] 最长上升子序列](solutions/longest-increasing-subsequence/d.go)
 * [[406] 根据身高重建队列](solutions/queue-reconstruction-by-height/d.go)
