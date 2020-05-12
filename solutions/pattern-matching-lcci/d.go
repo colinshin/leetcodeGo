@@ -126,3 +126,50 @@ func canMatch(pattern, value string, lenA, lenB int) bool {
 	}
 	return true
 }
+
+// canMatch函数平均圈复杂度有点高，两个判断分支里的逻辑重复，可以有以下两个方法改进圈复杂度
+func canMatch0(pattern, value string, lenA, lenB int) bool {
+	matchedA, matchedB := "", ""
+	j := 0
+	ok := false
+	for _, v := range pattern {
+		if v == 'a' {
+			ok, j, matchedA = judge(value, matchedA, j, lenA)
+		} else {
+			ok, j, matchedB = judge(value, matchedB, j, lenB)
+		}
+		if !ok {
+			return false
+		}
+	}
+	return true
+}
+
+func judge(value, matched string, j, length int) (bool, int, string) {
+	sub := value[j : j+length]
+	if matched == "" {
+		matched = sub
+	} else if matched != sub {
+		return false, j, matched
+	}
+	j += length
+	return true, j, matched
+}
+
+func canMatch1(pattern, value string, lenA, lenB int) bool {
+	j := 0
+	matched := []string{"", ""}
+	lens := []int{lenA, lenB}
+	index := 0
+	for _, v := range pattern {
+		index = int(v - 'a')
+		sub := value[j : j+lens[index]]
+		if matched[index] == "" {
+			matched[index] = sub
+		} else if matched[index] != sub {
+			return false
+		}
+		j += lens[index]
+	}
+	return true
+}

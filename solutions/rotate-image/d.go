@@ -5,31 +5,28 @@
 package rotate_image
 
 /*
+48. 旋转图像 https://leetcode-cn.com/problems/rotate-image
 给定一个 n × n 的二维矩阵表示一个图像。
-
 将图像顺时针旋转 90 度。
 
 说明：
-
 你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。
 
 示例 1:
-
 给定 matrix =
 [
   [1,2,3],
   [4,5,6],
   [7,8,9]
 ],
-
 原地旋转输入矩阵，使其变为:
 [
   [7,4,1],
   [8,5,2],
   [9,6,3]
 ]
-示例 2:
 
+示例 2:
 给定 matrix =
 [
   [ 5, 1, 9,11],
@@ -37,7 +34,6 @@ package rotate_image
   [13, 3, 6, 7],
   [15,14,12,16]
 ],
-
 原地旋转输入矩阵，使其变为:
 [
   [15,13, 2, 5],
@@ -45,10 +41,6 @@ package rotate_image
   [12, 6, 8, 9],
   [16, 7,10,11]
 ]
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/rotate-image
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 
 // solution with a help matrix
@@ -96,7 +88,7 @@ func rotate2(matrix [][]int) {
 }
 
 /*
-when we rotate points, for egxample:
+when we rotate points, for example:
 p1 -> p2 ; then p2 -> p3; then p3 -> p4, and actually p4 will be rotated to p1：
 
 p1 → p2
@@ -105,12 +97,12 @@ p4 ← p3
 
 there is a circle!
 
-for a point (r, c), will be rotated to (c, n-1,r)
+for a point (r, c), will be rotated to (c, n-1-r)
 if p1 is point (r, c):
-p1	(r, c)			→ p2
-p2	(c, n-1-r)		→ p3
-p3	(n-1-r, n-1-c)	→ p4
-p4	(n-1-c, r)		→ p1
+p1	(r, c)			→ p2 (c, n-1-r)
+p2	(c, n-1-r)		→ p3 (n-1-r, n-1-c)
+p3	(n-1-r, n-1-c)	→ p4 (n-1-c, r)
+p4	(n-1-c, r)		→ p1 (r, c)
 */
 func rotate(matrix [][]int) {
 	n := len(matrix)
@@ -138,7 +130,7 @@ p3 → p4
 there is a circle!
 
 for a point(r, c), will be rotated to (n-1-c, r)
-if p1 is point (i, j):
+if p1 is point (r, c):
 p1	(r, c)			→ p2
 p2	(n-1-c, r)		→ p3
 p3	(n-1-r, n-1-c)	→ p4

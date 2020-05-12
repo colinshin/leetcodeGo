@@ -70,7 +70,7 @@ LeetCode 问题 Go 语言之旅
 * [construct-product-array](solutions/construct-product-array/d.go)
 * [find-repeat-number](solutions/find-repeat-number/d.go)
 * [valid-sudoku](solutions/valid-sudoku/d.go)
-* [rotate-image](solutions/rotate-image/d.go)
+* [[48] 旋转图像](solutions/rotate-image/d.go)
 * [reverse-string-ii](solutions/reverse-string-ii/d.go)
 * [string-to-integer-atoi](solutions/string-to-integer-atoi/d.go)
 * [implement-strstr](solutions/implement-strstr/d.go)
@@ -83,7 +83,7 @@ LeetCode 问题 Go 语言之旅
 * [[67/415] add-strings](solutions/add-binary/d.go)
 * [[5] longest palindromic substring](solutions/longest_palindromic_substring/readme.md)
 * [[179] largest-number](solutions/largest-number/d.go)
-* [[1021] remove-outermost-parentheses](solutions/remove-outermost-parentheses/d.go)
+* [[1021] 删除最外层的括号](solutions/remove-outermost-parentheses/d.go)
 * [[1271] hexspeak](solutions/hexspeak/d.go)
 * [minimum-window-substring](solutions/minimum-window-substring/d.go)
 * [[242/438] 字母异位词](solutions/find-all-anagrams-in-a-string/d.go)
@@ -98,6 +98,7 @@ LeetCode 问题 Go 语言之旅
 * [[10] 正则表达式匹配](solutions/regular-expression-matching/d.go)
 * [[1438] 绝对差不超过限制的最长连续子数组](solutions/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/d.go)
 * [面试题 16.18. 模式匹配](solutions/pattern-matching-lcci/d.go)
+* [面试题 05.02. 二进制数转字符串](solutions/bianry-number-to-string-lcci/d.go)
 
 ### linked list
 * [[21] 合并两个有序链表](solutions/merge-two-sorted-lists/d.go)
