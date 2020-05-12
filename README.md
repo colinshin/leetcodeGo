@@ -175,6 +175,7 @@ LeetCode 问题 Go 语言之旅
 * [[778] 水位上升的泳池中游泳](solutions/swim-in-rising-water/readme.md)
 * [[576] 出界的路径数](solutions/out-of-boundary-paths/d.go)
 * [[1102] 得分最高的路径](solutions/path-with-maximum-minimum-value/d.go)
+* [面试题 08.09. 括号](solutions/bracket-lcci/d.go)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 * [面试题65. 不用加减乘除做加法](solutions/plus-without-arithmetic-operators/d.go)
@@ -198,6 +199,7 @@ LeetCode 问题 Go 语言之旅
 * [面试题57 - II. 和为s的连续正数序列](solutions/continuous-nums-with-target-sum/d.go)
 * [面试题60. n个骰子的点数](solutions/dice-points-rate/d.go)
 * [[169] 多数元素](solutions/majority-element/d.go)
+* [面试题 16.13. 平分正方形](solutions/bisect-squares-lcci/d.go)
 ### others
 * [count-primes](solutions/count-primes/d.go)
 * [roman-to-integer](solutions/roman-to-integer/d.go)
