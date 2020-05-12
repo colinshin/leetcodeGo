@@ -42,42 +42,43 @@ package langtons_ant_lcci
 K <= 100000
 */
 /*
-理解提议后，模拟即可
-除了题目给的几个用例，还需要明确K==1的输出预期是：
-["X","D"]
-借助一个哈希表，来装所有的点
-假设一开始的点是（0,0），在模拟过程中点坐标可能变成负值
-模拟完需要根据哈希表里的信息确定上下左右边界，从而确定结果矩阵的行列数
-并需要把所有点移动到第一象限，即坐标全为非负；只需要每个坐标的r减去最小行边界，c减去最小列边界
+除了题目给的几个用例，还需要明确`K==1`的输出预期是：`["X","D"]`
+理解题意后，模拟即可
 
-时间复杂度O(K)
+借助一个哈希表，来装所有的点
+假设一开始的点是`（0,0）`，在模拟过程中蚂蚁向左或向上走，点坐标可能变成负值
+模拟完需要根据哈希表里的信息确定上下左右边界，从而确定结果矩阵的大小
+并需要把所有点移动到第一象限，即坐标全为非负；只需要每个坐标的行`r`减去最小行边界，列`c`减去最小列边界
+
+时间复杂度`O(K)`
 */
 
-// 定义Point结构体，方便使用哈希表
 type Point struct {
 	r, c int
 }
 
 func printKMoves(K int) []string {
+	// 0, 1, 2, 3 分别代表 右、下、左、上四个方向
+	currDir := 0
+	// 当前的方向currDir可以通过+1（顺时针）或-1（+3， 逆时针）的方式得到下一个方向, 通过dirs能方便计算出下个坐标
 	dirs := [][]int{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}
-	currDir := 0 // 0, 1, 2, 3 分别代表 右、下、左、上四个方向
-	currPoint := Point{}
+	currPoint := Point{r: 0, c: 0}
 	set := make(map[Point]bool, 0) // 值为颜色:false白色，true黑色
 	// 蚂蚁开跑，共K步
 	for ; K > 0; K-- {
 		// 根据currPoint的情况确定下一步方向并变色
-		if set[currPoint] { // 已经加入set且为黑色
+		if set[currPoint] {
 			currDir = (currDir + 3) % 4
 			set[currPoint] = false
-		} else { // 不在set中或在set中但是白色
+		} else {
 			currDir = (currDir + 1) % 4
 			set[currPoint] = true
 		}
 		// 走到下个点
 		currPoint = Point{r: currPoint.r + dirs[currDir][0], c: currPoint.c + dirs[currDir][1]}
 	}
-	set[currPoint] = false
-	// 统计跑到的点的边界
+	set[currPoint] = false // 最后一个格子，要保证加入set；不能翻转了，染成黑色或白色都行，最后被方向字母替换
+	// 统计经过的点的边界
 	var minR, maxR, minC, maxC int
 	for p := range set {
 		minR = min(minR, p.r)
@@ -97,10 +98,10 @@ func printKMoves(K int) []string {
 	// 染黑应该是黑色的格子，最后一个格子需要标明方向
 	for point, isBlack := range set {
 		r, c := point.r-minR, point.c-minC
-		if isBlack {
-			result[r][c] = 'X'
-		} else if point.r == currPoint.r && point.c == currPoint.c {
+		if point.r == currPoint.r && point.c == currPoint.c {
 			result[r][c] = []byte{'R', 'D', 'L', 'U'}[currDir]
+		} else if isBlack {
+			result[r][c] = 'X'
 		}
 	}
 	return parse(result)
