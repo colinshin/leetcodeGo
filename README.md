@@ -209,6 +209,7 @@ LeetCode 问题 Go 语言之旅
 * [[679] 24-game](solutions/24-game/d.go)
 * [[733] flood-fill](solutions/flood-fill/d.go)
 * [[358/621/767] 重排使相同元素至少间隔k](solutions/rearrange-k-distance-apart/readme.md)
+* [面试题 17.15. 最长单词](solutions/longest-word-lcci/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>

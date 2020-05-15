@@ -34,29 +34,19 @@ C不在result里：
 count首先记录每个字母在s中出现的次数；在修改result时根据情况增减字母个数
 inResult记录字母是否已经在result中；在修改result时根据情况标记字母是否在result中
 */
-func removeDuplicateLetters1(s string) string {
-	const letterNums = 26
-	count := make(map[rune]int, letterNums) // count letters in s, we will change the numbers when make result later
+func removeDuplicateLetters(s string) string {
+	letterNums := countLetters(s)
+	inResult := make(map[rune]bool, 26)
+	var result []rune
 	for _, c := range s {
-		count[c]++
-	}
-	inResult := make(map[rune]bool, letterNums)
-	var result []rune // use result as stack
-	for _, c := range s {
-		count[c]--
-		if len(result) == 0 {
-			result = append(result, c)
-			inResult[c] = true
-			continue
-		}
+		letterNums[c]--
 		if inResult[c] {
 			continue
 		}
-		for len(result) > 0 && c < result[len(result)-1] && count[result[len(result)-1]] > 0 {
-			// pop all letters at the tail of result which are bigger than c
-			last := result[len(result)-1]
+		for n := len(result); n > 0 && c < result[n-1] && letterNums[result[n-1]] > 0; n-- {
+			last := result[n-1]
 			inResult[last] = false
-			result = result[:len(result)-1]
+			result = result[:n-1]
 		}
 		result = append(result, c)
 		inResult[c] = true
@@ -64,34 +54,12 @@ func removeDuplicateLetters1(s string) string {
 	return string(result)
 }
 
-// 因为全是小写字母，两个map的大小最多为26，map可以优化为数组，读写更迅捷~
-func removeDuplicateLetters(s string) string {
-	const letterNums = 26
-	const firstLetter = 'a'
-	count := make([]int, letterNums) // count letters in s, we will change the numbers when make result later
+func countLetters(s string) map[rune]int {
+	r := make(map[rune]int, 26)
 	for _, c := range s {
-		count[c-firstLetter]++
+		r[c]++
 	}
-	inResult := make([]bool, letterNums)
-	var result []rune // use result as stack
-	for _, c := range s {
-		count[c-firstLetter]--
-		if len(result) == 0 {
-			result = append(result, c)
-			inResult[c-firstLetter] = true
-			continue
-		}
-		if inResult[c-firstLetter] {
-			continue
-		}
-		for len(result) > 0 && c < result[len(result)-1] && count[result[len(result)-1]-firstLetter] > 0 {
-			// pop all letters at the tail of result which are bigger than c
-			last := result[len(result)-1] - firstLetter
-			inResult[last] = false
-			result = result[:len(result)-1]
-		}
-		result = append(result, c)
-		inResult[c-firstLetter] = true
-	}
-	return string(result)
+	return r
 }
+
+// 因为全是小写字母，两个map的大小最多为26，map可以优化为数组，读写更迅捷~代码略

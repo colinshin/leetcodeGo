@@ -47,21 +47,6 @@ func subsets(nums []int) [][]int {
 	return result
 }
 
-// 如果空集不算子集，可稍作修改，如下：
-func mySubsets(nums []int) [][]int {
-	var result [][]int
-	for _, num := range nums {
-		for _, r := range result {
-			tmp := make([]int, len(r)+1)
-			_ = copy(tmp, r)
-			tmp[len(tmp)-1] = num
-			result = append(result, tmp)
-		}
-		result = append(result, []int{num})
-	}
-	return result
-}
-
 /*
 回溯
 时空复杂度均为O(n*2^n)
