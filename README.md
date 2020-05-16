@@ -39,6 +39,7 @@ LeetCode 问题 Go 语言之旅
 * [面试题66. 构建乘积数组](solutions/construct-multiple-array/d.go)
 * [array_pair_sum](solutions/array_pair_sum/d.go)
 * [面试题 16.22. 兰顿蚂蚁](solutions/langtons-ant-lcci/d.go)
+* [[★560] 和为K的子数组](solutions/subarray-sum-equals-k/d.go)
 ### random
 * [[470] 用Rand7实现Rand10](solutions/implement-rand10-using-rand7/d.go)
 * [[528] 按权重随机选择](solutions/random-pick-with-weight/d.go)
@@ -176,6 +177,7 @@ LeetCode 问题 Go 语言之旅
 * [[576] 出界的路径数](solutions/out-of-boundary-paths/d.go)
 * [[1102] 得分最高的路径](solutions/path-with-maximum-minimum-value/d.go)
 * [面试题 08.09. 括号](solutions/bracket-lcci/d.go)
+* [★面试题 16.20. T9键盘](solutions/t9-lcci/d.go)
 ### bit
 * [maximum-xor-of-two-numbers-in-an-array](solutions/maximum-xor-of-two-numbers-in-an-array/d.go)
 * [面试题65. 不用加减乘除做加法](solutions/plus-without-arithmetic-operators/d.go)
@@ -210,6 +212,7 @@ LeetCode 问题 Go 语言之旅
 * [[733] flood-fill](solutions/flood-fill/d.go)
 * [[358/621/767] 重排使相同元素至少间隔k](solutions/rearrange-k-distance-apart/readme.md)
 * [面试题 17.15. 最长单词](solutions/longest-word-lcci/d.go)
+* [★面试题 05.04. 下一个数](solutions/closed-number-lcci/d.go)
 ## reference
 [it-code-monkey-algorithm](https://www.itcodemonkey.com/category/TheAlgorithm/)<br>
 [CSDN程序员小灰2017-2019年远程汇总](https://blog.csdn.net/u013850277/article/details/90647636)<br>
