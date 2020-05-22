@@ -1,3 +1,5 @@
+## 写在开头
+重新设计 heap 的 Api， 详见 https://github.com/zrcoder/dsGo/tree/master/base/heap
 ## 堆的使用
 关于堆和优先队列，标准库已经实现了核心部分，详见container/heap
 基本自定义集合（一般为一个切片）实现了heap.Interface的5个函数，就可以用了。
