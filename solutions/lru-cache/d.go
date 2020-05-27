@@ -9,6 +9,8 @@ import (
 )
 
 /*
+146. LRU缓存机制 https://leetcode-cn.com/problems/lru-cache
+
 运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
 
 获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。
@@ -31,11 +33,6 @@ lis.put(4, 4);    // 该操作会使得密钥 1 作废
 lis.get(1);       // 返回 -1 (未找到)
 lis.get(3);       // 返回  3
 lis.get(4);       // 返回  4
-
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/lru-cache
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 type Pair struct {
 	Key, Val int
@@ -48,9 +45,11 @@ type LRUCache struct {
 }
 
 func Constructor(capacity int) LRUCache {
-	lis := list.New()
-	m := make(map[int]*list.Element, 0)
-	return LRUCache{lis: lis, m: m, Capacity: capacity}
+	return LRUCache{
+		lis:      list.New(),
+		m:        make(map[int]*list.Element, 0),
+		Capacity: capacity,
+	}
 }
 
 func (s *LRUCache) Get(key int) int {
@@ -66,12 +65,9 @@ func (s *LRUCache) Put(key int, value int) {
 	pair := &Pair{Key: key, Val: value}
 	if e, ok := s.m[key]; ok {
 		_ = s.lis.Remove(e)
-		s.m[key] = s.lis.PushFront(pair)
-	} else {
-		if s.lis.Len() == s.Capacity {
-			backPair := s.lis.Remove(s.lis.Back()).(*Pair)
-			delete(s.m, backPair.Key)
-		}
-		s.m[key] = s.lis.PushFront(pair)
+	} else if s.lis.Len() == s.Capacity {
+		back := s.lis.Remove(s.lis.Back()).(*Pair)
+		delete(s.m, back.Key)
 	}
+	s.m[key] = s.lis.PushFront(pair)
 }
